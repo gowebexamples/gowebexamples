@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go Web Examples</title>
+    <link>https://gowebexamples.github.io/index.xml</link>
+    <description>Recent content on Go Web Examples</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://gowebexamples.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://gowebexamples.github.io/hello-world/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/hello-world/</guid>
+      <description>
+
+&lt;h2 id=&#34;hello-world&#34;&gt;Hello World&lt;/h2&gt;
+
+&lt;p&gt;This example will start a webserver on port 8080 and print the classic &amp;ldquo;hello world&amp;rdquo; message.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// hello-world.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;hello world&amp;quot;&lt;/span&gt;)
+	})
+
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run hello-world.go
+
+$ curl -s http://localhost:8080/
+hello world
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Templates</title>
+      <link>https://gowebexamples.github.io/templates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/templates/</guid>
+      <description>
+
+&lt;h2 id=&#34;templates&#34;&gt;Templates&lt;/h2&gt;
+
+&lt;p&gt;This example will render a simple list of TODO items into an html page.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// todos.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;html/template&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+	tmpl &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; template.Must(template.ParseFiles(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;todos.html&amp;quot;&lt;/span&gt;))
+	todos &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; []&lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
+		Task &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+		Done &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;
+	}{
+		{&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Learn Go&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;},
+		{&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Read Go Web Examples&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;},
+		{&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Create a web app in Go&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;false&lt;/span&gt;},
+	}
+
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		tmpl.Execute(w, todos)
+	})
+
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- todos.html --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Todos&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;ul&lt;/span&gt;&amp;gt;
+	{{range .}}
+		{{if .Done}}
+			&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;s&lt;/span&gt;&amp;gt;{{.Task}}&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;s&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;li&lt;/span&gt;&amp;gt;
+		{{else}}
+			&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;li&lt;/span&gt;&amp;gt;{{.Task}}&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;li&lt;/span&gt;&amp;gt;
+		{{end}}
+	{{end}}
+&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;ul&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run todos.go
+
+$ curl -s http://localhost:8080/
+&amp;lt;h1&amp;gt;Todos&amp;lt;/h1&amp;gt;
+&amp;lt;ul&amp;gt;
+	&amp;lt;li&amp;gt;&amp;lt;s&amp;gt;Learn Go&amp;lt;/s&amp;gt;&amp;lt;/li&amp;gt;
+	&amp;lt;li&amp;gt;&amp;lt;s&amp;gt;Read Go Web Examples&amp;lt;/s&amp;gt;&amp;lt;/li&amp;gt;
+	&amp;lt;li&amp;gt;Create a web app in Go&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

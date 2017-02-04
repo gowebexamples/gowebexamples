@@ -1,0 +1,5 @@
+baseUrl = "https://gowebexamples.github.io/"
+languageCode = "en-us"
+title = "Go Web Examples"
+PygmentsCodeFences = true
+PygmentsStyle = "trac"

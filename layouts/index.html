@@ -1,0 +1,13 @@
+{{partial "header.html" .}}
+<p>
+	<a target="_blank" href="https://golang.org/">Go</a> is a <a target="_blank" href="http://www.tiobe.com/tiobe-index/">rapidly growing</a> open source programming language designed for building simple, fast, and reliable software.
+	<i>Go Web Examples</i> provides easy to understand snippets on how to do web development in Go</i>.
+	Check out the {{with index .Pages 0}}<a href="{{.URL}}">first example</a>{{end}} on how to create a classical "hello world" web application.
+</p>
+<p>&nbsp;</p>
+<p>
+	{{ range .Pages }}
+	<a href="{{.URL}}">{{.Title}}</a><br />
+	{{ end }}
+</p>
+{{partial "footer.html" .}}

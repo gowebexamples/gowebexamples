@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{{if eq .Site.Title .Title}}
+		<title>{{.Site.Title}}</title>
+	{{else}}
+		<title>{{.Site.Title}}: {{.Title}}</title>
+	{{end}}
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="canonical" href="{{.Permalink}}">
+	<style>
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { max-width: 700px; margin: auto; padding: 15px; }
+		a {	color: black; }
+		p { font-family: "Georgia", serif; margin: 0.5em 0; }
+		h1 { margin: 1em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		a[target="_blank"] { background: url(link.svg) right top/9px no-repeat;	padding-right: 12px;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+<h1><a href="/">{{ .Site.Title }}</a></h1>

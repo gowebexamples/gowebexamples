@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+		<title>Go Web Examples: Templates</title>
+	
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="canonical" href="https://gowebexamples.github.io/templates/">
+	<style>
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { max-width: 700px; margin: auto; padding: 15px; }
+		a {	color: black; }
+		p { font-family: "Georgia", serif; margin: 0.5em 0; }
+		h1 { margin: 1em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		a[target="_blank"] { background: url(link.svg) right top/9px no-repeat;	padding-right: 12px;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+<h1><a href="/">Go Web Examples</a></h1>
+
+
+<h2 id="templates">Templates</h2>
+
+<p>This example will render a simple list of TODO items into an html page.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// todos.go</span>
+<span style="font-weight: bold">package</span> main
+
+<span style="font-weight: bold">import</span> (
+	<span style="color: #bb8844">&quot;html/template&quot;</span>
+	<span style="color: #bb8844">&quot;net/http&quot;</span>
+)
+
+<span style="font-weight: bold">func</span> main() {
+	tmpl <span style="font-weight: bold">:=</span> template.Must(template.ParseFiles(<span style="color: #bb8844">&quot;todos.html&quot;</span>))
+	todos <span style="font-weight: bold">:=</span> []<span style="font-weight: bold">struct</span> {
+		Task <span style="color: #445588; font-weight: bold">string</span>
+		Done <span style="color: #445588; font-weight: bold">bool</span>
+	}{
+		{<span style="color: #bb8844">&quot;Learn Go&quot;</span>, <span style="font-weight: bold">true</span>},
+		{<span style="color: #bb8844">&quot;Read Go Web Examples&quot;</span>, <span style="font-weight: bold">true</span>},
+		{<span style="color: #bb8844">&quot;Create a web app in Go&quot;</span>, <span style="font-weight: bold">false</span>},
+	}
+
+	http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		tmpl.Execute(w, todos)
+	})
+
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+}
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">&lt;!-- todos.html --&gt;</span>
+&lt;<span style="color: #000080">h1</span>&gt;Todos&lt;/<span style="color: #000080">h1</span>&gt;
+&lt;<span style="color: #000080">ul</span>&gt;
+	{{range .}}
+		{{if .Done}}
+			&lt;<span style="color: #000080">li</span>&gt;&lt;<span style="color: #000080">s</span>&gt;{{.Task}}&lt;/<span style="color: #000080">s</span>&gt;&lt;/<span style="color: #000080">li</span>&gt;
+		{{else}}
+			&lt;<span style="color: #000080">li</span>&gt;{{.Task}}&lt;/<span style="color: #000080">li</span>&gt;
+		{{end}}
+	{{end}}
+&lt;/<span style="color: #000080">ul</span>&gt;
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run todos.go
+
+$ curl -s http://localhost:8080/
+&lt;h1&gt;Todos&lt;/h1&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;s&gt;Learn Go&lt;/s&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;s&gt;Read Go Web Examples&lt;/s&gt;&lt;/li&gt;
+	&lt;li&gt;Create a web app in Go&lt;/li&gt;
+&lt;/ul&gt;
+</pre></div>
+
+</div>
+</body>
+</html>
