@@ -44,6 +44,59 @@ hello world
     </item>
     
     <item>
+      <title>Routes (using gorilla/mux)</title>
+      <link>https://gowebexamples.github.io/routes-using-gorilla-mux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/routes-using-gorilla-mux/</guid>
+      <description>
+
+&lt;h2 id=&#34;routes-using-gorilla-mux&#34;&gt;Routes (using gorilla/mux)&lt;/h2&gt;
+
+&lt;p&gt;This example will show how to register restful routes using the popular &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/gorilla/mux&#34;&gt;gorilla/mux&lt;/a&gt; router.
+To use the library we will have to install it first like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ go get github.com/gorilla/mux&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;From now on, every application we write will be able to make use of this library.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// routes.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;github.com/gorilla/mux&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+	users &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;map&lt;/span&gt;[&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;]&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;int&lt;/span&gt;{
+		&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;:  &lt;span style=&#34;color: #009999&#34;&gt;25&lt;/span&gt;,
+		&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;:    &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt;,
+		&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Claire&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #009999&#34;&gt;29&lt;/span&gt;,
+	}
+
+	r &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; mux.NewRouter()
+	r.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/users/{name}&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		params &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; mux.Vars(r)
+		name &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; params[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;]
+		age &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; users[name]
+
+		fmt.Fprintf(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;%s is %d years old!&amp;quot;&lt;/span&gt;, name, age)
+	})
+
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, r)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run routes.go
+
+$ curl -s http://localhost:8080/users/Bob
+Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Templates</title>
       <link>https://gowebexamples.github.io/templates/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -101,6 +154,66 @@ $ curl -s http://localhost:8080/
 	&amp;lt;li&amp;gt;&amp;lt;s&amp;gt;Read Go Web Examples&amp;lt;/s&amp;gt;&amp;lt;/li&amp;gt;
 	&amp;lt;li&amp;gt;Create a web app in Go&amp;lt;/li&amp;gt;
 &amp;lt;/ul&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>JSON</title>
+      <link>https://gowebexamples.github.io/json/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/json/</guid>
+      <description>
+
+&lt;h2 id=&#34;json&#34;&gt;JSON&lt;/h2&gt;
+
+&lt;p&gt;This example will show how to deal with JSON data.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// json.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;encoding/json&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; User &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
+	Firstname &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;`json:&amp;quot;firstname&amp;quot;`&lt;/span&gt;
+	Lastname  &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;`json:&amp;quot;lastname&amp;quot;`&lt;/span&gt;
+	Age       &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;int&lt;/span&gt;    &lt;span style=&#34;color: #bb8844&#34;&gt;`json:&amp;quot;age&amp;quot;`&lt;/span&gt;
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/decode&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		&lt;span style=&#34;font-weight: bold&#34;&gt;var&lt;/span&gt; user User
+
+		json.NewDecoder(r.Body).Decode(&lt;span style=&#34;font-weight: bold&#34;&gt;&amp;amp;&lt;/span&gt;user)
+
+		fmt.Fprintf(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;%s %s is %d years old!&amp;quot;&lt;/span&gt;,
+			user.Firstname, user.Lastname, user.Age)
+	})
+
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/encode&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		peter &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; User{
+			Firstname: &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;,
+			Lastname:  &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;,
+			Age:       &lt;span style=&#34;color: #009999&#34;&gt;25&lt;/span&gt;,
+		}
+
+		json.NewEncoder(w).Encode(peter)
+	})
+
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run json.go
+
+$ curl -s -XPOST -d&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;#39;{&amp;quot;firstname&amp;quot;:&amp;quot;Donald&amp;quot;,&amp;quot;lastname&amp;quot;:&amp;quot;Trump&amp;quot;,&amp;quot;age&amp;quot;:70}&amp;#39;&lt;/span&gt; http://localhost:8080/decode
+Donald Trump is &lt;span style=&#34;color: #009999&#34;&gt;70&lt;/span&gt; years old!
+
+$ curl -s http://localhost:8080/encode
+&lt;span style=&#34;font-weight: bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;firstname&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;lastname&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;age&amp;quot;&lt;/span&gt;:25&lt;span style=&#34;font-weight: bold&#34;&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>

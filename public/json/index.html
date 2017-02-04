@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+		<title>Go Web Examples: JSON</title>
+	
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="canonical" href="https://gowebexamples.github.io/json/">
+	<style>
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { max-width: 700px; margin: auto; padding: 15px; }
+		a {	color: black; }
+		p { font-family: "Georgia", serif; margin: 0.5em 0; }
+		h1 { margin: 1em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat;	padding-right: 12px;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+<h1><a href="/">Go Web Examples</a></h1>
+
+
+<h2 id="json">JSON</h2>
+
+<p>This example will show how to deal with JSON data.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// json.go</span>
+<span style="font-weight: bold">package</span> main
+
+<span style="font-weight: bold">import</span> (
+	<span style="color: #bb8844">&quot;encoding/json&quot;</span>
+	<span style="color: #bb8844">&quot;fmt&quot;</span>
+	<span style="color: #bb8844">&quot;net/http&quot;</span>
+)
+
+<span style="font-weight: bold">type</span> User <span style="font-weight: bold">struct</span> {
+	Firstname <span style="color: #445588; font-weight: bold">string</span> <span style="color: #bb8844">`json:&quot;firstname&quot;`</span>
+	Lastname  <span style="color: #445588; font-weight: bold">string</span> <span style="color: #bb8844">`json:&quot;lastname&quot;`</span>
+	Age       <span style="color: #445588; font-weight: bold">int</span>    <span style="color: #bb8844">`json:&quot;age&quot;`</span>
+}
+
+<span style="font-weight: bold">func</span> main() {
+	http.HandleFunc(<span style="color: #bb8844">&quot;/decode&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		<span style="font-weight: bold">var</span> user User
+
+		json.NewDecoder(r.Body).Decode(<span style="font-weight: bold">&amp;</span>user)
+
+		fmt.Fprintf(w, <span style="color: #bb8844">&quot;%s %s is %d years old!&quot;</span>,
+			user.Firstname, user.Lastname, user.Age)
+	})
+
+	http.HandleFunc(<span style="color: #bb8844">&quot;/encode&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		peter <span style="font-weight: bold">:=</span> User{
+			Firstname: <span style="color: #bb8844">&quot;John&quot;</span>,
+			Lastname:  <span style="color: #bb8844">&quot;Doe&quot;</span>,
+			Age:       <span style="color: #009999">25</span>,
+		}
+
+		json.NewEncoder(w).Encode(peter)
+	})
+
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+}
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run json.go
+
+$ curl -s -XPOST -d<span style="color: #bb8844">&#39;{&quot;firstname&quot;:&quot;Donald&quot;,&quot;lastname&quot;:&quot;Trump&quot;,&quot;age&quot;:70}&#39;</span> http://localhost:8080/decode
+Donald Trump is <span style="color: #009999">70</span> years old!
+
+$ curl -s http://localhost:8080/encode
+<span style="font-weight: bold">{</span><span style="color: #bb8844">&quot;firstname&quot;</span>:<span style="color: #bb8844">&quot;John&quot;</span>,<span style="color: #bb8844">&quot;lastname&quot;</span>:<span style="color: #bb8844">&quot;Doe&quot;</span>,<span style="color: #bb8844">&quot;age&quot;</span>:25<span style="font-weight: bold">}</span>
+</pre></div>
+
+</div>
+</body>
+</html>
