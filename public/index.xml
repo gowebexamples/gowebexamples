@@ -56,7 +56,7 @@ hello world
 &lt;p&gt;This example will show how to register restful routes using the popular &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/gorilla/mux&#34;&gt;gorilla/mux&lt;/a&gt; router.
 To use the library we will have to install it first like so:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;$ go get github.com/gorilla/mux&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ go get github.com/gorilla/mux&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;From now on, every application we write will be able to make use of this library.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// routes.go&lt;/span&gt;

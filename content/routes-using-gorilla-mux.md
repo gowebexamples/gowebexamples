@@ -8,7 +8,7 @@ title = "Routes (using gorilla/mux)"
 This example will show how to register restful routes using the popular <a target="_blank" href="https://github.com/gorilla/mux">gorilla/mux</a> router.
 To use the library we will have to install it first like so:
 
-`$ go get github.com/gorilla/mux`. 
+`$ go get github.com/gorilla/mux`
 
 From now on, every application we write will be able to make use of this library.
 
