@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+		<title>Go Web Examples: Forms</title>
+	
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
+	<link rel="canonical" href="https://gowebexamples.github.io/forms/">
+	<style>
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { max-width: 700px; margin: auto; padding: 15px; }
+		a {	color: black; }
+		p { font-family: "Georgia", serif; margin: 0.5em 0; }
+		h1 { margin: 1em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		.footer { font-size: .85em; margin-top: 3em; color: #aaa; }
+		.footer a { color: #aaa; }
+		.image { border: 1px solid #f0f0f0; }
+		.image img { max-width: 100%; height: auto; display: block; }
+	</style>
+</head>
+<body>
+<div class="container">
+<h1><a href="/">Go Web Examples</a></h1>
+
+
+
+<h2 id="forms">Forms</h2>
+
+<p>This example will simulate a login form, parse the data submitted and check for valid credentials.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// forms.go</span>
+<span style="font-weight: bold">package</span> main
+
+<span style="font-weight: bold">import</span> (
+    <span style="color: #bb8844">&quot;html/template&quot;</span>
+    <span style="color: #bb8844">&quot;net/http&quot;</span>
+)
+
+<span style="font-weight: bold">type</span> Credentials <span style="font-weight: bold">struct</span> {
+    Email    <span style="color: #445588; font-weight: bold">string</span>
+    Password <span style="color: #445588; font-weight: bold">string</span>
+    LoggedIn <span style="color: #445588; font-weight: bold">bool</span>
+}
+
+<span style="font-weight: bold">func</span> main() {
+    tmpl <span style="font-weight: bold">:=</span> template.Must(template.ParseFiles(<span style="color: #bb8844">&quot;forms.html&quot;</span>))
+
+    http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+        <span style="font-weight: bold">if</span> r.Method <span style="font-weight: bold">!=</span> http.MethodPost {
+            tmpl.Execute(w, <span style="font-weight: bold">nil</span>)
+            <span style="font-weight: bold">return</span>
+        }
+
+        creds <span style="font-weight: bold">:=</span> Credentials{
+            Email:    r.FormValue(<span style="color: #bb8844">&quot;email&quot;</span>),
+            Password: r.FormValue(<span style="color: #bb8844">&quot;password&quot;</span>),
+        }
+
+        <span style="font-weight: bold">if</span> creds.Email <span style="font-weight: bold">==</span> <span style="color: #bb8844">&quot;user@example.com&quot;</span> <span style="font-weight: bold">&amp;&amp;</span> creds.Password <span style="font-weight: bold">==</span> <span style="color: #bb8844">&quot;secret&quot;</span> {
+            creds.LoggedIn = <span style="font-weight: bold">true</span>
+        }
+
+        tmpl.Execute(w, creds)
+    })
+
+    http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+}
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">&lt;!-- forms.html --&gt;</span>
+{{if .LoggedIn}}
+    &lt;<span style="color: #000080">h1</span>&gt;Hello {{.Email}}, you&#39;re now logged in!&lt;/<span style="color: #000080">h1</span>&gt;
+{{else}}
+    &lt;<span style="color: #000080">h1</span>&gt;Please enter your login credentials&lt;/<span style="color: #000080">h1</span>&gt;
+    &lt;<span style="color: #000080">form</span> <span style="color: #008080">method</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;POST&quot;</span>&gt;
+        &lt;<span style="color: #000080">label</span>&gt;Email:&lt;/<span style="color: #000080">label</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">input</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;text&quot;</span> <span style="color: #008080">name</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;email&quot;</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">label</span>&gt;Password:&lt;/<span style="color: #000080">label</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">input</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;password&quot;</span> <span style="color: #008080">name</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;password&quot;</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">input</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;submit&quot;</span>&gt;
+    &lt;/<span style="color: #000080">form</span>&gt;
+{{end}}
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run forms.go
+</pre></div>
+
+<div class="image">
+    <img src="/forms.png" alt="Forms" />
+</div>
+
+	<p class="footer">
+		by <a href="https://github.com/philippta">philippta</a>
+		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
+		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
+		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
+	</p>
+</div>
+</body>
+</html>

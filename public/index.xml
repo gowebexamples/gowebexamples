@@ -146,15 +146,83 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;ul&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run todos.go
-
-$ curl -s http://localhost:8080/
-&amp;lt;h1&amp;gt;Todos&amp;lt;/h1&amp;gt;
-&amp;lt;ul&amp;gt;
-	&amp;lt;li&amp;gt;&amp;lt;s&amp;gt;Learn Go&amp;lt;/s&amp;gt;&amp;lt;/li&amp;gt;
-	&amp;lt;li&amp;gt;&amp;lt;s&amp;gt;Read Go Web Examples&amp;lt;/s&amp;gt;&amp;lt;/li&amp;gt;
-	&amp;lt;li&amp;gt;Create a web app in Go&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;image&#34;&gt;
+    &lt;img src=&#34;https://gowebexamples.github.io/templates.png&#34; alt=&#34;Forms&#34; /&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Forms</title>
+      <link>https://gowebexamples.github.io/forms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/forms/</guid>
+      <description>
+
+&lt;h2 id=&#34;forms&#34;&gt;Forms&lt;/h2&gt;
+
+&lt;p&gt;This example will simulate a login form, parse the data submitted and check for valid credentials.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// forms.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;html/template&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; Credentials &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
+    Email    &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+    Password &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+    LoggedIn &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+    tmpl &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; template.Must(template.ParseFiles(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;forms.html&amp;quot;&lt;/span&gt;))
+
+    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+        &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; r.Method &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; http.MethodPost {
+            tmpl.Execute(w, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+            &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+        }
+
+        creds &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; Credentials{
+            Email:    r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;),
+            Password: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;),
+        }
+
+        &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; creds.Email &lt;span style=&#34;font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;user@example.com&amp;quot;&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; creds.Password &lt;span style=&#34;font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;secret&amp;quot;&lt;/span&gt; {
+            creds.LoggedIn = &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;
+        }
+
+        tmpl.Execute(w, creds)
+    })
+
+    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- forms.html --&amp;gt;&lt;/span&gt;
+{{if .LoggedIn}}
+    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Hello {{.Email}}, you&amp;#39;re now logged in!&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
+{{else}}
+    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Please enter your login credentials&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;method&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Email:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Password:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt;&amp;gt;
+{{end}}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run forms.go
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;image&#34;&gt;
+    &lt;img src=&#34;https://gowebexamples.github.io/forms.png&#34; alt=&#34;Forms&#34; /&gt;
+&lt;/div&gt;
 </description>
     </item>
     

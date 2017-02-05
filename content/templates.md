@@ -49,12 +49,7 @@ func main() {
 ```
 ``` sh
 $ go run todos.go
-
-$ curl -s http://localhost:8080/
-<h1>Todos</h1>
-<ul>
-	<li><s>Learn Go</s></li>
-	<li><s>Read Go Web Examples</s></li>
-	<li>Create a web app in Go</li>
-</ul>
 ```
+<div class="image">
+	<img src="/templates.png" alt="Forms" />
+</div>

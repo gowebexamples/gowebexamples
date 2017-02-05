@@ -26,6 +26,8 @@
 		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
 		.footer { font-size: .85em; margin-top: 3em; color: #aaa; }
 		.footer a { color: #aaa; }
+		.image { border: 1px solid #f0f0f0; }
+		.image img { max-width: 100%; height: auto; display: block; }
 	</style>
 </head>
 <body>
@@ -76,15 +78,11 @@
 &lt;/<span style="color: #000080">ul</span>&gt;
 </pre></div>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run todos.go
-
-$ curl -s http://localhost:8080/
-&lt;h1&gt;Todos&lt;/h1&gt;
-&lt;ul&gt;
-	&lt;li&gt;&lt;s&gt;Learn Go&lt;/s&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;s&gt;Read Go Web Examples&lt;/s&gt;&lt;/li&gt;
-	&lt;li&gt;Create a web app in Go&lt;/li&gt;
-&lt;/ul&gt;
 </pre></div>
+
+<div class="image">
+    <img src="/templates.png" alt="Forms" />
+</div>
 
 	<p class="footer">
 		by <a href="https://github.com/philippta">philippta</a>
