@@ -2,13 +2,13 @@
 <html>
 <head>
 	
-		<title>Go Web Examples: Routes (using gorilla/mux)</title>
+		<title>Go Web Examples: Routes</title>
 	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
 	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
-	<link rel="canonical" href="https://gowebexamples.github.io/routes-using-gorilla-mux/">
+	<link rel="canonical" href="https://gowebexamples.github.io/routes/">
 	<style>
 		body {
 			margin: 0;
@@ -41,24 +41,15 @@
 
 
 
-<h2 id="routes-using-gorilla-mux">Routes (using gorilla/mux)</h2>
+<h2 id="routes">Routes</h2>
 
-<p>This example will show how to register routes using the popular <a target="_blank" href="https://github.com/gorilla/mux">gorilla/mux</a> router.
-It is compatible with the router from the standard <code>net/http</code> package but adds a few extra features like named url parameters and http method restrictions to remove some boilerplate code.</p>
-
-<p>To use the library we will have to install it first like so:</p>
-
-<p><code>$ go get github.com/gorilla/mux</code></p>
-
-<p>From now on, every application we write will be able to make use of this library.</p>
+<p>This example will show how to register a route and get the data using just the <code>net/http</code> package.</p>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// routes.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
 	<span style="color: #bb8844">&quot;fmt&quot;</span>
 	<span style="color: #bb8844">&quot;net/http&quot;</span>
-
-	<span style="color: #bb8844">&quot;github.com/gorilla/mux&quot;</span>
 )
 
 <span style="font-weight: bold">func</span> main() {
@@ -68,16 +59,14 @@ It is compatible with the router from the standard <code>net/http</code> package
 		<span style="color: #bb8844">&quot;Claire&quot;</span>: <span style="color: #009999">29</span>,
 	}
 
-	r <span style="font-weight: bold">:=</span> mux.NewRouter()
-	r.HandleFunc(<span style="color: #bb8844">&quot;/users/{name}&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-		vars <span style="font-weight: bold">:=</span> mux.Vars(r)
-		name <span style="font-weight: bold">:=</span> vars[<span style="color: #bb8844">&quot;name&quot;</span>]
+	http.HandleFunc(<span style="color: #bb8844">&quot;/users/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		name <span style="font-weight: bold">:=</span> r.URL.Path[<span style="color: #999999">len</span>(<span style="color: #bb8844">&quot;/users/&quot;</span>):]
 		age <span style="font-weight: bold">:=</span> userAges[name]
 
 		fmt.Fprintf(w, <span style="color: #bb8844">&quot;%s is %d years old!&quot;</span>, name, age)
-	}).Methods(<span style="color: #bb8844">&quot;GET&quot;</span>)
+	})
 
-	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, r)
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run routes.go

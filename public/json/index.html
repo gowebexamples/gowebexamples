@@ -62,11 +62,9 @@
 <span style="font-weight: bold">func</span> main() {
 	http.HandleFunc(<span style="color: #bb8844">&quot;/decode&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
 		<span style="font-weight: bold">var</span> user User
-
 		json.NewDecoder(r.Body).Decode(<span style="font-weight: bold">&amp;</span>user)
 
-		fmt.Fprintf(w, <span style="color: #bb8844">&quot;%s %s is %d years old!&quot;</span>,
-			user.Firstname, user.Lastname, user.Age)
+		fmt.Fprintf(w, <span style="color: #bb8844">&quot;%s %s is %d years old!&quot;</span>, user.Firstname, user.Lastname, user.Age)
 	})
 
 	http.HandleFunc(<span style="color: #bb8844">&quot;/encode&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {

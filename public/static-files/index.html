@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="generator" content="Hugo 0.19-DEV" />
 	
-		<title>Go Web Examples</title>
+		<title>Go Web Examples: Static Files</title>
 	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
 	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
-	<link rel="canonical" href="https://gowebexamples.github.io/">
+	<link rel="canonical" href="https://gowebexamples.github.io/static-files/">
 	<style>
 		body {
 			margin: 0;
@@ -40,32 +39,39 @@
 <div class="container">
 <h1><a href="/">Go Web Examples</a></h1>
 
-<p>
-	<a target="_blank" href="https://golang.org/">Go</a> is a <a target="_blank" href="http://www.tiobe.com/tiobe-index/">rapidly growing</a> open source programming language designed for building simple, fast, and reliable software.
-	Take a look <a target="_blank" href="https://github.com/golang/go/wiki/GoUsers">here</a> which great companies use Go to power their services.
-</p>
-<p>
-	<i>Go Web Examples</i> provides easy to understand snippets on how to do web development in Go and is insired by <a target="_blank" href="https://gobyexample.com/"><i>Go By Example</i></a>, which has a great introduction into the fundametals of this language. Check out the <a href="/hello-world/">first example</a> on how to create a classical "hello world" web application.
-</p>
-<p>&nbsp;</p>
-<p>
-	
-	<a href="/hello-world/">Hello World</a><br />
-	
-	<a href="/routes/">Routes</a><br />
-	
-	<a href="/routes-using-gorilla-mux/">Routes (using gorilla/mux)</a><br />
-	
-	<a href="/templates/">Templates</a><br />
-	
-	<a href="/forms/">Forms</a><br />
-	
-	<a href="/json/">JSON</a><br />
-	
-	<a href="/static-files/">Static Files</a><br />
-	
-</p>
+
+
+<h2 id="static-files">Static Files</h2>
+
+<p>This example will show serve static files like CSSs, JavaScripts or images from a specific directory.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// static-files.go</span>
+<span style="font-weight: bold">package</span> main
+
+<span style="font-weight: bold">import</span> <span style="color: #bb8844">&quot;net/http&quot;</span>
+
+<span style="font-weight: bold">func</span> main() {
+	fileServer <span style="font-weight: bold">:=</span> http.FileServer(http.Dir(<span style="color: #bb8844">&quot;assets/&quot;</span>))
+	http.Handle(<span style="color: #bb8844">&quot;/static/&quot;</span>, http.StripPrefix(<span style="color: #bb8844">&quot;/static/&quot;</span>, fileServer))
+
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+}
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ tree assets/
+assets/
+└── css
+    └── styles.css
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run static-files.go
+
+$ curl -s http://localhost:8080/static/css/styles.css
+body <span style="font-weight: bold">{</span>
+    background-color: black;
+<span style="font-weight: bold">}</span>
+</pre></div>
+
 	<p class="footer">
+		
+		<a class="back" href="/">← back</a>
 		
 		<br /><br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
@@ -76,4 +82,3 @@
 </div>
 </body>
 </html>
-

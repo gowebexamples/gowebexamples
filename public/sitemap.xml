@@ -6,6 +6,10 @@
   </url>
   
   <url>
+    <loc>https://gowebexamples.github.io/routes/</loc>
+  </url>
+  
+  <url>
     <loc>https://gowebexamples.github.io/routes-using-gorilla-mux/</loc>
   </url>
   
@@ -19,6 +23,10 @@
   
   <url>
     <loc>https://gowebexamples.github.io/json/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.github.io/static-files/</loc>
   </url>
   
   <url>
