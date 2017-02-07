@@ -5,7 +5,7 @@ title = "Forms"
 
 ## Forms
 
-This example will simulate a contact form and parse the message into a struct.
+This example will show how to simulate a contact form and parse the message into a struct.
 
 ``` go
 // forms.go

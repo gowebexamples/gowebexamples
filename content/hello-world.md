@@ -5,7 +5,7 @@ title = "Hello World"
 
 ## Hello World
 
-This example will start a webserver on port 8080 and print the classic "hello world" message.
+This example will show how to start a webserver on port 8080 and print the classic "hello world" message.
 
 ``` go
 // hello-world.go

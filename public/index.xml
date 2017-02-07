@@ -18,7 +18,7 @@
 
 &lt;h2 id=&#34;hello-world&#34;&gt;Hello World&lt;/h2&gt;
 
-&lt;p&gt;This example will start a webserver on port 8080 and print the classic &amp;ldquo;hello world&amp;rdquo; message.&lt;/p&gt;
+&lt;p&gt;This example will show how to start a webserver on port 8080 and print the classic &amp;ldquo;hello world&amp;rdquo; message.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// hello-world.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -152,7 +152,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 
 &lt;h2 id=&#34;templates&#34;&gt;Templates&lt;/h2&gt;
 
-&lt;p&gt;This example will render a simple list of TODO items into an html page.&lt;/p&gt;
+&lt;p&gt;This example will show how to render a simple list of TODO items into an html page.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// todos.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -217,7 +217,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 
 &lt;h2 id=&#34;forms&#34;&gt;Forms&lt;/h2&gt;
 
-&lt;p&gt;This example will simulate a contact form and parse the message into a struct.&lt;/p&gt;
+&lt;p&gt;This example will show how to simulate a contact form and parse the message into a struct.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// forms.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -358,7 +358,7 @@ $ curl -s http://localhost:8080/encode
 
 &lt;h2 id=&#34;static-files&#34;&gt;Static Files&lt;/h2&gt;
 
-&lt;p&gt;This example will show serve static files like CSSs, JavaScripts or images from a specific directory.&lt;/p&gt;
+&lt;p&gt;This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// static-files.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 

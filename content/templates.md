@@ -5,7 +5,7 @@ title = "Templates"
 
 ## Templates
 
-This example will render a simple list of TODO items into an html page.
+This example will show how to render a simple list of TODO items into an html page.
 
 ``` go
 // todos.go

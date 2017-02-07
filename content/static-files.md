@@ -5,7 +5,7 @@ title = "Static Files"
 
 ## Static Files
 
-This example will show serve static files like CSSs, JavaScripts or images from a specific directory.
+This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
 
 ``` go
 // static-files.go
