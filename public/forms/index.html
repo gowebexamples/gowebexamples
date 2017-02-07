@@ -25,10 +25,14 @@
 		h2 { font-size: 1.2em; margin: 0.5em 0; }
 		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
 		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
-		.footer { font-size: .85em; margin-top: 3em; color: #aaa; }
-		.footer a { color: #aaa; }
+		a.back { text-decoration: none; }
+		.footer { font-size: .9em; margin-top: 1em; color: #999; }
+		.footer a { color: #999; }
 		.image { border: 1px solid #f0f0f0; }
 		.image img { max-width: 100%; height: auto; display: block; }
+		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
+		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
+		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
 	</style>
 </head>
 <body>
@@ -39,7 +43,7 @@
 
 <h2 id="forms">Forms</h2>
 
-<p>This example will simulate a login form, parse the data submitted and check for valid credentials.</p>
+<p>This example will simulate a contact form and parse the message into a struct.</p>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// forms.go</span>
 <span style="font-weight: bold">package</span> main
 
@@ -48,10 +52,10 @@
     <span style="color: #bb8844">&quot;net/http&quot;</span>
 )
 
-<span style="font-weight: bold">type</span> Credentials <span style="font-weight: bold">struct</span> {
-    Email    <span style="color: #445588; font-weight: bold">string</span>
-    Password <span style="color: #445588; font-weight: bold">string</span>
-    LoggedIn <span style="color: #445588; font-weight: bold">bool</span>
+<span style="font-weight: bold">type</span> ContactDetails <span style="font-weight: bold">struct</span> {
+    Email   <span style="color: #445588; font-weight: bold">string</span>
+    Subject <span style="color: #445588; font-weight: bold">string</span>
+    Message <span style="color: #445588; font-weight: bold">string</span>
 }
 
 <span style="font-weight: bold">func</span> main() {
@@ -63,31 +67,33 @@
             <span style="font-weight: bold">return</span>
         }
 
-        creds <span style="font-weight: bold">:=</span> Credentials{
-            Email:    r.FormValue(<span style="color: #bb8844">&quot;email&quot;</span>),
-            Password: r.FormValue(<span style="color: #bb8844">&quot;password&quot;</span>),
+        details <span style="font-weight: bold">:=</span> ContactDetails{
+            Email:   r.FormValue(<span style="color: #bb8844">&quot;email&quot;</span>),
+            Subject: r.FormValue(<span style="color: #bb8844">&quot;subject&quot;</span>),
+            Message: r.FormValue(<span style="color: #bb8844">&quot;message&quot;</span>),
         }
 
-        <span style="font-weight: bold">if</span> creds.Email <span style="font-weight: bold">==</span> <span style="color: #bb8844">&quot;user@example.com&quot;</span> <span style="font-weight: bold">&amp;&amp;</span> creds.Password <span style="font-weight: bold">==</span> <span style="color: #bb8844">&quot;secret&quot;</span> {
-            creds.LoggedIn = <span style="font-weight: bold">true</span>
-        }
+        <span style="color: #999988; font-style: italic">// do something with details</span>
+        _ = details
 
-        tmpl.Execute(w, creds)
+        tmpl.Execute(w, <span style="font-weight: bold">struct</span>{ Success <span style="color: #445588; font-weight: bold">bool</span> }{<span style="font-weight: bold">true</span>})
     })
 
     http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">&lt;!-- forms.html --&gt;</span>
-{{if .LoggedIn}}
-    &lt;<span style="color: #000080">h1</span>&gt;Hello {{.Email}}, you&#39;re now logged in!&lt;/<span style="color: #000080">h1</span>&gt;
+{{if .Success}}
+    &lt;<span style="color: #000080">h1</span>&gt;Thanks for your message!&lt;/<span style="color: #000080">h1</span>&gt;
 {{else}}
-    &lt;<span style="color: #000080">h1</span>&gt;Please enter your login credentials&lt;/<span style="color: #000080">h1</span>&gt;
+    &lt;<span style="color: #000080">h1</span>&gt;Contact&lt;/<span style="color: #000080">h1</span>&gt;
     &lt;<span style="color: #000080">form</span> <span style="color: #008080">method</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;POST&quot;</span>&gt;
         &lt;<span style="color: #000080">label</span>&gt;Email:&lt;/<span style="color: #000080">label</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
         &lt;<span style="color: #000080">input</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;text&quot;</span> <span style="color: #008080">name</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;email&quot;</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
-        &lt;<span style="color: #000080">label</span>&gt;Password:&lt;/<span style="color: #000080">label</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
-        &lt;<span style="color: #000080">input</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;password&quot;</span> <span style="color: #008080">name</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;password&quot;</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">label</span>&gt;Subject:&lt;/<span style="color: #000080">label</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">input</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;text&quot;</span> <span style="color: #008080">name</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;subject&quot;</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">label</span>&gt;Message:&lt;/<span style="color: #000080">label</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
+        &lt;<span style="color: #000080">textarea</span> <span style="color: #008080">name</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;message&quot;</span>&gt;&lt;/<span style="color: #000080">textarea</span>&gt;&lt;<span style="color: #000080">br</span> /&gt;
         &lt;<span style="color: #000080">input</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;submit&quot;</span>&gt;
     &lt;/<span style="color: #000080">form</span>&gt;
 {{end}}
@@ -95,11 +101,24 @@
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run forms.go
 </pre></div>
 
-<div class="image">
-    <img src="/forms.png" alt="Forms" />
+<div class="demo">
+    <h1>Contact</h1>
+    <form method="POST">
+        <label>Email:</label><br />
+        <input type="text" name="email"><br />
+        <label>Subject:</label><br />
+        <input type="text" name="subject"><br />
+        <label>Message:</label><br />
+        <textarea name="message"></textarea><br />
+        <input type="submit">
+    </form>
 </div>
 
 	<p class="footer">
+		
+		<a class="back" href="/">← back</a>
+		
+		<br /><br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
 		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
 		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>

@@ -25,10 +25,14 @@
 		h2 { font-size: 1.2em; margin: 0.5em 0; }
 		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
 		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
-		.footer { font-size: .85em; margin-top: 3em; color: #aaa; }
-		.footer a { color: #aaa; }
+		a.back { text-decoration: none; }
+		.footer { font-size: .9em; margin-top: 1em; color: #999; }
+		.footer a { color: #999; }
 		.image { border: 1px solid #f0f0f0; }
 		.image img { max-width: 100%; height: auto; display: block; }
+		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
+		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
+		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
 	</style>
 </head>
 <body>
@@ -56,7 +60,7 @@ To use the library we will have to install it first like so:</p>
 )
 
 <span style="font-weight: bold">func</span> main() {
-	users <span style="font-weight: bold">:=</span> <span style="font-weight: bold">map</span>[<span style="color: #445588; font-weight: bold">string</span>]<span style="color: #445588; font-weight: bold">int</span>{
+	userAges <span style="font-weight: bold">:=</span> <span style="font-weight: bold">map</span>[<span style="color: #445588; font-weight: bold">string</span>]<span style="color: #445588; font-weight: bold">int</span>{
 		<span style="color: #bb8844">&quot;Alice&quot;</span>:  <span style="color: #009999">25</span>,
 		<span style="color: #bb8844">&quot;Bob&quot;</span>:    <span style="color: #009999">30</span>,
 		<span style="color: #bb8844">&quot;Claire&quot;</span>: <span style="color: #009999">29</span>,
@@ -66,7 +70,7 @@ To use the library we will have to install it first like so:</p>
 	r.HandleFunc(<span style="color: #bb8844">&quot;/users/{name}&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
 		params <span style="font-weight: bold">:=</span> mux.Vars(r)
 		name <span style="font-weight: bold">:=</span> params[<span style="color: #bb8844">&quot;name&quot;</span>]
-		age <span style="font-weight: bold">:=</span> users[name]
+		age <span style="font-weight: bold">:=</span> userAges[name]
 
 		fmt.Fprintf(w, <span style="color: #bb8844">&quot;%s is %d years old!&quot;</span>, name, age)
 	})
@@ -81,6 +85,10 @@ Bob is <span style="color: #009999">30</span> years old!
 </pre></div>
 
 	<p class="footer">
+		
+		<a class="back" href="/">← back</a>
+		
+		<br /><br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
 		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
 		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>

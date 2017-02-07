@@ -70,7 +70,7 @@ To use the library we will have to install it first like so:&lt;/p&gt;
 )
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
-	users &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;map&lt;/span&gt;[&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;]&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;int&lt;/span&gt;{
+	userAges &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;map&lt;/span&gt;[&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;]&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;int&lt;/span&gt;{
 		&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Alice&amp;quot;&lt;/span&gt;:  &lt;span style=&#34;color: #009999&#34;&gt;25&lt;/span&gt;,
 		&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Bob&amp;quot;&lt;/span&gt;:    &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt;,
 		&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Claire&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #009999&#34;&gt;29&lt;/span&gt;,
@@ -80,7 +80,7 @@ To use the library we will have to install it first like so:&lt;/p&gt;
 	r.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/users/{name}&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
 		params &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; mux.Vars(r)
 		name &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; params[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;]
-		age &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; users[name]
+		age &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; userAges[name]
 
 		fmt.Fprintf(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;%s is %d years old!&amp;quot;&lt;/span&gt;, name, age)
 	})
@@ -115,19 +115,21 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
 )
 
+&lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; Todo &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
+	Task &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+	Done &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;
+}
+
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
 	tmpl &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; template.Must(template.ParseFiles(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;todos.html&amp;quot;&lt;/span&gt;))
-	todos &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; []&lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
-		Task &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
-		Done &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;
-	}{
+	todos &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; []Todo{
 		{&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Learn Go&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;},
 		{&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Read Go Web Examples&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;},
 		{&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Create a web app in Go&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;false&lt;/span&gt;},
 	}
 
 	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-		tmpl.Execute(w, todos)
+		tmpl.Execute(w, &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt;{ Todos []Todo }{todos})
 	})
 
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
@@ -136,7 +138,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- todos.html --&amp;gt;&lt;/span&gt;
 &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Todos&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
 &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;ul&lt;/span&gt;&amp;gt;
-	{{range .}}
+	{{range .Todos}}
 		{{if .Done}}
 			&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;li&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;s&lt;/span&gt;&amp;gt;{{.Task}}&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;s&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;li&lt;/span&gt;&amp;gt;
 		{{else}}
@@ -148,8 +150,13 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run todos.go
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class=&#34;image&#34;&gt;
-    &lt;img src=&#34;https://gowebexamples.github.io/templates.png&#34; alt=&#34;Forms&#34; /&gt;
+&lt;div class=&#34;demo&#34;&gt;
+    &lt;h1&gt;Todos&lt;/h1&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;s&gt;Learn Go&lt;/s&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;s&gt;Read Go Web Examples&lt;/s&gt;&lt;/li&gt;
+        &lt;li&gt;Create a web app in Go&lt;/li&gt;
+    &lt;/ul&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -164,7 +171,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 
 &lt;h2 id=&#34;forms&#34;&gt;Forms&lt;/h2&gt;
 
-&lt;p&gt;This example will simulate a login form, parse the data submitted and check for valid credentials.&lt;/p&gt;
+&lt;p&gt;This example will simulate a contact form and parse the message into a struct.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// forms.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -173,10 +180,10 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
     &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
 )
 
-&lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; Credentials &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
-    Email    &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
-    Password &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
-    LoggedIn &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; ContactDetails &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
+    Email   &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+    Subject &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+    Message &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
@@ -188,31 +195,33 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
             &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
         }
 
-        creds &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; Credentials{
-            Email:    r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;),
-            Password: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;),
+        details &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; ContactDetails{
+            Email:   r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;),
+            Subject: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;subject&amp;quot;&lt;/span&gt;),
+            Message: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;),
         }
 
-        &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; creds.Email &lt;span style=&#34;font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;user@example.com&amp;quot;&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; creds.Password &lt;span style=&#34;font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;secret&amp;quot;&lt;/span&gt; {
-            creds.LoggedIn = &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;
-        }
+        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// do something with details&lt;/span&gt;
+        _ = details
 
-        tmpl.Execute(w, creds)
+        tmpl.Execute(w, &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt;{ Success &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt; }{&lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;})
     })
 
     http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- forms.html --&amp;gt;&lt;/span&gt;
-{{if .LoggedIn}}
-    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Hello {{.Email}}, you&amp;#39;re now logged in!&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
+{{if .Success}}
+    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Thanks for your message!&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
 {{else}}
-    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Please enter your login credentials&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Contact&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
     &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;method&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&amp;gt;
         &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Email:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
         &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Password:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Subject:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;subject&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Message:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;textarea&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;textarea&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
         &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt;&amp;gt;
     &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt;&amp;gt;
 {{end}}
@@ -220,8 +229,17 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run forms.go
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;div class=&#34;image&#34;&gt;
-    &lt;img src=&#34;https://gowebexamples.github.io/forms.png&#34; alt=&#34;Forms&#34; /&gt;
+&lt;div class=&#34;demo&#34;&gt;
+    &lt;h1&gt;Contact&lt;/h1&gt;
+    &lt;form method=&#34;POST&#34;&gt;
+        &lt;label&gt;Email:&lt;/label&gt;&lt;br /&gt;
+        &lt;input type=&#34;text&#34; name=&#34;email&#34;&gt;&lt;br /&gt;
+        &lt;label&gt;Subject:&lt;/label&gt;&lt;br /&gt;
+        &lt;input type=&#34;text&#34; name=&#34;subject&#34;&gt;&lt;br /&gt;
+        &lt;label&gt;Message:&lt;/label&gt;&lt;br /&gt;
+        &lt;textarea name=&#34;message&#34;&gt;&lt;/textarea&gt;&lt;br /&gt;
+        &lt;input type=&#34;submit&#34;&gt;
+    &lt;/form&gt;
 &lt;/div&gt;
 </description>
     </item>

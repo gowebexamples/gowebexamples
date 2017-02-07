@@ -24,7 +24,7 @@ import (
 )
 
 func main() {
-	users := map[string]int{
+	userAges := map[string]int{
 		"Alice":  25,
 		"Bob":    30,
 		"Claire": 29,
@@ -34,7 +34,7 @@ func main() {
 	r.HandleFunc("/users/{name}", func(w http.ResponseWriter, r *http.Request) {
 		params := mux.Vars(r)
 		name := params["name"]
-		age := users[name]
+		age := userAges[name]
 
 		fmt.Fprintf(w, "%s is %d years old!", name, age)
 	})

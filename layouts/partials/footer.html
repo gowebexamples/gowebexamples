@@ -1,4 +1,8 @@
 	<p class="footer">
+		{{if ne .Site.Title .Title}}
+		<a class="back" href="/">← back</a>
+		{{end}}
+		<br /><br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
 		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
 		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>

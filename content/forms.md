@@ -5,7 +5,7 @@ title = "Forms"
 
 ## Forms
 
-This example will simulate a login form, parse the data submitted and check for valid credentials.
+This example will simulate a contact form and parse the message into a struct.
 
 ``` go
 // forms.go
@@ -16,10 +16,10 @@ import (
 	"net/http"
 )
 
-type Credentials struct {
-	Email    string
-	Password string
-	LoggedIn bool
+type ContactDetails struct {
+	Email   string
+	Subject string
+	Message string
 }
 
 func main() {
@@ -31,40 +31,53 @@ func main() {
 			return
 		}
 
-		creds := Credentials{
-			Email:    r.FormValue("email"),
-			Password: r.FormValue("password"),
+		details := ContactDetails{
+			Email:   r.FormValue("email"),
+			Subject: r.FormValue("subject"),
+			Message: r.FormValue("message"),
 		}
 
-		if creds.Email == "user@example.com" && creds.Password == "secret" {
-			creds.LoggedIn = true
-		}
+		// do something with details
+		_ = details
 
-		tmpl.Execute(w, creds)
+		tmpl.Execute(w, struct{ Success bool }{true})
 	})
 
 	http.ListenAndServe(":8080", nil)
 }
 
+
 ```
 ``` html
 <!-- forms.html -->
-{{if .LoggedIn}}
-    <h1>Hello {{.Email}}, you're now logged in!</h1>
+{{if .Success}}
+	<h1>Thanks for your message!</h1>
 {{else}}
-    <h1>Please enter your login credentials</h1>
-    <form method="POST">
-        <label>Email:</label><br />
-        <input type="text" name="email"><br />
-        <label>Password:</label><br />
-        <input type="password" name="password"><br />
-        <input type="submit">
-    </form>
+	<h1>Contact</h1>
+	<form method="POST">
+		<label>Email:</label><br />
+		<input type="text" name="email"><br />
+		<label>Subject:</label><br />
+		<input type="text" name="subject"><br />
+		<label>Message:</label><br />
+		<textarea name="message"></textarea><br />
+		<input type="submit">
+	</form>
 {{end}}
+
 ```
 ``` sh
 $ go run forms.go
 ```
-<div class="image">
-	<img src="/forms.png" alt="Forms" />
+<div class="demo">
+	<h1>Contact</h1>
+	<form method="POST">
+		<label>Email:</label><br />
+		<input type="text" name="email"><br />
+		<label>Subject:</label><br />
+		<input type="text" name="subject"><br />
+		<label>Message:</label><br />
+		<textarea name="message"></textarea><br />
+		<input type="submit">
+	</form>
 </div>

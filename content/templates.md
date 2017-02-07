@@ -16,19 +16,21 @@ import (
 	"net/http"
 )
 
+type Todo struct {
+	Task string
+	Done bool
+}
+
 func main() {
 	tmpl := template.Must(template.ParseFiles("todos.html"))
-	todos := []struct {
-		Task string
-		Done bool
-	}{
+	todos := []Todo{
 		{"Learn Go", true},
 		{"Read Go Web Examples", true},
 		{"Create a web app in Go", false},
 	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl.Execute(w, todos)
+		tmpl.Execute(w, struct{ Todos []Todo }{todos})
 	})
 
 	http.ListenAndServe(":8080", nil)
@@ -38,7 +40,7 @@ func main() {
 <!-- todos.html -->
 <h1>Todos</h1>
 <ul>
-	{{range .}}
+	{{range .Todos}}
 		{{if .Done}}
 			<li><s>{{.Task}}</s></li>
 		{{else}}
@@ -50,6 +52,11 @@ func main() {
 ``` sh
 $ go run todos.go
 ```
-<div class="image">
-	<img src="/templates.png" alt="Forms" />
+<div class="demo">
+	<h1>Todos</h1>
+	<ul>
+		<li><s>Learn Go</s></li>
+		<li><s>Read Go Web Examples</s></li>
+		<li>Create a web app in Go</li>
+	</ul>
 </div>
