@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+		<title>Go Web Examples: Password Hashing</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
+	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
+	<link rel="canonical" href="https://gowebexamples.github.io/password/">
+	<style>
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { max-width: 700px; margin: auto; padding: 15px; }
+		a {	color: black; }
+		p { font-family: "Georgia", serif; margin: 0.5em 0; }
+		h1 { margin: 1em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		a.back { text-decoration: none; }
+		.footer { font-size: .9em; margin-top: 1em; color: #999; }
+		.footer a { color: #999; }
+		.image { border: 1px solid #f0f0f0; }
+		.image img { max-width: 100%; height: auto; display: block; }
+		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
+		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
+		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
+	</style>
+</head>
+<body>
+<div class="container">
+<h1><a href="/">Go Web Examples</a></h1>
+
+
+
+<h2 id="password-hashing">Password Hashing</h2>
+
+<p>This example will show how to hash passwords using bcrypt.
+For this we have to <code>go get</code> the golang bcrypt library like so:</p>
+
+<p><code>$ go get golang.org/x/crypto/bcrypt</code></p>
+
+<p>From now on, every application we write will be able to make use of this library.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// passwords.go</span>
+<span style="font-weight: bold">package</span> main
+
+<span style="font-weight: bold">import</span> (
+    <span style="color: #bb8844">&quot;fmt&quot;</span>
+
+    <span style="color: #bb8844">&quot;golang.org/x/crypto/bcrypt&quot;</span>
+)
+
+<span style="font-weight: bold">func</span> HashPassword(password <span style="color: #445588; font-weight: bold">string</span>) (<span style="color: #445588; font-weight: bold">string</span>, <span style="color: #445588; font-weight: bold">error</span>) {
+    bytes, err <span style="font-weight: bold">:=</span> bcrypt.GenerateFromPassword([]<span style="color: #999999">byte</span>(password), <span style="color: #009999">14</span>)
+    <span style="font-weight: bold">return</span> <span style="color: #999999">string</span>(bytes), err
+}
+
+<span style="font-weight: bold">func</span> CheckPasswordHash(password, hash <span style="color: #445588; font-weight: bold">string</span>) <span style="color: #445588; font-weight: bold">bool</span> {
+    err <span style="font-weight: bold">:=</span> bcrypt.CompareHashAndPassword([]<span style="color: #999999">byte</span>(hash), []<span style="color: #999999">byte</span>(password))
+    <span style="font-weight: bold">return</span> err <span style="font-weight: bold">==</span> <span style="font-weight: bold">nil</span>
+}
+
+<span style="font-weight: bold">func</span> main() {
+    password <span style="font-weight: bold">:=</span> <span style="color: #bb8844">&quot;secret&quot;</span>
+    hash, _ <span style="font-weight: bold">:=</span> HashPassword(password) <span style="color: #999988; font-style: italic">// ignore error for the sake of simplicity</span>
+
+    fmt.Println(<span style="color: #bb8844">&quot;Password:&quot;</span>, password)
+    fmt.Println(<span style="color: #bb8844">&quot;Hash:    &quot;</span>, hash)
+
+    match <span style="font-weight: bold">:=</span> CheckPasswordHash(password, hash)
+    fmt.Println(<span style="color: #bb8844">&quot;Match:   &quot;</span>, match)
+}
+</pre></div>
+
+<pre><code>$ go run passwords.go
+Password: secret
+Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK
+Match:    true
+</code></pre>
+
+	<p class="footer">
+		
+		<a class="back" href="/">← back</a>
+		
+		<br /><br /><br />
+		by <a href="https://github.com/philippta">philippta</a>
+		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
+		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
+		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
+	</p>
+</div>
+</body>
+</html>

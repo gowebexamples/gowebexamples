@@ -386,5 +386,60 @@ body &lt;span style=&#34;font-weight: bold&#34;&gt;{&lt;/span&gt;
 </description>
     </item>
     
+    <item>
+      <title>Password Hashing</title>
+      <link>https://gowebexamples.github.io/password/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/password/</guid>
+      <description>
+
+&lt;h2 id=&#34;password-hashing&#34;&gt;Password Hashing&lt;/h2&gt;
+
+&lt;p&gt;This example will show how to hash passwords using bcrypt.
+For this we have to &lt;code&gt;go get&lt;/code&gt; the golang bcrypt library like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ go get golang.org/x/crypto/bcrypt&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;From now on, every application we write will be able to make use of this library.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// passwords.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;golang.org/x/crypto/bcrypt&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; HashPassword(password &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;) (&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;error&lt;/span&gt;) {
+    bytes, err &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; bcrypt.GenerateFromPassword([]&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(password), &lt;span style=&#34;color: #009999&#34;&gt;14&lt;/span&gt;)
+    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #999999&#34;&gt;string&lt;/span&gt;(bytes), err
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; CheckPasswordHash(password, hash &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt; {
+    err &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; bcrypt.CompareHashAndPassword([]&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(hash), []&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(password))
+    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; err &lt;span style=&#34;font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+    password &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;secret&amp;quot;&lt;/span&gt;
+    hash, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; HashPassword(password) &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ignore error for the sake of simplicity&lt;/span&gt;
+
+    fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Password:&amp;quot;&lt;/span&gt;, password)
+    fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Hash:    &amp;quot;&lt;/span&gt;, hash)
+
+    match &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; CheckPasswordHash(password, hash)
+    fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Match:   &amp;quot;&lt;/span&gt;, match)
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go run passwords.go
+Password: secret
+Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK
+Match:    true
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

@@ -30,6 +30,10 @@
   </url>
   
   <url>
+    <loc>https://gowebexamples.github.io/password/</loc>
+  </url>
+  
+  <url>
     <loc>https://gowebexamples.github.io/</loc>
     <priority>0</priority>
   </url>
