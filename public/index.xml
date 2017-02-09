@@ -452,7 +452,7 @@ Match:    true
 &lt;h2 id=&#34;websockets&#34;&gt;Websockets&lt;/h2&gt;
 
 &lt;p&gt;This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it.
-For this we have to &lt;code&gt;go get&lt;/code&gt; the popular gorilla/websocket library like so:&lt;/p&gt;
+For this we have to &lt;code&gt;go get&lt;/code&gt; the popular &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/gorilla/websocket&#34;&gt;gorilla/websocket&lt;/a&gt; library like so:&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;$ go get github.com/gorilla/websocket&lt;/code&gt;&lt;/p&gt;
 
