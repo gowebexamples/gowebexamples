@@ -34,6 +34,10 @@
   </url>
   
   <url>
+    <loc>https://gowebexamples.github.io/websockets/</loc>
+  </url>
+  
+  <url>
     <loc>https://gowebexamples.github.io/</loc>
     <priority>0</priority>
   </url>

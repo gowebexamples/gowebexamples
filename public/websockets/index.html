@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+		<title>Go Web Examples: Websockets</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
+	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
+	<link rel="canonical" href="https://gowebexamples.github.io/websockets/">
+	<style>
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { max-width: 700px; margin: auto; padding: 15px; }
+		a {	color: black; }
+		p { font-family: "Georgia", serif; margin: 0.5em 0; }
+		h1 { margin: 1em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
+		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		a.back { text-decoration: none; }
+		.footer { font-size: .9em; margin-top: 1em; color: #999; }
+		.footer a { color: #999; }
+		.image { border: 1px solid #f0f0f0; }
+		.image img { max-width: 100%; height: auto; display: block; }
+		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
+		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
+		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
+	</style>
+</head>
+<body>
+<div class="container">
+<h1><a href="/">Go Web Examples</a></h1>
+
+
+
+<h2 id="websockets">Websockets</h2>
+
+<p>This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it.
+For this we have to <code>go get</code> the popular gorilla/websocket library like so:</p>
+
+<p><code>$ go get github.com/gorilla/websocket</code></p>
+
+<p>From now on, every application we write will be able to make use of this library.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// websockets.go</span>
+<span style="font-weight: bold">package</span> main
+
+<span style="font-weight: bold">import</span> (
+	<span style="color: #bb8844">&quot;fmt&quot;</span>
+	<span style="color: #bb8844">&quot;net/http&quot;</span>
+
+	<span style="color: #bb8844">&quot;github.com/gorilla/websocket&quot;</span>
+)
+
+<span style="font-weight: bold">var</span> upgrader = websocket.Upgrader{
+	ReadBufferSize:  <span style="color: #009999">1024</span>,
+	WriteBufferSize: <span style="color: #009999">1024</span>,
+}
+
+<span style="font-weight: bold">func</span> main() {
+	http.HandleFunc(<span style="color: #bb8844">&quot;/echo&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		conn, _ <span style="font-weight: bold">:=</span> upgrader.Upgrade(w, r, <span style="font-weight: bold">nil</span>) <span style="color: #999988; font-style: italic">// error ignored for sake of simplicity</span>
+
+		<span style="font-weight: bold">for</span> {
+			<span style="color: #999988; font-style: italic">// Read message from browser</span>
+			msgType, msg, err <span style="font-weight: bold">:=</span> conn.ReadMessage()
+			<span style="font-weight: bold">if</span> err <span style="font-weight: bold">!=</span> <span style="font-weight: bold">nil</span> {
+				<span style="font-weight: bold">return</span>
+			}
+
+			<span style="color: #999988; font-style: italic">// Print the message to the console</span>
+			fmt.Printf(<span style="color: #bb8844">&quot;%s sent: %s\n&quot;</span>, conn.RemoteAddr(), <span style="color: #999999">string</span>(msg))
+
+			<span style="color: #999988; font-style: italic">// Write message back to browser</span>
+			<span style="font-weight: bold">if</span> err = conn.WriteMessage(msgType, msg); err <span style="font-weight: bold">!=</span> <span style="font-weight: bold">nil</span> {
+				<span style="font-weight: bold">return</span>
+			}
+		}
+	})
+
+	http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		http.ServeFile(w, r, <span style="color: #bb8844">&quot;websockets.html&quot;</span>)
+	})
+
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+}
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">&lt;!-- websockets.html --&gt;</span>
+&lt;<span style="color: #000080">input</span> <span style="color: #008080">id</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;input&quot;</span> <span style="color: #008080">type</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;text&quot;</span> /&gt;
+&lt;<span style="color: #000080">button</span> <span style="color: #008080">onclick</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;send()&quot;</span>&gt;Send&lt;/<span style="color: #000080">button</span>&gt;
+&lt;<span style="color: #000080">pre</span> <span style="color: #008080">id</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;output&quot;</span>&gt;&lt;/<span style="color: #000080">pre</span>&gt;
+&lt;<span style="color: #000080">script</span>&gt;
+	<span style="font-weight: bold">var</span> input <span style="font-weight: bold">=</span> <span style="color: #999999">document</span>.getElementById(<span style="color: #bb8844">&quot;input&quot;</span>);
+	<span style="font-weight: bold">var</span> output <span style="font-weight: bold">=</span> <span style="color: #999999">document</span>.getElementById(<span style="color: #bb8844">&quot;output&quot;</span>);
+	<span style="font-weight: bold">var</span> socket <span style="font-weight: bold">=</span> <span style="font-weight: bold">new</span> WebSocket(<span style="color: #bb8844">&quot;ws://localhost:8080/echo&quot;</span>);
+
+	socket.onopen <span style="font-weight: bold">=</span> <span style="font-weight: bold">function</span> () {
+		output.innerHTML <span style="font-weight: bold">+=</span> <span style="color: #bb8844">&quot;Status: Connected\n&quot;</span>;
+	};
+
+	socket.onmessage <span style="font-weight: bold">=</span> <span style="font-weight: bold">function</span> (e) {
+		output.innerHTML <span style="font-weight: bold">+=</span> <span style="color: #bb8844">&quot;Server: &quot;</span> <span style="font-weight: bold">+</span> e.data <span style="font-weight: bold">+</span> <span style="color: #bb8844">&quot;\n&quot;</span>;
+	};
+
+	<span style="font-weight: bold">function</span> send() {
+		socket.send(input.value);
+		input.value <span style="font-weight: bold">=</span> <span style="color: #bb8844">&quot;&quot;</span>;
+	}
+&lt;/<span style="color: #000080">script</span>&gt;
+</pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run websockets.go
+<span style="font-weight: bold">[</span><span style="color: #009999">127</span>.0.0.1<span style="font-weight: bold">]</span>:53403 sent: Hello Go Web Examples, you<span style="color: #a61717; background-color: #e3d2d2">&#39;</span>re doing great!
+</pre></div>
+
+<div class="demo">
+    <input type="text">
+    <button>Send</button>
+    <pre>Status: Connected
+Server: Hello Go Web Examples, you're doing great!</pre>
+</div>
+
+	<p class="footer">
+		
+		<a class="back" href="/">← back</a>
+		
+		<br /><br /><br />
+		by <a href="https://github.com/philippta">philippta</a>
+		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
+		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
+		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
+	</p>
+</div>
+</body>
+</html>

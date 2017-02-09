@@ -441,5 +441,100 @@ Match:    true
 </description>
     </item>
     
+    <item>
+      <title>Websockets</title>
+      <link>https://gowebexamples.github.io/websockets/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/websockets/</guid>
+      <description>
+
+&lt;h2 id=&#34;websockets&#34;&gt;Websockets&lt;/h2&gt;
+
+&lt;p&gt;This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it.
+For this we have to &lt;code&gt;go get&lt;/code&gt; the popular gorilla/websocket library like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ go get github.com/gorilla/websocket&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;From now on, every application we write will be able to make use of this library.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// websockets.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;github.com/gorilla/websocket&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;var&lt;/span&gt; upgrader = websocket.Upgrader{
+	ReadBufferSize:  &lt;span style=&#34;color: #009999&#34;&gt;1024&lt;/span&gt;,
+	WriteBufferSize: &lt;span style=&#34;color: #009999&#34;&gt;1024&lt;/span&gt;,
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/echo&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		conn, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; upgrader.Upgrade(w, r, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;) &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// error ignored for sake of simplicity&lt;/span&gt;
+
+		&lt;span style=&#34;font-weight: bold&#34;&gt;for&lt;/span&gt; {
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Read message from browser&lt;/span&gt;
+			msgType, msg, err &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; conn.ReadMessage()
+			&lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; err &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt; {
+				&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+			}
+
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Print the message to the console&lt;/span&gt;
+			fmt.Printf(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;%s sent: %s\n&amp;quot;&lt;/span&gt;, conn.RemoteAddr(), &lt;span style=&#34;color: #999999&#34;&gt;string&lt;/span&gt;(msg))
+
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Write message back to browser&lt;/span&gt;
+			&lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; err = conn.WriteMessage(msgType, msg); err &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt; {
+				&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+			}
+		}
+	})
+
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		http.ServeFile(w, r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;websockets.html&amp;quot;&lt;/span&gt;)
+	})
+
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- websockets.html --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;input&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; /&amp;gt;
+&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;onclick&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;send()&amp;quot;&lt;/span&gt;&amp;gt;Send&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;button&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;pre&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;output&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;pre&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;script&lt;/span&gt;&amp;gt;
+	&lt;span style=&#34;font-weight: bold&#34;&gt;var&lt;/span&gt; input &lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #999999&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;input&amp;quot;&lt;/span&gt;);
+	&lt;span style=&#34;font-weight: bold&#34;&gt;var&lt;/span&gt; output &lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #999999&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;output&amp;quot;&lt;/span&gt;);
+	&lt;span style=&#34;font-weight: bold&#34;&gt;var&lt;/span&gt; socket &lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;new&lt;/span&gt; WebSocket(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;ws://localhost:8080/echo&amp;quot;&lt;/span&gt;);
+
+	socket.onopen &lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;function&lt;/span&gt; () {
+		output.innerHTML &lt;span style=&#34;font-weight: bold&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Status: Connected\n&amp;quot;&lt;/span&gt;;
+	};
+
+	socket.onmessage &lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;function&lt;/span&gt; (e) {
+		output.innerHTML &lt;span style=&#34;font-weight: bold&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Server: &amp;quot;&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;+&lt;/span&gt; e.data &lt;span style=&#34;font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;;
+	};
+
+	&lt;span style=&#34;font-weight: bold&#34;&gt;function&lt;/span&gt; send() {
+		socket.send(input.value);
+		input.value &lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;;
+	}
+&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run websockets.go
+&lt;span style=&#34;font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #009999&#34;&gt;127&lt;/span&gt;.0.0.1&lt;span style=&#34;font-weight: bold&#34;&gt;]&lt;/span&gt;:53403 sent: Hello Go Web Examples, you&lt;span style=&#34;color: #a61717; background-color: #e3d2d2&#34;&gt;&amp;#39;&lt;/span&gt;re doing great!
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&#34;demo&#34;&gt;
+    &lt;input type=&#34;text&#34;&gt;
+    &lt;button&gt;Send&lt;/button&gt;
+    &lt;pre&gt;Status: Connected
+Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
