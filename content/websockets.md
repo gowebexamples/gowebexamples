@@ -79,7 +79,7 @@ func main() {
 	}
 </script>
 ```
-``` sh
+```
 $ go run websockets.go
 [127.0.0.1]:53403 sent: Hello Go Web Examples, you're doing great!
 ```

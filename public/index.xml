@@ -523,9 +523,10 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the popular gorilla/websocke
 	}
 &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;script&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run websockets.go
-&lt;span style=&#34;font-weight: bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #009999&#34;&gt;127&lt;/span&gt;.0.0.1&lt;span style=&#34;font-weight: bold&#34;&gt;]&lt;/span&gt;:53403 sent: Hello Go Web Examples, you&lt;span style=&#34;color: #a61717; background-color: #e3d2d2&#34;&gt;&amp;#39;&lt;/span&gt;re doing great!
-&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go run websockets.go
+[127.0.0.1]:53403 sent: Hello Go Web Examples, you&#39;re doing great!
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;div class=&#34;demo&#34;&gt;
     &lt;input type=&#34;text&#34;&gt;
