@@ -38,6 +38,14 @@
   </url>
   
   <url>
+    <loc>https://gowebexamples.github.io/basic-middleware/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.github.io/advanced-middleware/</loc>
+  </url>
+  
+  <url>
     <loc>https://gowebexamples.github.io/</loc>
     <priority>0</priority>
   </url>

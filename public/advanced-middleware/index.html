@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+		<title>Go Web Examples: Advanced Middleware</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
+	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
+	<link rel="canonical" href="https://gowebexamples.github.io/advanced-middleware/">
+	<style>
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { max-width: 700px; margin: auto; padding: 15px; }
+		a {	color: black; }
+		p { font-family: "Georgia", serif; margin: 0.5em 0; }
+		h1 { margin: 1em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
+		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		.links { display: flex; justify-content: space-between; }
+		a.back { text-decoration: none; }
+		a.home { text-decoration: none; }
+		a.forward { text-decoration: none; }
+		.footer { font-size: .9em; margin-top: 1em; color: #999; font-family: "Georgia", serif; }
+		.footer a { color: #999; }
+		.image { border: 1px solid #f0f0f0; }
+		.image img { max-width: 100%; height: auto; display: block; }
+		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
+		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
+		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
+	</style>
+</head>
+<body>
+<div class="container">
+<h1><a href="/">Go Web Examples</a></h1>
+
+
+
+<h2 id="advanced-middleware">Advanced Middleware</h2>
+
+<p>This example will show how to create a more advanced version of middleware in Go.</p>
+
+<p>A middleware in itself simply takes a <code>http.HandlerFunc</code> as one of its parameters, wraps it and returns a new <code>http.HandlerFunc</code> for the server to call.</p>
+
+<p>Here we define a new type <code>Middleware</code> which makes it eventually easier to chain multiple middlewares together. This idea is inspired by Mat Ryers&rsquo; talk about Building APIs.
+You can find a more detailed explaination including the talk <a target="_blank" href="https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81">here</a>.</p>
+
+<p><br />
+This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">func</span> createNewMiddleware() Middleware {
+
+    <span style="color: #999988; font-style: italic">// Create a new Middleware</span>
+    middleware <span style="font-weight: bold">:=</span> <span style="font-weight: bold">func</span>(next http.HandlerFunc) http.HandlerFunc {
+
+        <span style="color: #999988; font-style: italic">// Define the http.HandlerFunc which is called by the server eventually</span>
+        handler <span style="font-weight: bold">:=</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+
+            <span style="color: #999988; font-style: italic">// ... do middleware things</span>
+
+            <span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
+            next(w, r)
+        }
+
+        <span style="color: #999988; font-style: italic">// Return newly created handler</span>
+        <span style="font-weight: bold">return</span> handler
+    }
+
+    <span style="color: #999988; font-style: italic">// Return newly created middleware</span>
+    <span style="font-weight: bold">return</span> middleware
+}
+</pre></div>
+
+<p><br />
+This is the full example:</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// advanced-middleware.go</span>
+<span style="font-weight: bold">package</span> main
+
+<span style="font-weight: bold">import</span> (
+    <span style="color: #bb8844">&quot;fmt&quot;</span>
+    <span style="color: #bb8844">&quot;log&quot;</span>
+    <span style="color: #bb8844">&quot;net/http&quot;</span>
+    <span style="color: #bb8844">&quot;time&quot;</span>
+)
+
+<span style="font-weight: bold">type</span> Middleware <span style="font-weight: bold">func</span>(http.HandlerFunc) http.HandlerFunc
+
+<span style="color: #999988; font-style: italic">// Logging logs all requests with its path and the time it took to process</span>
+<span style="font-weight: bold">func</span> Logging() Middleware {
+
+    <span style="color: #999988; font-style: italic">// Create a new Middleware</span>
+    <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(f http.HandlerFunc) http.HandlerFunc {
+
+        <span style="color: #999988; font-style: italic">// Define the http.HandlerFunc</span>
+        <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+
+            <span style="color: #999988; font-style: italic">// Do middleware things</span>
+            start <span style="font-weight: bold">:=</span> time.Now()
+            <span style="font-weight: bold">defer</span> <span style="font-weight: bold">func</span>() { log.Println(r.URL.Path, time.Since(start)) }()
+
+            <span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
+            f(w, r)
+        }
+    }
+}
+
+<span style="color: #999988; font-style: italic">// Method ensures that only a url can me requested with a specific method, else returns a 400 Bad Request</span>
+<span style="font-weight: bold">func</span> Method(m <span style="color: #445588; font-weight: bold">string</span>) Middleware {
+
+    <span style="color: #999988; font-style: italic">// Create a new Middleware</span>
+    <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(f http.HandlerFunc) http.HandlerFunc {
+
+        <span style="color: #999988; font-style: italic">// Define the http.HandlerFunc</span>
+        <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+
+            <span style="color: #999988; font-style: italic">// Do middleware things</span>
+            <span style="font-weight: bold">if</span> r.Method <span style="font-weight: bold">!=</span> m {
+                http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+                <span style="font-weight: bold">return</span>
+            }
+
+            <span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
+            f(w, r)
+        }
+    }
+}
+
+<span style="color: #999988; font-style: italic">// Chain applies middlewares to a http.HandlerFunc</span>
+<span style="font-weight: bold">func</span> Chain(f http.HandlerFunc, middlewares <span style="font-weight: bold">...</span>Middleware) http.HandlerFunc {
+    <span style="font-weight: bold">for</span> _, m <span style="font-weight: bold">:=</span> <span style="font-weight: bold">range</span> middlewares {
+        f = m(f)
+    }
+    <span style="font-weight: bold">return</span> f
+}
+
+<span style="font-weight: bold">func</span> Hello(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+    fmt.Fprintln(w, <span style="color: #bb8844">&quot;hello world&quot;</span>)
+}
+
+<span style="font-weight: bold">func</span> main() {
+    http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, Chain(Hello, Method(<span style="color: #bb8844">&quot;GET&quot;</span>), Logging()))
+    http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+}
+</pre></div>
+
+<pre><code>$ go run advanced-middleware.go
+2017/02/11 00:34:53 / 0s
+
+$ curl -s http://localhost:8080/
+hello world
+
+$ curl -s -XPOST http://localhost:8080/
+Bad Request
+</code></pre>
+
+	<div class="footer">
+		<div class="links">
+		
+			
+			<a class="back" href="https://gowebexamples.github.io/basic-middleware/">← back</a>
+			
+			<a class="home" href="/">home</a>
+			
+			<a class="forward" href="https://gowebexamples.github.io/">forward →</a>
+			
+		
+		</div>
+		<br /><br />
+		by <a href="https://github.com/philippta">philippta</a>
+		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
+		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
+		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
+	</div>
+</div>
+</body>
+</html>

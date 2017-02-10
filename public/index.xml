@@ -537,5 +537,192 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 </description>
     </item>
     
+    <item>
+      <title>Basic Middleware</title>
+      <link>https://gowebexamples.github.io/basic-middleware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/basic-middleware/</guid>
+      <description>
+
+&lt;h2 id=&#34;basic-middleware&#34;&gt;Basic Middleware&lt;/h2&gt;
+
+&lt;p&gt;This example will show how to create basic logging middleware in Go.&lt;/p&gt;
+
+&lt;p&gt;A middleware simply takes a &lt;code&gt;http.HandlerFunc&lt;/code&gt; as one of its parameters, wraps it and returns a new &lt;code&gt;http.HandlerFunc&lt;/code&gt; for the server to call.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// basic-middleware.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;log&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; logging(f http.HandlerFunc) http.HandlerFunc {
+    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+        start &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; time.Now()
+        &lt;span style=&#34;font-weight: bold&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;() { log.Println(r.URL.Path, time.Since(start)) }()
+
+        f(w, r)
+    }
+
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; foo(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;)
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; bar(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;bar&amp;quot;&lt;/span&gt;)
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/foo&amp;quot;&lt;/span&gt;, logging(foo))
+    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/bar&amp;quot;&lt;/span&gt;, logging(bar))
+
+    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go run basic-middleware.go
+2017/02/10 23:59:34 /foo 0s
+2017/02/10 23:59:35 /bar 0s
+2017/02/10 23:59:36 /foo?bar 0s
+
+$ curl -s http://localhost:8080/foo
+$ curl -s http://localhost:8080/bar
+$ curl -s http://localhost:8080/foo?bar
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Advanced Middleware</title>
+      <link>https://gowebexamples.github.io/advanced-middleware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/advanced-middleware/</guid>
+      <description>
+
+&lt;h2 id=&#34;advanced-middleware&#34;&gt;Advanced Middleware&lt;/h2&gt;
+
+&lt;p&gt;This example will show how to create a more advanced version of middleware in Go.&lt;/p&gt;
+
+&lt;p&gt;A middleware in itself simply takes a &lt;code&gt;http.HandlerFunc&lt;/code&gt; as one of its parameters, wraps it and returns a new &lt;code&gt;http.HandlerFunc&lt;/code&gt; for the server to call.&lt;/p&gt;
+
+&lt;p&gt;Here we define a new type &lt;code&gt;Middleware&lt;/code&gt; which makes it eventually easier to chain multiple middlewares together. This idea is inspired by Mat Ryers&amp;rsquo; talk about Building APIs.
+You can find a more detailed explaination including the talk &lt;a target=&#34;_blank&#34; href=&#34;https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; createNewMiddleware() Middleware {
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
+    middleware &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(next http.HandlerFunc) http.HandlerFunc {
+
+        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc which is called by the server eventually&lt;/span&gt;
+        handler &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+
+            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ... do middleware things&lt;/span&gt;
+
+            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
+            next(w, r)
+        }
+
+        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Return newly created handler&lt;/span&gt;
+        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; handler
+    }
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Return newly created middleware&lt;/span&gt;
+    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; middleware
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;
+This is the full example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// advanced-middleware.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;log&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; Middleware &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(http.HandlerFunc) http.HandlerFunc
+
+&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Logging logs all requests with its path and the time it took to process&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Logging() Middleware {
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
+    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(f http.HandlerFunc) http.HandlerFunc {
+
+        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc&lt;/span&gt;
+        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+
+            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Do middleware things&lt;/span&gt;
+            start &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; time.Now()
+            &lt;span style=&#34;font-weight: bold&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;() { log.Println(r.URL.Path, time.Since(start)) }()
+
+            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
+            f(w, r)
+        }
+    }
+}
+
+&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Method ensures that only a url can me requested with a specific method, else returns a 400 Bad Request&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Method(m &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;) Middleware {
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
+    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(f http.HandlerFunc) http.HandlerFunc {
+
+        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc&lt;/span&gt;
+        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+
+            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Do middleware things&lt;/span&gt;
+            &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; r.Method &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; m {
+                http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+                &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+            }
+
+            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
+            f(w, r)
+        }
+    }
+}
+
+&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Chain applies middlewares to a http.HandlerFunc&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Chain(f http.HandlerFunc, middlewares &lt;span style=&#34;font-weight: bold&#34;&gt;...&lt;/span&gt;Middleware) http.HandlerFunc {
+    &lt;span style=&#34;font-weight: bold&#34;&gt;for&lt;/span&gt; _, m &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;range&lt;/span&gt; middlewares {
+        f = m(f)
+    }
+    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; f
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Hello(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;hello world&amp;quot;&lt;/span&gt;)
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, Chain(Hello, Method(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;GET&amp;quot;&lt;/span&gt;), Logging()))
+    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;$ go run advanced-middleware.go
+2017/02/11 00:34:53 / 0s
+
+$ curl -s http://localhost:8080/
+hello world
+
+$ curl -s -XPOST http://localhost:8080/
+Bad Request
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
