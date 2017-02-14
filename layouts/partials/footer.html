@@ -2,11 +2,11 @@
 		<div class="links">
 		{{if ne .Site.Title .Title}}
 			{{if .Prev}}
-			<a class="back" href="{{.Prev.Permalink}}">← back</a>
+			<a title="{{.Prev.Title}}" class="back" href="{{.Prev.Permalink}}">← back</a>
 			{{end}}
-			<a class="home" href="/">home</a>
+			<a title="{{.Site.Title}}" class="home" href="/">home</a>
 			{{if .Next}}
-			<a class="forward" href="{{.Next.Permalink}}">forward →</a>
+			<a title="{{.Next.Title}}" class="forward" href="{{.Next.Permalink}}">forward →</a>
 			{{end}}
 		{{end}}
 		</div>

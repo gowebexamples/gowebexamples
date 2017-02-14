@@ -16,7 +16,7 @@
       <guid>https://gowebexamples.github.io/hello-world/</guid>
       <description>
 
-&lt;h2 id=&#34;hello-world&#34;&gt;Hello World&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-hello-world&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Hello World&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to start a webserver on port 8080 and print the classic &amp;ldquo;hello world&amp;rdquo; message.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// hello-world.go&lt;/span&gt;
@@ -51,7 +51,7 @@ hello world
       <guid>https://gowebexamples.github.io/routes/</guid>
       <description>
 
-&lt;h2 id=&#34;routes&#34;&gt;Routes&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-routes&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Routes&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to register a route and get the data using just the &lt;code&gt;net/http&lt;/code&gt; package.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// routes.go&lt;/span&gt;
@@ -95,7 +95,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
       <guid>https://gowebexamples.github.io/routes-using-gorilla-mux/</guid>
       <description>
 
-&lt;h2 id=&#34;routes-using-gorilla-mux&#34;&gt;Routes (using gorilla/mux)&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-routes-using-gorilla-mux&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Routes (using gorilla/mux)&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to register routes using the popular &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/gorilla/mux&#34;&gt;gorilla/mux&lt;/a&gt; router.
 It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code&gt; package but adds a few extra features like named url parameters and http method restrictions to remove some boilerplate code.&lt;/p&gt;
@@ -150,7 +150,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
       <guid>https://gowebexamples.github.io/templates/</guid>
       <description>
 
-&lt;h2 id=&#34;templates&#34;&gt;Templates&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-templates&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Templates&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to render a simple list of TODO items into an html page using the &lt;code&gt;html/template&lt;/code&gt; package.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// todos.go&lt;/span&gt;
@@ -215,7 +215,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
       <guid>https://gowebexamples.github.io/forms/</guid>
       <description>
 
-&lt;h2 id=&#34;forms&#34;&gt;Forms&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-forms&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Forms&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to simulate a contact form and parse the message into a struct.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// forms.go&lt;/span&gt;
@@ -298,7 +298,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
       <guid>https://gowebexamples.github.io/json/</guid>
       <description>
 
-&lt;h2 id=&#34;json&#34;&gt;JSON&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-json&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; JSON&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to encode and decode JSON data using the &lt;code&gt;encoding/json&lt;/code&gt; package.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// json.go&lt;/span&gt;
@@ -356,7 +356,7 @@ $ curl -s http://localhost:8080/encode
       <guid>https://gowebexamples.github.io/static-files/</guid>
       <description>
 
-&lt;h2 id=&#34;static-files&#34;&gt;Static Files&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-static-files&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Static Files&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// static-files.go&lt;/span&gt;
@@ -394,7 +394,7 @@ body &lt;span style=&#34;font-weight: bold&#34;&gt;{&lt;/span&gt;
       <guid>https://gowebexamples.github.io/password-hashing/</guid>
       <description>
 
-&lt;h2 id=&#34;password-hashing&#34;&gt;Password Hashing&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-password-hashing&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Password Hashing&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to hash passwords using bcrypt.
 For this we have to &lt;code&gt;go get&lt;/code&gt; the golang bcrypt library like so:&lt;/p&gt;
@@ -449,7 +449,7 @@ Match:    true
       <guid>https://gowebexamples.github.io/websockets/</guid>
       <description>
 
-&lt;h2 id=&#34;websockets&#34;&gt;Websockets&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-websockets&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Websockets&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it.
 For this we have to &lt;code&gt;go get&lt;/code&gt; the popular &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/gorilla/websocket&#34;&gt;gorilla/websocket&lt;/a&gt; library like so:&lt;/p&gt;
@@ -545,7 +545,7 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
       <guid>https://gowebexamples.github.io/basic-middleware/</guid>
       <description>
 
-&lt;h2 id=&#34;basic-middleware&#34;&gt;Basic Middleware&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-basic-middleware&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Basic Middleware&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to create basic logging middleware in Go.&lt;/p&gt;
 
@@ -606,7 +606,7 @@ $ curl -s http://localhost:8080/foo?bar
       <guid>https://gowebexamples.github.io/advanced-middleware/</guid>
       <description>
 
-&lt;h2 id=&#34;advanced-middleware&#34;&gt;Advanced Middleware&lt;/h2&gt;
+&lt;h1 id=&#34;go-web-examples-advanced-middleware&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Advanced Middleware&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to create a more advanced version of middleware in Go.&lt;/p&gt;
 

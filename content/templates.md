@@ -4,7 +4,7 @@ title = "Templates"
 description = "This example will show how to render a simple list of TODO items into an html page using the html/template package in the Go programming language."
 +++
 
-## Templates
+# [Go Web Examples:](/) Templates
 
 This example will show how to render a simple list of TODO items into an html page using the `html/template` package.
 

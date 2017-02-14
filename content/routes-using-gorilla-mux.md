@@ -4,7 +4,7 @@ title = "Routes (using gorilla/mux)"
 description = "This example will show how to register routes using the popular gorilla/mux router in the Go programming language."
 +++
 
-## Routes (using gorilla/mux)
+# [Go Web Examples:](/) Routes (using gorilla/mux)
 
 This example will show how to register routes using the popular <a target="_blank" href="https://github.com/gorilla/mux">gorilla/mux</a> router.
 It is compatible with the router from the standard `net/http` package but adds a few extra features like named url parameters and http method restrictions to remove some boilerplate code.

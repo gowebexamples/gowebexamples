@@ -4,7 +4,7 @@ title = "Routes"
 description = "This example will show how to register a route and get the data using just the net/http package in the Go programming language."
 +++
 
-## Routes
+# [Go Web Examples:](/) Routes
 
 This example will show how to register a route and get the data using just the `net/http` package.
 

@@ -4,7 +4,7 @@ title = "Basic Middleware"
 description = "This example will show how to create basic logging middleware in the Go programming language."
 +++
 
-## Basic Middleware
+# [Go Web Examples:](/) Basic Middleware
 
 This example will show how to create basic logging middleware in Go.
 

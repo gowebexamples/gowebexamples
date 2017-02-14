@@ -4,7 +4,7 @@ title = "Websockets"
 description = "This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it."
 +++
 
-## Websockets
+# [Go Web Examples:](/) Websockets
 
 This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it.
 For this we have to `go get` the popular <a target="_blank" href="https://github.com/gorilla/websocket">gorilla/websocket</a> library like so:
