@@ -1,6 +1,7 @@
 +++
 weight = 7
 title = "Static Files"
+description = "This example will show how to serve static files like CSS or JS from a specific directory using the http.FileServer in the Go programming language."
 +++
 
 ## Static Files
@@ -14,8 +15,8 @@ package main
 import "net/http"
 
 func main() {
-	fileServer := http.FileServer(http.Dir("assets/"))
-	http.Handle("/static/", http.StripPrefix("/static/", fileServer))
+	fs := http.FileServer(http.Dir("assets/"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.ListenAndServe(":8080", nil)
 }

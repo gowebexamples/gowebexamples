@@ -152,7 +152,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 
 &lt;h2 id=&#34;templates&#34;&gt;Templates&lt;/h2&gt;
 
-&lt;p&gt;This example will show how to render a simple list of TODO items into an html page.&lt;/p&gt;
+&lt;p&gt;This example will show how to render a simple list of TODO items into an html page using the &lt;code&gt;html/template&lt;/code&gt; package.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// todos.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -300,7 +300,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 
 &lt;h2 id=&#34;json&#34;&gt;JSON&lt;/h2&gt;
 
-&lt;p&gt;This example will show how to deal with JSON data.&lt;/p&gt;
+&lt;p&gt;This example will show how to encode and decode JSON data using the &lt;code&gt;encoding/json&lt;/code&gt; package.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// json.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -365,8 +365,8 @@ $ curl -s http://localhost:8080/encode
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
-	fileServer &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; http.FileServer(http.Dir(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;assets/&amp;quot;&lt;/span&gt;))
-	http.Handle(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/static/&amp;quot;&lt;/span&gt;, http.StripPrefix(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/static/&amp;quot;&lt;/span&gt;, fileServer))
+	fs &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; http.FileServer(http.Dir(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;assets/&amp;quot;&lt;/span&gt;))
+	http.Handle(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/static/&amp;quot;&lt;/span&gt;, http.StripPrefix(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/static/&amp;quot;&lt;/span&gt;, fs))
 
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }

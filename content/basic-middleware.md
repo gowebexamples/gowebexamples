@@ -1,6 +1,7 @@
 +++
 weight = 9
 title = "Basic Middleware"
+description = "This example will show how to create basic logging middleware in the Go programming language."
 +++
 
 ## Basic Middleware

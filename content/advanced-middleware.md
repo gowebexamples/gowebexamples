@@ -1,6 +1,7 @@
 +++
 weight = 10
 title = "Advanced Middleware"
+description = "This example will show how to create a more advanced version of middleware in the Go programming language."
 +++
 
 ## Advanced Middleware

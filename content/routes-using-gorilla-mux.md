@@ -1,6 +1,7 @@
 +++
 weight = 3
 title = "Routes (using gorilla/mux)"
+description = "This example will show how to register routes using the popular gorilla/mux router in the Go programming language."
 +++
 
 ## Routes (using gorilla/mux)

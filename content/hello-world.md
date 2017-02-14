@@ -1,6 +1,7 @@
 +++
 weight = 1
 title = "Hello World"
+description = "This example will show how to start a webserver on port 8080 and print the classic \"hello world\" message in the Go programming language."
 +++
 
 ## Hello World
