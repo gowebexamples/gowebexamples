@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{{if eq .Site.Title .Title}}
+	{{if .IsHome}}
 		<title>{{.Site.Title}}</title>
 	{{else}}
 		<title>{{.Site.Title}}: {{.Title}}</title>
 	{{end}}
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
+	<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
 	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
 	<link rel="canonical" href="{{.Permalink}}">
+
 	<style>
 		body {
 			margin: 0;

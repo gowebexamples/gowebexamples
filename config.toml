@@ -3,3 +3,6 @@ languageCode = "en-us"
 title = "Go Web Examples"
 PygmentsCodeFences = true
 PygmentsStyle = "trac"
+
+[Params]
+description = "Go Web Examples provides easy to understand code snippets on how to do web development in the Go programming language."
