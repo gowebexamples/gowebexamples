@@ -12,8 +12,8 @@ When you build the site using the `hugo` command, the output files will be gener
 To build this site Hugo and Python (with `pygments` installed) will be required.
 
 ```console
-$ go get github.com/gowebexamples/gowebexamples
-$ cd $GOPATH/src/github.com/gowebexamples/gowebexamples
+$ git clone https://github.com/gowebexamples/gowebexamples.git
+$ cd gowebexamples
 $ hugo
 ```
 
