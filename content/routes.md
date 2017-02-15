@@ -34,7 +34,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
-``` sh
+``` console
 $ go run routes.go
 
 $ curl -s http://localhost:8080/users/Bob

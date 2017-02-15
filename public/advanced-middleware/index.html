@@ -154,16 +154,15 @@ This is the full example:</p>
     http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run advanced-middleware.go
+<span style="color: #888888">2017/02/11 00:34:53 / 0s</span>
 
-<pre><code>$ go run advanced-middleware.go
-2017/02/11 00:34:53 / 0s
+<span style="color: #555555">$</span> curl -s http://localhost:8080/
+<span style="color: #888888">hello world</span>
 
-$ curl -s http://localhost:8080/
-hello world
-
-$ curl -s -XPOST http://localhost:8080/
-Bad Request
-</code></pre>
+<span style="color: #555555">$</span> curl -s -XPOST http://localhost:8080/
+<span style="color: #888888">Bad Request</span>
+</pre></div>
 
 	<div class="footer">
 		<div class="links">

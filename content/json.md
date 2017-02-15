@@ -44,7 +44,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
-``` sh
+``` console
 $ go run json.go
 
 $ curl -s -XPOST -d'{"firstname":"Donald","lastname":"Trump","age":70}' http://localhost:8080/decode

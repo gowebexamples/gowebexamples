@@ -88,13 +88,13 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run json.go
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run json.go
 
-$ curl -s -XPOST -d<span style="color: #bb8844">&#39;{&quot;firstname&quot;:&quot;Donald&quot;,&quot;lastname&quot;:&quot;Trump&quot;,&quot;age&quot;:70}&#39;</span> http://localhost:8080/decode
-Donald Trump is <span style="color: #009999">70</span> years old!
+<span style="color: #555555">$</span> curl -s -XPOST -d<span style="color: #bb8844">&#39;{&quot;firstname&quot;:&quot;Donald&quot;,&quot;lastname&quot;:&quot;Trump&quot;,&quot;age&quot;:70}&#39;</span> http://localhost:8080/decode
+<span style="color: #888888">Donald Trump is 70 years old!</span>
 
-$ curl -s http://localhost:8080/encode
-<span style="font-weight: bold">{</span><span style="color: #bb8844">&quot;firstname&quot;</span>:<span style="color: #bb8844">&quot;John&quot;</span>,<span style="color: #bb8844">&quot;lastname&quot;</span>:<span style="color: #bb8844">&quot;Doe&quot;</span>,<span style="color: #bb8844">&quot;age&quot;</span>:25<span style="font-weight: bold">}</span>
+<span style="color: #555555">$</span> curl -s http://localhost:8080/encode
+<span style="color: #888888">{&quot;firstname&quot;:&quot;John&quot;,&quot;lastname&quot;:&quot;Doe&quot;,&quot;age&quot;:25}</span>
 </pre></div>
 
 	<div class="footer">

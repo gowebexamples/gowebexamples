@@ -35,10 +35,10 @@
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run hello-world.go
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run hello-world.go
 
-$ curl -s http://localhost:8080/
-hello world
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/
+&lt;span style=&#34;color: #888888&#34;&gt;hello world&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
@@ -79,10 +79,10 @@ hello world
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run routes.go
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run routes.go
 
-$ curl -s http://localhost:8080/users/Bob
-Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/users/Bob
+&lt;span style=&#34;color: #888888&#34;&gt;Bob is 30 years old!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
@@ -134,10 +134,10 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, r)
 }
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run routes.go
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run routes.go
 
-$ curl -s http://localhost:8080/users/Bob
-Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/users/Bob
+&lt;span style=&#34;color: #888888&#34;&gt;Bob is 30 years old!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
@@ -193,7 +193,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 	{{end}}
 &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;ul&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run todos.go
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run todos.go
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&#34;demo&#34;&gt;
@@ -272,7 +272,7 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
     &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt;&amp;gt;
 {{end}}
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run forms.go
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run forms.go
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&#34;demo&#34;&gt;
@@ -337,13 +337,13 @@ Bob is &lt;span style=&#34;color: #009999&#34;&gt;30&lt;/span&gt; years old!
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run json.go
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run json.go
 
-$ curl -s -XPOST -d&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;#39;{&amp;quot;firstname&amp;quot;:&amp;quot;Donald&amp;quot;,&amp;quot;lastname&amp;quot;:&amp;quot;Trump&amp;quot;,&amp;quot;age&amp;quot;:70}&amp;#39;&lt;/span&gt; http://localhost:8080/decode
-Donald Trump is &lt;span style=&#34;color: #009999&#34;&gt;70&lt;/span&gt; years old!
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s -XPOST -d&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;#39;{&amp;quot;firstname&amp;quot;:&amp;quot;Donald&amp;quot;,&amp;quot;lastname&amp;quot;:&amp;quot;Trump&amp;quot;,&amp;quot;age&amp;quot;:70}&amp;#39;&lt;/span&gt; http://localhost:8080/decode
+&lt;span style=&#34;color: #888888&#34;&gt;Donald Trump is 70 years old!&lt;/span&gt;
 
-$ curl -s http://localhost:8080/encode
-&lt;span style=&#34;font-weight: bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;firstname&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;John&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;lastname&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Doe&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;age&amp;quot;&lt;/span&gt;:25&lt;span style=&#34;font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/encode
+&lt;span style=&#34;color: #888888&#34;&gt;{&amp;quot;firstname&amp;quot;:&amp;quot;John&amp;quot;,&amp;quot;lastname&amp;quot;:&amp;quot;Doe&amp;quot;,&amp;quot;age&amp;quot;:25}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
@@ -371,17 +371,102 @@ $ curl -s http://localhost:8080/encode
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ tree assets/
-assets/
-└── css
-    └── styles.css
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; tree assets/
+&lt;span style=&#34;color: #888888&#34;&gt;assets/&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;└── css&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;    └── styles.css&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ go run static-files.go
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run static-files.go
 
-$ curl -s http://localhost:8080/static/css/styles.css
-body &lt;span style=&#34;font-weight: bold&#34;&gt;{&lt;/span&gt;
-    background-color: black;
-&lt;span style=&#34;font-weight: bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/static/css/styles.css
+&lt;span style=&#34;color: #888888&#34;&gt;body {&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;    background-color: black;&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sessions</title>
+      <link>https://gowebexamples.github.io/sessions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.github.io/sessions/</guid>
+      <description>
+
+&lt;h1 id=&#34;go-web-examples-sessions&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Sessions&lt;/h1&gt;
+
+&lt;p&gt;This example will show how to store data in session cookies using the popular  &lt;a target=&#34;_blank&#34; href=&#34;https://github.com/gorilla/sessions&#34;&gt;gorilla/sessions&lt;/a&gt; package in Go.&lt;/p&gt;
+
+&lt;p&gt;Cookies are small pieces of data stored in the browser of a user and are sent to our server on each request. In them, we can store e.g. whether or not a user is logged in into our website and figure out who he actually is (in our system).&lt;/p&gt;
+
+&lt;p&gt;In this example we will only allow authenticated users to view our secret message on the &lt;code&gt;/secret&lt;/code&gt; page. To get access to it, the will first have to visit &lt;code&gt;/login&lt;/code&gt; to get a valid session cookie, which logs him in. Additionally he can visit &lt;code&gt;/logout&lt;/code&gt; to revoke his access to our secret message.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// sessions.go&lt;/span&gt;
+&lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;github.com/gorilla/sessions&amp;quot;&lt;/span&gt;
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;var&lt;/span&gt; (
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)&lt;/span&gt;
+    key = []&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;super-secret-key&amp;quot;&lt;/span&gt;)
+    store = sessions.NewCookieStore(key)
+)
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; secret(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+    session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Check if user is authenticated&lt;/span&gt;
+    &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; auth, ok &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;].(&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;); !ok &lt;span style=&#34;font-weight: bold&#34;&gt;||&lt;/span&gt; !auth {
+        http.Error(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Forbidden&amp;quot;&lt;/span&gt;, http.StatusForbidden)
+        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+    }
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Print secret message&lt;/span&gt;
+    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;The cake is a lie!&amp;quot;&lt;/span&gt;)
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; login(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+    session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Authentication goes here&lt;/span&gt;
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ...&lt;/span&gt;
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Set user as authenticated&lt;/span&gt;
+    session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;] = &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;
+    session.Save(r, w)
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; logout(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+    session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
+
+    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Revoke users authentication&lt;/span&gt;
+    session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;] = &lt;span style=&#34;font-weight: bold&#34;&gt;false&lt;/span&gt;
+    session.Save(r, w)
+}
+
+&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
+    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/secret&amp;quot;&lt;/span&gt;, secret)
+    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/login&amp;quot;&lt;/span&gt;, login)
+    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/logout&amp;quot;&lt;/span&gt;, logout)
+
+    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run sessions.go
+
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/secret
+&lt;span style=&#34;color: #888888&#34;&gt;Forbidden&lt;/span&gt;
+
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s -I http://localhost:8080/login
+&lt;span style=&#34;color: #888888&#34;&gt;Set-Cookie: cookie-name=MTQ4NzE5Mz...&lt;/span&gt;
+
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s --cookie &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name=MTQ4NzE5Mz...&amp;quot;&lt;/span&gt; http://localhost:8080/secret
+&lt;span style=&#34;color: #888888&#34;&gt;The cake is a lie!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
@@ -432,12 +517,11 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the golang bcrypt library li
     fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Match:   &amp;quot;&lt;/span&gt;, match)
 }
 &lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre&gt;&lt;code&gt;$ go run passwords.go
-Password: secret
-Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK
-Match:    true
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run passwords.go
+&lt;span style=&#34;color: #888888&#34;&gt;Password: secret&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;Match:    true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     
@@ -523,10 +607,9 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the popular &lt;a target=&#3
 	}
 &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;script&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
-
-&lt;pre&gt;&lt;code&gt;$ go run websockets.go
-[127.0.0.1]:53403 sent: Hello Go Web Examples, you&#39;re doing great!
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run websockets.go
+&lt;span style=&#34;color: #888888&#34;&gt;[127.0.0.1]:53403 sent: Hello Go Web Examples, you&amp;#39;re doing great!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&#34;demo&#34;&gt;
     &lt;input type=&#34;text&#34;&gt;
@@ -582,16 +665,15 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
     http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run basic-middleware.go
+&lt;span style=&#34;color: #888888&#34;&gt;2017/02/10 23:59:34 /foo&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;2017/02/10 23:59:35 /bar&lt;/span&gt;
+&lt;span style=&#34;color: #888888&#34;&gt;2017/02/10 23:59:36 /foo?bar&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;$ go run basic-middleware.go
-2017/02/10 23:59:34 /foo
-2017/02/10 23:59:35 /bar
-2017/02/10 23:59:36 /foo?bar
-
-$ curl -s http://localhost:8080/foo
-$ curl -s http://localhost:8080/bar
-$ curl -s http://localhost:8080/foo?bar
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/foo
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/bar
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/foo?bar
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     
@@ -708,16 +790,15 @@ This is the full example:&lt;/p&gt;
     http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run advanced-middleware.go
+&lt;span style=&#34;color: #888888&#34;&gt;2017/02/11 00:34:53 / 0s&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;$ go run advanced-middleware.go
-2017/02/11 00:34:53 / 0s
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/
+&lt;span style=&#34;color: #888888&#34;&gt;hello world&lt;/span&gt;
 
-$ curl -s http://localhost:8080/
-hello world
-
-$ curl -s -XPOST http://localhost:8080/
-Bad Request
-&lt;/code&gt;&lt;/pre&gt;
+&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s -XPOST http://localhost:8080/
+&lt;span style=&#34;color: #888888&#34;&gt;Bad Request&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 </description>
     </item>
     

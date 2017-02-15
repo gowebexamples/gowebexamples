@@ -67,7 +67,7 @@ func main() {
 {{end}}
 
 ```
-``` sh
+``` console
 $ go run forms.go
 ```
 <div class="demo">

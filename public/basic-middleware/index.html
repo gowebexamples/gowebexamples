@@ -86,16 +86,15 @@
     http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run basic-middleware.go
+<span style="color: #888888">2017/02/10 23:59:34 /foo</span>
+<span style="color: #888888">2017/02/10 23:59:35 /bar</span>
+<span style="color: #888888">2017/02/10 23:59:36 /foo?bar</span>
 
-<pre><code>$ go run basic-middleware.go
-2017/02/10 23:59:34 /foo
-2017/02/10 23:59:35 /bar
-2017/02/10 23:59:36 /foo?bar
-
-$ curl -s http://localhost:8080/foo
-$ curl -s http://localhost:8080/bar
-$ curl -s http://localhost:8080/foo?bar
-</code></pre>
+<span style="color: #555555">$</span> curl -s http://localhost:8080/foo
+<span style="color: #555555">$</span> curl -s http://localhost:8080/bar
+<span style="color: #555555">$</span> curl -s http://localhost:8080/foo?bar
+</pre></div>
 
 	<div class="footer">
 		<div class="links">

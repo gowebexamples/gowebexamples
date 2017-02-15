@@ -1,5 +1,5 @@
 +++
-weight = 9
+weight = 10
 title = "Middleware (Basic)"
 description = "This example will show how to create basic logging middleware in the Go programming language."
 +++
@@ -43,7 +43,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
-```
+``` console
 $ go run basic-middleware.go
 2017/02/10 23:59:34 /foo
 2017/02/10 23:59:35 /bar

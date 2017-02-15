@@ -64,17 +64,17 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ tree assets/
-assets/
-└── css
-    └── styles.css
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> tree assets/
+<span style="color: #888888">assets/</span>
+<span style="color: #888888">└── css</span>
+<span style="color: #888888">    └── styles.css</span>
 </pre></div>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>$ go run static-files.go
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run static-files.go
 
-$ curl -s http://localhost:8080/static/css/styles.css
-body <span style="font-weight: bold">{</span>
-    background-color: black;
-<span style="font-weight: bold">}</span>
+<span style="color: #555555">$</span> curl -s http://localhost:8080/static/css/styles.css
+<span style="color: #888888">body {</span>
+<span style="color: #888888">    background-color: black;</span>
+<span style="color: #888888">}</span>
 </pre></div>
 
 	<div class="footer">
@@ -85,7 +85,7 @@ body <span style="font-weight: bold">{</span>
 			
 			<a title="Go Web Examples" class="home" href="/">home</a>
 			
-			<a title="Password Hashing" class="forward" href="https://gowebexamples.github.io/password-hashing/">forward →</a>
+			<a title="Sessions" class="forward" href="https://gowebexamples.github.io/sessions/">forward →</a>
 			
 		
 		</div>

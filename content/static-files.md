@@ -21,13 +21,13 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
-``` sh
+``` console
 $ tree assets/
 assets/
 └── css
     └── styles.css
 ```
-``` sh
+``` console
 $ go run static-files.go
 
 $ curl -s http://localhost:8080/static/css/styles.css

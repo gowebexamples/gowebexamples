@@ -25,7 +25,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
-``` sh
+``` console
 $ go run hello-world.go
 
 $ curl -s http://localhost:8080/

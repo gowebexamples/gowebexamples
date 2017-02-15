@@ -50,7 +50,7 @@ func main() {
 	{{end}}
 </ul>
 ```
-``` sh
+``` console
 $ go run todos.go
 ```
 <div class="demo">

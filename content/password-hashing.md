@@ -1,5 +1,5 @@
 +++
-weight = 8
+weight = 9
 title = "Password Hashing"
 description = "This example will show how to hash passwords using bcrypt in the Go programming language."
 +++
@@ -44,7 +44,7 @@ func main() {
 }
 
 ```
-```
+``` console
 $ go run passwords.go
 Password: secret
 Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK

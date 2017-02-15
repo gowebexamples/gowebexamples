@@ -1,5 +1,5 @@
 +++
-weight = 10
+weight = 11
 title = "Middleware (Advanced)"
 description = "This example will show how to create a more advanced version of middleware in the Go programming language."
 +++
@@ -110,7 +110,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
-```
+``` console
 $ go run advanced-middleware.go
 2017/02/11 00:34:53 / 0s
 

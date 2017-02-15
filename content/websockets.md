@@ -1,5 +1,5 @@
 +++
-weight = 8
+weight = 9
 title = "Websockets"
 description = "This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it."
 +++
@@ -80,7 +80,7 @@ func main() {
 	}
 </script>
 ```
-```
+``` console
 $ go run websockets.go
 [127.0.0.1]:53403 sent: Hello Go Web Examples, you're doing great!
 ```
