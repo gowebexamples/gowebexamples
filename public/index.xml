@@ -538,14 +538,14 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Basic Middleware</title>
+      <title>Middleware (Basic)</title>
       <link>https://gowebexamples.github.io/basic-middleware/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://gowebexamples.github.io/basic-middleware/</guid>
       <description>
 
-&lt;h1 id=&#34;go-web-examples-basic-middleware&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Basic Middleware&lt;/h1&gt;
+&lt;h1 id=&#34;go-web-examples-middleware-basic&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Middleware (Basic)&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to create basic logging middleware in Go.&lt;/p&gt;
 
@@ -562,12 +562,9 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; logging(f http.HandlerFunc) http.HandlerFunc {
     &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-        start &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; time.Now()
-        &lt;span style=&#34;font-weight: bold&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;() { log.Println(r.URL.Path, time.Since(start)) }()
-
+        log.Println(r.URL.Path)
         f(w, r)
     }
-
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; foo(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
@@ -587,9 +584,9 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;pre&gt;&lt;code&gt;$ go run basic-middleware.go
-2017/02/10 23:59:34 /foo 0s
-2017/02/10 23:59:35 /bar 0s
-2017/02/10 23:59:36 /foo?bar 0s
+2017/02/10 23:59:34 /foo
+2017/02/10 23:59:35 /bar
+2017/02/10 23:59:36 /foo?bar
 
 $ curl -s http://localhost:8080/foo
 $ curl -s http://localhost:8080/bar
@@ -599,14 +596,14 @@ $ curl -s http://localhost:8080/foo?bar
     </item>
     
     <item>
-      <title>Advanced Middleware</title>
+      <title>Middleware (Advanced)</title>
       <link>https://gowebexamples.github.io/advanced-middleware/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://gowebexamples.github.io/advanced-middleware/</guid>
       <description>
 
-&lt;h1 id=&#34;go-web-examples-advanced-middleware&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Advanced Middleware&lt;/h1&gt;
+&lt;h1 id=&#34;go-web-examples-middleware-advanced&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Middleware (Advanced)&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to create a more advanced version of middleware in Go.&lt;/p&gt;
 

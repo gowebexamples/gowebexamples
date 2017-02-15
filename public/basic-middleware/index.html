@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	
-		<title>Go Web Examples: Basic Middleware</title>
+		<title>Go Web Examples: Middleware (Basic)</title>
 	
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -49,7 +49,7 @@
 
 
 
-<h1 id="go-web-examples-basic-middleware"><a href="/">Go Web Examples:</a> Basic Middleware</h1>
+<h1 id="go-web-examples-middleware-basic"><a href="/">Go Web Examples:</a> Middleware (Basic)</h1>
 
 <p>This example will show how to create basic logging middleware in Go.</p>
 
@@ -66,12 +66,9 @@
 
 <span style="font-weight: bold">func</span> logging(f http.HandlerFunc) http.HandlerFunc {
     <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-        start <span style="font-weight: bold">:=</span> time.Now()
-        <span style="font-weight: bold">defer</span> <span style="font-weight: bold">func</span>() { log.Println(r.URL.Path, time.Since(start)) }()
-
+        log.Println(r.URL.Path)
         f(w, r)
     }
-
 }
 
 <span style="font-weight: bold">func</span> foo(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
@@ -91,9 +88,9 @@
 </pre></div>
 
 <pre><code>$ go run basic-middleware.go
-2017/02/10 23:59:34 /foo 0s
-2017/02/10 23:59:35 /bar 0s
-2017/02/10 23:59:36 /foo?bar 0s
+2017/02/10 23:59:34 /foo
+2017/02/10 23:59:35 /bar
+2017/02/10 23:59:36 /foo?bar
 
 $ curl -s http://localhost:8080/foo
 $ curl -s http://localhost:8080/bar
@@ -108,7 +105,7 @@ $ curl -s http://localhost:8080/foo?bar
 			
 			<a title="Go Web Examples" class="home" href="/">home</a>
 			
-			<a title="Advanced Middleware" class="forward" href="https://gowebexamples.github.io/advanced-middleware/">forward →</a>
+			<a title="Middleware (Advanced)" class="forward" href="https://gowebexamples.github.io/advanced-middleware/">forward →</a>
 			
 		
 		</div>
