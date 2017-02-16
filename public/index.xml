@@ -637,32 +637,31 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;log&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;log&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
 )
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; logging(f http.HandlerFunc) http.HandlerFunc {
-    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-        log.Println(r.URL.Path)
-        f(w, r)
-    }
+	&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		log.Println(r.URL.Path)
+		f(w, r)
+	}
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; foo(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;)
+	fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;foo&amp;quot;&lt;/span&gt;)
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; bar(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;bar&amp;quot;&lt;/span&gt;)
+	fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;bar&amp;quot;&lt;/span&gt;)
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
-    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/foo&amp;quot;&lt;/span&gt;, logging(foo))
-    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/bar&amp;quot;&lt;/span&gt;, logging(bar))
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/foo&amp;quot;&lt;/span&gt;, logging(foo))
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/bar&amp;quot;&lt;/span&gt;, logging(bar))
 
-    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run basic-middleware.go

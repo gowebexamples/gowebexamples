@@ -58,32 +58,31 @@
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
-    <span style="color: #bb8844">&quot;fmt&quot;</span>
-    <span style="color: #bb8844">&quot;log&quot;</span>
-    <span style="color: #bb8844">&quot;net/http&quot;</span>
-    <span style="color: #bb8844">&quot;time&quot;</span>
+	<span style="color: #bb8844">&quot;fmt&quot;</span>
+	<span style="color: #bb8844">&quot;log&quot;</span>
+	<span style="color: #bb8844">&quot;net/http&quot;</span>
 )
 
 <span style="font-weight: bold">func</span> logging(f http.HandlerFunc) http.HandlerFunc {
-    <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-        log.Println(r.URL.Path)
-        f(w, r)
-    }
+	<span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		log.Println(r.URL.Path)
+		f(w, r)
+	}
 }
 
 <span style="font-weight: bold">func</span> foo(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-    fmt.Fprintln(w, <span style="color: #bb8844">&quot;foo&quot;</span>)
+	fmt.Fprintln(w, <span style="color: #bb8844">&quot;foo&quot;</span>)
 }
 
 <span style="font-weight: bold">func</span> bar(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-    fmt.Fprintln(w, <span style="color: #bb8844">&quot;bar&quot;</span>)
+	fmt.Fprintln(w, <span style="color: #bb8844">&quot;bar&quot;</span>)
 }
 
 <span style="font-weight: bold">func</span> main() {
-    http.HandleFunc(<span style="color: #bb8844">&quot;/foo&quot;</span>, logging(foo))
-    http.HandleFunc(<span style="color: #bb8844">&quot;/bar&quot;</span>, logging(bar))
+	http.HandleFunc(<span style="color: #bb8844">&quot;/foo&quot;</span>, logging(foo))
+	http.HandleFunc(<span style="color: #bb8844">&quot;/bar&quot;</span>, logging(bar))
 
-    http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run basic-middleware.go
