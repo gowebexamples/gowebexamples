@@ -10,7 +10,7 @@ This example will show how to create basic logging middleware in Go.
 
 A middleware simply takes a `http.HandlerFunc` as one of its parameters, wraps it and returns a new `http.HandlerFunc` for the server to call.
 
-``` go
+{{< highlight go >}}
 // basic-middleware.go
 package main
 
@@ -41,8 +41,8 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run basic-middleware.go
 2017/02/10 23:59:34 /foo
 2017/02/10 23:59:35 /bar
@@ -51,4 +51,4 @@ $ go run basic-middleware.go
 $ curl -s http://localhost:8080/foo
 $ curl -s http://localhost:8080/bar
 $ curl -s http://localhost:8080/foo?bar
-```
+{{< / highlight >}}

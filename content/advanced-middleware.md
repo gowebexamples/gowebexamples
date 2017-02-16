@@ -15,7 +15,7 @@ You can find a more detailed explaination including the talk <a target="_blank" 
 
 <br />
 This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.
-``` go
+{{< highlight go >}}
 func createNewMiddleware() Middleware {
 
 	// Create a new Middleware
@@ -37,10 +37,10 @@ func createNewMiddleware() Middleware {
 	// Return newly created middleware
 	return middleware
 }
-```
+{{< / highlight >}}
 <br />
 This is the full example:
-``` go
+{{< highlight go >}}
 // advanced-middleware.go
 package main
 
@@ -109,8 +109,8 @@ func main() {
 	http.HandleFunc("/", Chain(Hello, Method("GET"), Logging()))
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run advanced-middleware.go
 2017/02/11 00:34:53 / 0s
 
@@ -119,6 +119,6 @@ hello world
 
 $ curl -s -XPOST http://localhost:8080/
 Bad Request
-```
+{{< / highlight >}}
 
 

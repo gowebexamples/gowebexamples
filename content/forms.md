@@ -8,7 +8,7 @@ description = "This example will show how to simulate a contact form and parse t
 
 This example will show how to simulate a contact form and parse the message into a struct.
 
-``` go
+{{< highlight go >}}
 // forms.go
 package main
 
@@ -46,10 +46,8 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-
-
-```
-``` html
+{{< / highlight >}}
+{{< highlight html >}}
 <!-- forms.html -->
 {{if .Success}}
 	<h1>Thanks for your message!</h1>
@@ -65,11 +63,10 @@ func main() {
 		<input type="submit">
 	</form>
 {{end}}
-
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run forms.go
-```
+{{< / highlight >}}
 <div class="demo">
 	<h1>Contact</h1>
 	<form method="POST">

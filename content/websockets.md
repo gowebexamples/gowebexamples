@@ -12,7 +12,7 @@ For this we have to `go get` the popular <a target="_blank" href="https://github
 `$ go get github.com/gorilla/websocket`
 
 From now on, every application we write will be able to make use of this library.
-``` go
+{{< highlight go >}}
 // websockets.go
 package main
 
@@ -55,8 +55,8 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` html
+{{< / highlight >}}
+{{< highlight html >}}
 <!-- websockets.html -->
 <input id="input" type="text" />
 <button onclick="send()">Send</button>
@@ -79,11 +79,11 @@ func main() {
 		input.value = "";
 	}
 </script>
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run websockets.go
 [127.0.0.1]:53403 sent: Hello Go Web Examples, you're doing great!
-```
+{{< / highlight >}}
 <div class="demo">
 	<input type="text">
 	<button>Send</button>

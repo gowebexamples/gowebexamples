@@ -7,7 +7,7 @@ description = "This example will show how to encode and decode JSON data using t
 # [Go Web Examples:](/) JSON
 
 This example will show how to encode and decode JSON data using the `encoding/json` package.
-``` go
+{{< highlight go >}}
 // json.go
 package main
 
@@ -43,8 +43,8 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run json.go
 
 $ curl -s -XPOST -d'{"firstname":"Donald","lastname":"Trump","age":70}' http://localhost:8080/decode
@@ -53,4 +53,4 @@ Donald Trump is 70 years old!
 $ curl -s http://localhost:8080/encode
 {"firstname":"John","lastname":"Doe","age":25}
 
-```
+{{< / highlight >}}

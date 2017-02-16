@@ -19,7 +19,8 @@
 &lt;h1 id=&#34;go-web-examples-hello-world&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Hello World&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to start a webserver on port 8080 and print the classic &amp;ldquo;hello world&amp;rdquo; message.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// hello-world.go&lt;/span&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// hello-world.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
@@ -35,11 +36,13 @@
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run hello-world.go
 
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/
 &lt;span style=&#34;color: #888888&#34;&gt;hello world&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -54,7 +57,8 @@
 &lt;h1 id=&#34;go-web-examples-routes&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Routes&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to register a route and get the data using just the &lt;code&gt;net/http&lt;/code&gt; package.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// routes.go&lt;/span&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// routes.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
@@ -79,11 +83,13 @@
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run routes.go
 
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/users/Bob
 &lt;span style=&#34;color: #888888&#34;&gt;Bob is 30 years old!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -105,7 +111,8 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 &lt;p&gt;&lt;code&gt;$ go get github.com/gorilla/mux&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;From now on, every application we write will be able to make use of this library.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// routes.go&lt;/span&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// routes.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
@@ -134,11 +141,13 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, r)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run routes.go
 
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/users/Bob
 &lt;span style=&#34;color: #888888&#34;&gt;Bob is 30 years old!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -153,7 +162,8 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 &lt;h1 id=&#34;go-web-examples-templates&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Templates&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to render a simple list of TODO items into an html page using the &lt;code&gt;html/template&lt;/code&gt; package.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// todos.go&lt;/span&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// todos.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
@@ -181,6 +191,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- todos.html --&amp;gt;&lt;/span&gt;
 &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Todos&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
 &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;ul&lt;/span&gt;&amp;gt;
@@ -193,6 +204,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 	{{end}}
 &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;ul&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run todos.go
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -203,7 +215,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
         &lt;li&gt;&lt;s&gt;Read Go Web Examples&lt;/s&gt;&lt;/li&gt;
         &lt;li&gt;Create a web app in Go&lt;/li&gt;
     &lt;/ul&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -218,60 +230,63 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 &lt;h1 id=&#34;go-web-examples-forms&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Forms&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to simulate a contact form and parse the message into a struct.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// forms.go&lt;/span&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// forms.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;html/template&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;html/template&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
 )
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; ContactDetails &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt; {
-    Email   &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
-    Subject &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
-    Message &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+	Email   &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+	Subject &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
+	Message &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
-    tmpl &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; template.Must(template.ParseFiles(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;forms.html&amp;quot;&lt;/span&gt;))
+	tmpl &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; template.Must(template.ParseFiles(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;forms.html&amp;quot;&lt;/span&gt;))
 
-    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-        &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; r.Method &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; http.MethodPost {
-            tmpl.Execute(w, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
-            &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
-        }
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		&lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; r.Method &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; http.MethodPost {
+			tmpl.Execute(w, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+			&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+		}
 
-        details &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; ContactDetails{
-            Email:   r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;),
-            Subject: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;subject&amp;quot;&lt;/span&gt;),
-            Message: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;),
-        }
+		details &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; ContactDetails{
+			Email:   r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;),
+			Subject: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;subject&amp;quot;&lt;/span&gt;),
+			Message: r.FormValue(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;),
+		}
 
-        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// do something with details&lt;/span&gt;
-        _ = details
+		&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// do something with details&lt;/span&gt;
+		_ = details
 
-        tmpl.Execute(w, &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt;{ Success &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt; }{&lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;})
-    })
+		tmpl.Execute(w, &lt;span style=&#34;font-weight: bold&#34;&gt;struct&lt;/span&gt;{ Success &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt; }{&lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;})
+	})
 
-    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- forms.html --&amp;gt;&lt;/span&gt;
 {{if .Success}}
-    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Thanks for your message!&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Thanks for your message!&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
 {{else}}
-    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Contact&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;method&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Email:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Subject:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;subject&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Message:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;textarea&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;textarea&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
-        &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;Contact&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;h1&lt;/span&gt;&amp;gt;
+	&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;method&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt;&amp;gt;
+		&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Email:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+		&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+		&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Subject:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+		&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;subject&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+		&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;Message:&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;label&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+		&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;textarea&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;textarea&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;br&lt;/span&gt; /&amp;gt;
+		&amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt;&amp;gt;
+	&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;form&lt;/span&gt;&amp;gt;
 {{end}}
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run forms.go
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -286,7 +301,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
         &lt;textarea name=&#34;message&#34;&gt;&lt;/textarea&gt;&lt;br /&gt;
         &lt;input type=&#34;submit&#34;&gt;
     &lt;/form&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -300,7 +315,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 
 &lt;h1 id=&#34;go-web-examples-json&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; JSON&lt;/h1&gt;
 
-&lt;p&gt;This example will show how to encode and decode JSON data using the &lt;code&gt;encoding/json&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;This example will show how to encode and decode JSON data using the &lt;code&gt;encoding/json&lt;/code&gt; package.
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// json.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -337,6 +352,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run json.go
 
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s -XPOST -d&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;#39;{&amp;quot;firstname&amp;quot;:&amp;quot;Donald&amp;quot;,&amp;quot;lastname&amp;quot;:&amp;quot;Trump&amp;quot;,&amp;quot;age&amp;quot;:70}&amp;#39;&lt;/span&gt; http://localhost:8080/decode
@@ -345,6 +361,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/encode
 &lt;span style=&#34;color: #888888&#34;&gt;{&amp;quot;firstname&amp;quot;:&amp;quot;John&amp;quot;,&amp;quot;lastname&amp;quot;:&amp;quot;Doe&amp;quot;,&amp;quot;age&amp;quot;:25}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -359,7 +376,8 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 &lt;h1 id=&#34;go-web-examples-static-files&#34;&gt;&lt;a href=&#34;https://gowebexamples.github.io/&#34;&gt;Go Web Examples:&lt;/a&gt; Static Files&lt;/h1&gt;
 
 &lt;p&gt;This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// static-files.go&lt;/span&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// static-files.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
@@ -371,11 +389,13 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; tree assets/
 &lt;span style=&#34;color: #888888&#34;&gt;assets/&lt;/span&gt;
 &lt;span style=&#34;color: #888888&#34;&gt;└── css&lt;/span&gt;
 &lt;span style=&#34;color: #888888&#34;&gt;    └── styles.css&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run static-files.go
 
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/static/css/styles.css
@@ -383,6 +403,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 &lt;span style=&#34;color: #888888&#34;&gt;    background-color: black;&lt;/span&gt;
 &lt;span style=&#34;color: #888888&#34;&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -400,63 +421,64 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 
 &lt;p&gt;Cookies are small pieces of data stored in the browser of a user and are sent to our server on each request. In them, we can store e.g. whether or not a user is logged in into our website and figure out who he actually is (in our system).&lt;/p&gt;
 
-&lt;p&gt;In this example we will only allow authenticated users to view our secret message on the &lt;code&gt;/secret&lt;/code&gt; page. To get access to it, the will first have to visit &lt;code&gt;/login&lt;/code&gt; to get a valid session cookie, which logs him in. Additionally he can visit &lt;code&gt;/logout&lt;/code&gt; to revoke his access to our secret message.&lt;/p&gt;
+&lt;p&gt;In this example we will only allow authenticated users to view our secret message on the &lt;code&gt;/secret&lt;/code&gt; page. To get access to it, the will first have to visit &lt;code&gt;/login&lt;/code&gt; to get a valid session cookie, which logs him in. Additionally he can visit &lt;code&gt;/logout&lt;/code&gt; to revoke his access to our secret message.
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// sessions.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
 
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;github.com/gorilla/sessions&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;github.com/gorilla/sessions&amp;quot;&lt;/span&gt;
 )
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;var&lt;/span&gt; (
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)&lt;/span&gt;
-    key = []&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;super-secret-key&amp;quot;&lt;/span&gt;)
-    store = sessions.NewCookieStore(key)
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)&lt;/span&gt;
+	key = []&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;super-secret-key&amp;quot;&lt;/span&gt;)
+	store = sessions.NewCookieStore(key)
 )
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; secret(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-    session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
+	session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Check if user is authenticated&lt;/span&gt;
-    &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; auth, ok &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;].(&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;); !ok &lt;span style=&#34;font-weight: bold&#34;&gt;||&lt;/span&gt; !auth {
-        http.Error(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Forbidden&amp;quot;&lt;/span&gt;, http.StatusForbidden)
-        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
-    }
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Check if user is authenticated&lt;/span&gt;
+	&lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; auth, ok &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;].(&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt;); !ok &lt;span style=&#34;font-weight: bold&#34;&gt;||&lt;/span&gt; !auth {
+		http.Error(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Forbidden&amp;quot;&lt;/span&gt;, http.StatusForbidden)
+		&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+	}
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Print secret message&lt;/span&gt;
-    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;The cake is a lie!&amp;quot;&lt;/span&gt;)
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Print secret message&lt;/span&gt;
+	fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;The cake is a lie!&amp;quot;&lt;/span&gt;)
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; login(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-    session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
+	session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Authentication goes here&lt;/span&gt;
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ...&lt;/span&gt;
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Authentication goes here&lt;/span&gt;
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ...&lt;/span&gt;
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Set user as authenticated&lt;/span&gt;
-    session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;] = &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;
-    session.Save(r, w)
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Set user as authenticated&lt;/span&gt;
+	session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;] = &lt;span style=&#34;font-weight: bold&#34;&gt;true&lt;/span&gt;
+	session.Save(r, w)
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; logout(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-    session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
+	session, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; store.Get(r, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name&amp;quot;&lt;/span&gt;)
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Revoke users authentication&lt;/span&gt;
-    session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;] = &lt;span style=&#34;font-weight: bold&#34;&gt;false&lt;/span&gt;
-    session.Save(r, w)
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Revoke users authentication&lt;/span&gt;
+	session.Values[&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;authenticated&amp;quot;&lt;/span&gt;] = &lt;span style=&#34;font-weight: bold&#34;&gt;false&lt;/span&gt;
+	session.Save(r, w)
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
-    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/secret&amp;quot;&lt;/span&gt;, secret)
-    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/login&amp;quot;&lt;/span&gt;, login)
-    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/logout&amp;quot;&lt;/span&gt;, logout)
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/secret&amp;quot;&lt;/span&gt;, secret)
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/login&amp;quot;&lt;/span&gt;, login)
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/logout&amp;quot;&lt;/span&gt;, logout)
 
-    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run sessions.go
 
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/secret
@@ -468,6 +490,7 @@ It is compatible with the router from the standard &lt;code&gt;net/http&lt;/code
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s --cookie &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;cookie-name=MTQ4NzE5Mz...&amp;quot;&lt;/span&gt; http://localhost:8080/secret
 &lt;span style=&#34;color: #888888&#34;&gt;The cake is a lie!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -486,42 +509,44 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the golang bcrypt library li
 
 &lt;p&gt;&lt;code&gt;$ go get golang.org/x/crypto/bcrypt&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;From now on, every application we write will be able to make use of this library.&lt;/p&gt;
+&lt;p&gt;From now on, every application we write will be able to make use of this library.
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// passwords.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
 
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;golang.org/x/crypto/bcrypt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;golang.org/x/crypto/bcrypt&amp;quot;&lt;/span&gt;
 )
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; HashPassword(password &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;) (&lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;error&lt;/span&gt;) {
-    bytes, err &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; bcrypt.GenerateFromPassword([]&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(password), &lt;span style=&#34;color: #009999&#34;&gt;14&lt;/span&gt;)
-    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #999999&#34;&gt;string&lt;/span&gt;(bytes), err
+	bytes, err &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; bcrypt.GenerateFromPassword([]&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(password), &lt;span style=&#34;color: #009999&#34;&gt;14&lt;/span&gt;)
+	&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #999999&#34;&gt;string&lt;/span&gt;(bytes), err
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; CheckPasswordHash(password, hash &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;) &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;bool&lt;/span&gt; {
-    err &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; bcrypt.CompareHashAndPassword([]&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(hash), []&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(password))
-    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; err &lt;span style=&#34;font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;
+	err &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; bcrypt.CompareHashAndPassword([]&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(hash), []&lt;span style=&#34;color: #999999&#34;&gt;byte&lt;/span&gt;(password))
+	&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; err &lt;span style=&#34;font-weight: bold&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
-    password &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;secret&amp;quot;&lt;/span&gt;
-    hash, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; HashPassword(password) &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ignore error for the sake of simplicity&lt;/span&gt;
+	password &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;secret&amp;quot;&lt;/span&gt;
+	hash, _ &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; HashPassword(password) &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ignore error for the sake of simplicity&lt;/span&gt;
 
-    fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Password:&amp;quot;&lt;/span&gt;, password)
-    fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Hash:    &amp;quot;&lt;/span&gt;, hash)
+	fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Password:&amp;quot;&lt;/span&gt;, password)
+	fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Hash:    &amp;quot;&lt;/span&gt;, hash)
 
-    match &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; CheckPasswordHash(password, hash)
-    fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Match:   &amp;quot;&lt;/span&gt;, match)
+	match &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; CheckPasswordHash(password, hash)
+	fmt.Println(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;Match:   &amp;quot;&lt;/span&gt;, match)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run passwords.go
 &lt;span style=&#34;color: #888888&#34;&gt;Password: secret&lt;/span&gt;
 &lt;span style=&#34;color: #888888&#34;&gt;Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK&lt;/span&gt;
 &lt;span style=&#34;color: #888888&#34;&gt;Match:    true&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -540,7 +565,7 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the popular &lt;a target=&#3
 
 &lt;p&gt;&lt;code&gt;$ go get github.com/gorilla/websocket&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;From now on, every application we write will be able to make use of this library.&lt;/p&gt;
+&lt;p&gt;From now on, every application we write will be able to make use of this library.
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// websockets.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
@@ -584,6 +609,7 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the popular &lt;a target=&#3
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;&amp;lt;!-- websockets.html --&amp;gt;&lt;/span&gt;
 &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;input&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;text&amp;quot;&lt;/span&gt; /&amp;gt;
 &amp;lt;&lt;span style=&#34;color: #000080&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color: #008080&#34;&gt;onclick&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;send()&amp;quot;&lt;/span&gt;&amp;gt;Send&amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;button&lt;/span&gt;&amp;gt;
@@ -607,6 +633,7 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the popular &lt;a target=&#3
 	}
 &amp;lt;/&lt;span style=&#34;color: #000080&#34;&gt;script&lt;/span&gt;&amp;gt;
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run websockets.go
 &lt;span style=&#34;color: #888888&#34;&gt;[127.0.0.1]:53403 sent: Hello Go Web Examples, you&amp;#39;re doing great!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -615,8 +642,8 @@ For this we have to &lt;code&gt;go get&lt;/code&gt; the popular &lt;a target=&#3
     &lt;input type=&#34;text&#34;&gt;
     &lt;button&gt;Send&lt;/button&gt;
     &lt;pre&gt;Status: Connected
-Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
-&lt;/div&gt;
+Server: Hello Go Web Examples, you&amp;rsquo;re doing great!&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -633,7 +660,8 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 &lt;p&gt;This example will show how to create basic logging middleware in Go.&lt;/p&gt;
 
 &lt;p&gt;A middleware simply takes a &lt;code&gt;http.HandlerFunc&lt;/code&gt; as one of its parameters, wraps it and returns a new &lt;code&gt;http.HandlerFunc&lt;/code&gt; for the server to call.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// basic-middleware.go&lt;/span&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// basic-middleware.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
@@ -664,6 +692,7 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run basic-middleware.go
 &lt;span style=&#34;color: #888888&#34;&gt;2017/02/10 23:59:34 /foo&lt;/span&gt;
 &lt;span style=&#34;color: #888888&#34;&gt;2017/02/10 23:59:35 /bar&lt;/span&gt;
@@ -673,6 +702,7 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/bar
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s http://localhost:8080/foo?bar
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     
@@ -694,40 +724,40 @@ Server: Hello Go Web Examples, you&#39;re doing great!&lt;/pre&gt;
 You can find a more detailed explaination including the talk &lt;a target=&#34;_blank&#34; href=&#34;https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
-This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.&lt;/p&gt;
+This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; createNewMiddleware() Middleware {
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
-    middleware &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(next http.HandlerFunc) http.HandlerFunc {
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
+	middleware &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(next http.HandlerFunc) http.HandlerFunc {
 
-        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc which is called by the server eventually&lt;/span&gt;
-        handler &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc which is called by the server eventually&lt;/span&gt;
+		handler &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
 
-            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ... do middleware things&lt;/span&gt;
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// ... do middleware things&lt;/span&gt;
 
-            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
-            next(w, r)
-        }
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
+			next(w, r)
+		}
 
-        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Return newly created handler&lt;/span&gt;
-        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; handler
-    }
+		&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Return newly created handler&lt;/span&gt;
+		&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; handler
+	}
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Return newly created middleware&lt;/span&gt;
-    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; middleware
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Return newly created middleware&lt;/span&gt;
+	&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; middleware
 }
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;br /&gt;
-This is the full example:&lt;/p&gt;
+&lt;br /&gt;
+This is the full example:
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// advanced-middleware.go&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;package&lt;/span&gt; main
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;import&lt;/span&gt; (
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;log&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;log&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;time&amp;quot;&lt;/span&gt;
 )
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;type&lt;/span&gt; Middleware &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(http.HandlerFunc) http.HandlerFunc
@@ -735,60 +765,61 @@ This is the full example:&lt;/p&gt;
 &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Logging logs all requests with its path and the time it took to process&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Logging() Middleware {
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
-    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(f http.HandlerFunc) http.HandlerFunc {
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
+	&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(f http.HandlerFunc) http.HandlerFunc {
 
-        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc&lt;/span&gt;
-        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc&lt;/span&gt;
+		&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
 
-            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Do middleware things&lt;/span&gt;
-            start &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; time.Now()
-            &lt;span style=&#34;font-weight: bold&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;() { log.Println(r.URL.Path, time.Since(start)) }()
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Do middleware things&lt;/span&gt;
+			start &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; time.Now()
+			&lt;span style=&#34;font-weight: bold&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;() { log.Println(r.URL.Path, time.Since(start)) }()
 
-            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
-            f(w, r)
-        }
-    }
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
+			f(w, r)
+		}
+	}
 }
 
 &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Method ensures that only a url can me requested with a specific method, else returns a 400 Bad Request&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Method(m &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;) Middleware {
 
-    &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
-    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(f http.HandlerFunc) http.HandlerFunc {
+	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;
+	&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(f http.HandlerFunc) http.HandlerFunc {
 
-        &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc&lt;/span&gt;
-        &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
+		&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Define the http.HandlerFunc&lt;/span&gt;
+		&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt;(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
 
-            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Do middleware things&lt;/span&gt;
-            &lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; r.Method &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; m {
-                http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-                &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
-            }
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Do middleware things&lt;/span&gt;
+			&lt;span style=&#34;font-weight: bold&#34;&gt;if&lt;/span&gt; r.Method &lt;span style=&#34;font-weight: bold&#34;&gt;!=&lt;/span&gt; m {
+				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+				&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt;
+			}
 
-            &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
-            f(w, r)
-        }
-    }
+			&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Call the next middleware/handler in chain&lt;/span&gt;
+			f(w, r)
+		}
+	}
 }
 
 &lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Chain applies middlewares to a http.HandlerFunc&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Chain(f http.HandlerFunc, middlewares &lt;span style=&#34;font-weight: bold&#34;&gt;...&lt;/span&gt;Middleware) http.HandlerFunc {
-    &lt;span style=&#34;font-weight: bold&#34;&gt;for&lt;/span&gt; _, m &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;range&lt;/span&gt; middlewares {
-        f = m(f)
-    }
-    &lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; f
+	&lt;span style=&#34;font-weight: bold&#34;&gt;for&lt;/span&gt; _, m &lt;span style=&#34;font-weight: bold&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;font-weight: bold&#34;&gt;range&lt;/span&gt; middlewares {
+		f = m(f)
+	}
+	&lt;span style=&#34;font-weight: bold&#34;&gt;return&lt;/span&gt; f
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Hello(w http.ResponseWriter, r &lt;span style=&#34;font-weight: bold&#34;&gt;*&lt;/span&gt;http.Request) {
-    fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;hello world&amp;quot;&lt;/span&gt;)
+	fmt.Fprintln(w, &lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;hello world&amp;quot;&lt;/span&gt;)
 }
 
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; main() {
-    http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, Chain(Hello, Method(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;GET&amp;quot;&lt;/span&gt;), Logging()))
-    http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
+	http.HandleFunc(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, Chain(Hello, Method(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;GET&amp;quot;&lt;/span&gt;), Logging()))
+	http.ListenAndServe(&lt;span style=&#34;color: #bb8844&#34;&gt;&amp;quot;:8080&amp;quot;&lt;/span&gt;, &lt;span style=&#34;font-weight: bold&#34;&gt;nil&lt;/span&gt;)
 }
 &lt;/pre&gt;&lt;/div&gt;
+
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; go run advanced-middleware.go
 &lt;span style=&#34;color: #888888&#34;&gt;2017/02/11 00:34:53 / 0s&lt;/span&gt;
 
@@ -798,6 +829,7 @@ This is the full example:&lt;/p&gt;
 &lt;span style=&#34;color: #555555&#34;&gt;$&lt;/span&gt; curl -s -XPOST http://localhost:8080/
 &lt;span style=&#34;color: #888888&#34;&gt;Bad Request&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
 </description>
     </item>
     

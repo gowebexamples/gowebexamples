@@ -8,7 +8,7 @@ description = "This example will show how to render a simple list of TODO items 
 
 This example will show how to render a simple list of TODO items into an html page using the `html/template` package.
 
-``` go
+{{< highlight go >}}
 // todos.go
 package main
 
@@ -36,8 +36,8 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` html
+{{< / highlight >}}
+{{< highlight html >}}
 <!-- todos.html -->
 <h1>Todos</h1>
 <ul>
@@ -49,10 +49,10 @@ func main() {
 		{{end}}
 	{{end}}
 </ul>
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run todos.go
-```
+{{< / highlight >}}
 <div class="demo">
 	<h1>Todos</h1>
 	<ul>

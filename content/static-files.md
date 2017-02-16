@@ -8,7 +8,7 @@ description = "This example will show how to serve static files like CSS or JS f
 
 This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
 
-``` go
+{{< highlight go >}}
 // static-files.go
 package main
 
@@ -20,18 +20,18 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ tree assets/
 assets/
 └── css
     └── styles.css
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run static-files.go
 
 $ curl -s http://localhost:8080/static/css/styles.css
 body {
     background-color: black;
 }
-```
+{{< / highlight >}}

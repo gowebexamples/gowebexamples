@@ -55,63 +55,64 @@
 
 <p>Cookies are small pieces of data stored in the browser of a user and are sent to our server on each request. In them, we can store e.g. whether or not a user is logged in into our website and figure out who he actually is (in our system).</p>
 
-<p>In this example we will only allow authenticated users to view our secret message on the <code>/secret</code> page. To get access to it, the will first have to visit <code>/login</code> to get a valid session cookie, which logs him in. Additionally he can visit <code>/logout</code> to revoke his access to our secret message.</p>
+<p>In this example we will only allow authenticated users to view our secret message on the <code>/secret</code> page. To get access to it, the will first have to visit <code>/login</code> to get a valid session cookie, which logs him in. Additionally he can visit <code>/logout</code> to revoke his access to our secret message.
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// sessions.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
-    <span style="color: #bb8844">&quot;fmt&quot;</span>
-    <span style="color: #bb8844">&quot;net/http&quot;</span>
+	<span style="color: #bb8844">&quot;fmt&quot;</span>
+	<span style="color: #bb8844">&quot;net/http&quot;</span>
 
-    <span style="color: #bb8844">&quot;github.com/gorilla/sessions&quot;</span>
+	<span style="color: #bb8844">&quot;github.com/gorilla/sessions&quot;</span>
 )
 
 <span style="font-weight: bold">var</span> (
-    <span style="color: #999988; font-style: italic">// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)</span>
-    key = []<span style="color: #999999">byte</span>(<span style="color: #bb8844">&quot;super-secret-key&quot;</span>)
-    store = sessions.NewCookieStore(key)
+	<span style="color: #999988; font-style: italic">// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)</span>
+	key = []<span style="color: #999999">byte</span>(<span style="color: #bb8844">&quot;super-secret-key&quot;</span>)
+	store = sessions.NewCookieStore(key)
 )
 
 <span style="font-weight: bold">func</span> secret(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-    session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
+	session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
 
-    <span style="color: #999988; font-style: italic">// Check if user is authenticated</span>
-    <span style="font-weight: bold">if</span> auth, ok <span style="font-weight: bold">:=</span> session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>].(<span style="color: #445588; font-weight: bold">bool</span>); !ok <span style="font-weight: bold">||</span> !auth {
-        http.Error(w, <span style="color: #bb8844">&quot;Forbidden&quot;</span>, http.StatusForbidden)
-        <span style="font-weight: bold">return</span>
-    }
+	<span style="color: #999988; font-style: italic">// Check if user is authenticated</span>
+	<span style="font-weight: bold">if</span> auth, ok <span style="font-weight: bold">:=</span> session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>].(<span style="color: #445588; font-weight: bold">bool</span>); !ok <span style="font-weight: bold">||</span> !auth {
+		http.Error(w, <span style="color: #bb8844">&quot;Forbidden&quot;</span>, http.StatusForbidden)
+		<span style="font-weight: bold">return</span>
+	}
 
-    <span style="color: #999988; font-style: italic">// Print secret message</span>
-    fmt.Fprintln(w, <span style="color: #bb8844">&quot;The cake is a lie!&quot;</span>)
+	<span style="color: #999988; font-style: italic">// Print secret message</span>
+	fmt.Fprintln(w, <span style="color: #bb8844">&quot;The cake is a lie!&quot;</span>)
 }
 
 <span style="font-weight: bold">func</span> login(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-    session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
+	session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
 
-    <span style="color: #999988; font-style: italic">// Authentication goes here</span>
-    <span style="color: #999988; font-style: italic">// ...</span>
+	<span style="color: #999988; font-style: italic">// Authentication goes here</span>
+	<span style="color: #999988; font-style: italic">// ...</span>
 
-    <span style="color: #999988; font-style: italic">// Set user as authenticated</span>
-    session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>] = <span style="font-weight: bold">true</span>
-    session.Save(r, w)
+	<span style="color: #999988; font-style: italic">// Set user as authenticated</span>
+	session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>] = <span style="font-weight: bold">true</span>
+	session.Save(r, w)
 }
 
 <span style="font-weight: bold">func</span> logout(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-    session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
+	session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
 
-    <span style="color: #999988; font-style: italic">// Revoke users authentication</span>
-    session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>] = <span style="font-weight: bold">false</span>
-    session.Save(r, w)
+	<span style="color: #999988; font-style: italic">// Revoke users authentication</span>
+	session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>] = <span style="font-weight: bold">false</span>
+	session.Save(r, w)
 }
 
 <span style="font-weight: bold">func</span> main() {
-    http.HandleFunc(<span style="color: #bb8844">&quot;/secret&quot;</span>, secret)
-    http.HandleFunc(<span style="color: #bb8844">&quot;/login&quot;</span>, login)
-    http.HandleFunc(<span style="color: #bb8844">&quot;/logout&quot;</span>, logout)
+	http.HandleFunc(<span style="color: #bb8844">&quot;/secret&quot;</span>, secret)
+	http.HandleFunc(<span style="color: #bb8844">&quot;/login&quot;</span>, login)
+	http.HandleFunc(<span style="color: #bb8844">&quot;/logout&quot;</span>, logout)
 
-    http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run sessions.go
 
 <span style="color: #555555">$</span> curl -s http://localhost:8080/secret
@@ -123,6 +124,7 @@
 <span style="color: #555555">$</span> curl -s --cookie <span style="color: #bb8844">&quot;cookie-name=MTQ4NzE5Mz...&quot;</span> http://localhost:8080/secret
 <span style="color: #888888">The cake is a lie!</span>
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">

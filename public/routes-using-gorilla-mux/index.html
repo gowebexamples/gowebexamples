@@ -59,7 +59,8 @@ It is compatible with the router from the standard <code>net/http</code> package
 <p><code>$ go get github.com/gorilla/mux</code></p>
 
 <p>From now on, every application we write will be able to make use of this library.</p>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// routes.go</span>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// routes.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
@@ -88,11 +89,13 @@ It is compatible with the router from the standard <code>net/http</code> package
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, r)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run routes.go
 
 <span style="color: #555555">$</span> curl -s http://localhost:8080/users/Bob
 <span style="color: #888888">Bob is 30 years old!</span>
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">

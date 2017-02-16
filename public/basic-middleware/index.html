@@ -54,7 +54,8 @@
 <p>This example will show how to create basic logging middleware in Go.</p>
 
 <p>A middleware simply takes a <code>http.HandlerFunc</code> as one of its parameters, wraps it and returns a new <code>http.HandlerFunc</code> for the server to call.</p>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// basic-middleware.go</span>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// basic-middleware.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
@@ -85,6 +86,7 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run basic-middleware.go
 <span style="color: #888888">2017/02/10 23:59:34 /foo</span>
 <span style="color: #888888">2017/02/10 23:59:35 /bar</span>
@@ -94,6 +96,7 @@
 <span style="color: #555555">$</span> curl -s http://localhost:8080/bar
 <span style="color: #555555">$</span> curl -s http://localhost:8080/foo?bar
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">

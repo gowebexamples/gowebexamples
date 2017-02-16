@@ -51,7 +51,7 @@
 
 <h1 id="go-web-examples-json"><a href="/">Go Web Examples:</a> JSON</h1>
 
-<p>This example will show how to encode and decode JSON data using the <code>encoding/json</code> package.</p>
+<p>This example will show how to encode and decode JSON data using the <code>encoding/json</code> package.
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// json.go</span>
 <span style="font-weight: bold">package</span> main
 
@@ -88,6 +88,7 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run json.go
 
 <span style="color: #555555">$</span> curl -s -XPOST -d<span style="color: #bb8844">&#39;{&quot;firstname&quot;:&quot;Donald&quot;,&quot;lastname&quot;:&quot;Trump&quot;,&quot;age&quot;:70}&#39;</span> http://localhost:8080/decode
@@ -96,6 +97,7 @@
 <span style="color: #555555">$</span> curl -s http://localhost:8080/encode
 <span style="color: #888888">{&quot;firstname&quot;:&quot;John&quot;,&quot;lastname&quot;:&quot;Doe&quot;,&quot;age&quot;:25}</span>
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">

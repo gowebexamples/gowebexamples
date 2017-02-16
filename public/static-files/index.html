@@ -52,7 +52,8 @@
 <h1 id="go-web-examples-static-files"><a href="/">Go Web Examples:</a> Static Files</h1>
 
 <p>This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.</p>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// static-files.go</span>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// static-files.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> <span style="color: #bb8844">&quot;net/http&quot;</span>
@@ -64,11 +65,13 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> tree assets/
 <span style="color: #888888">assets/</span>
 <span style="color: #888888">└── css</span>
 <span style="color: #888888">    └── styles.css</span>
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run static-files.go
 
 <span style="color: #555555">$</span> curl -s http://localhost:8080/static/css/styles.css
@@ -76,6 +79,7 @@
 <span style="color: #888888">    background-color: black;</span>
 <span style="color: #888888">}</span>
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">

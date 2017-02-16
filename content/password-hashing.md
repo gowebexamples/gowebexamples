@@ -12,7 +12,7 @@ For this we have to `go get` the golang bcrypt library like so:
 `$ go get golang.org/x/crypto/bcrypt`
 
 From now on, every application we write will be able to make use of this library.
-``` go
+{{< highlight go >}}
 // passwords.go
 package main
 
@@ -43,10 +43,10 @@ func main() {
 	fmt.Println("Match:   ", match)
 }
 
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run passwords.go
 Password: secret
 Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK
 Match:    true
-```
+{{< / highlight >}}

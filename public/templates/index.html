@@ -52,7 +52,8 @@
 <h1 id="go-web-examples-templates"><a href="/">Go Web Examples:</a> Templates</h1>
 
 <p>This example will show how to render a simple list of TODO items into an html page using the <code>html/template</code> package.</p>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// todos.go</span>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// todos.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
@@ -80,6 +81,7 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">&lt;!-- todos.html --&gt;</span>
 &lt;<span style="color: #000080">h1</span>&gt;Todos&lt;/<span style="color: #000080">h1</span>&gt;
 &lt;<span style="color: #000080">ul</span>&gt;
@@ -92,6 +94,7 @@
 	{{end}}
 &lt;/<span style="color: #000080">ul</span>&gt;
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run todos.go
 </pre></div>
 
@@ -102,7 +105,7 @@
         <li><s>Read Go Web Examples</s></li>
         <li>Create a web app in Go</li>
     </ul>
-</div>
+</div></p>
 
 	<div class="footer">
 		<div class="links">

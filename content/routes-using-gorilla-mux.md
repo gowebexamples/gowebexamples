@@ -15,7 +15,7 @@ To use the library we will have to install it first like so:
 
 From now on, every application we write will be able to make use of this library.
 
-``` go
+{{< highlight go >}}
 // routes.go
 package main
 
@@ -44,10 +44,10 @@ func main() {
 
 	http.ListenAndServe(":8080", r)
 }
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run routes.go
 
 $ curl -s http://localhost:8080/users/Bob
 Bob is 30 years old!
-```
+{{< / highlight >}}

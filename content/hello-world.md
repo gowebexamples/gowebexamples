@@ -8,7 +8,7 @@ description = "This example will show how to start a webserver on port 8080 and 
 
 This example will show how to start a webserver on port 8080 and print the classic "hello world" message.
 
-``` go
+{{< highlight go >}}
 // hello-world.go
 package main
 
@@ -24,10 +24,10 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run hello-world.go
 
 $ curl -s http://localhost:8080/
 hello world
-```
+{{< / highlight >}}

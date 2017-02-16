@@ -59,40 +59,40 @@
 You can find a more detailed explaination including the talk <a target="_blank" href="https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81">here</a>.</p>
 
 <p><br />
-This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.</p>
+This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">func</span> createNewMiddleware() Middleware {
 
-    <span style="color: #999988; font-style: italic">// Create a new Middleware</span>
-    middleware <span style="font-weight: bold">:=</span> <span style="font-weight: bold">func</span>(next http.HandlerFunc) http.HandlerFunc {
+	<span style="color: #999988; font-style: italic">// Create a new Middleware</span>
+	middleware <span style="font-weight: bold">:=</span> <span style="font-weight: bold">func</span>(next http.HandlerFunc) http.HandlerFunc {
 
-        <span style="color: #999988; font-style: italic">// Define the http.HandlerFunc which is called by the server eventually</span>
-        handler <span style="font-weight: bold">:=</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		<span style="color: #999988; font-style: italic">// Define the http.HandlerFunc which is called by the server eventually</span>
+		handler <span style="font-weight: bold">:=</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
 
-            <span style="color: #999988; font-style: italic">// ... do middleware things</span>
+			<span style="color: #999988; font-style: italic">// ... do middleware things</span>
 
-            <span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
-            next(w, r)
-        }
+			<span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
+			next(w, r)
+		}
 
-        <span style="color: #999988; font-style: italic">// Return newly created handler</span>
-        <span style="font-weight: bold">return</span> handler
-    }
+		<span style="color: #999988; font-style: italic">// Return newly created handler</span>
+		<span style="font-weight: bold">return</span> handler
+	}
 
-    <span style="color: #999988; font-style: italic">// Return newly created middleware</span>
-    <span style="font-weight: bold">return</span> middleware
+	<span style="color: #999988; font-style: italic">// Return newly created middleware</span>
+	<span style="font-weight: bold">return</span> middleware
 }
 </pre></div>
 
-<p><br />
-This is the full example:</p>
+<br />
+This is the full example:
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// advanced-middleware.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
-    <span style="color: #bb8844">&quot;fmt&quot;</span>
-    <span style="color: #bb8844">&quot;log&quot;</span>
-    <span style="color: #bb8844">&quot;net/http&quot;</span>
-    <span style="color: #bb8844">&quot;time&quot;</span>
+	<span style="color: #bb8844">&quot;fmt&quot;</span>
+	<span style="color: #bb8844">&quot;log&quot;</span>
+	<span style="color: #bb8844">&quot;net/http&quot;</span>
+	<span style="color: #bb8844">&quot;time&quot;</span>
 )
 
 <span style="font-weight: bold">type</span> Middleware <span style="font-weight: bold">func</span>(http.HandlerFunc) http.HandlerFunc
@@ -100,60 +100,61 @@ This is the full example:</p>
 <span style="color: #999988; font-style: italic">// Logging logs all requests with its path and the time it took to process</span>
 <span style="font-weight: bold">func</span> Logging() Middleware {
 
-    <span style="color: #999988; font-style: italic">// Create a new Middleware</span>
-    <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(f http.HandlerFunc) http.HandlerFunc {
+	<span style="color: #999988; font-style: italic">// Create a new Middleware</span>
+	<span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(f http.HandlerFunc) http.HandlerFunc {
 
-        <span style="color: #999988; font-style: italic">// Define the http.HandlerFunc</span>
-        <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		<span style="color: #999988; font-style: italic">// Define the http.HandlerFunc</span>
+		<span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
 
-            <span style="color: #999988; font-style: italic">// Do middleware things</span>
-            start <span style="font-weight: bold">:=</span> time.Now()
-            <span style="font-weight: bold">defer</span> <span style="font-weight: bold">func</span>() { log.Println(r.URL.Path, time.Since(start)) }()
+			<span style="color: #999988; font-style: italic">// Do middleware things</span>
+			start <span style="font-weight: bold">:=</span> time.Now()
+			<span style="font-weight: bold">defer</span> <span style="font-weight: bold">func</span>() { log.Println(r.URL.Path, time.Since(start)) }()
 
-            <span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
-            f(w, r)
-        }
-    }
+			<span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
+			f(w, r)
+		}
+	}
 }
 
 <span style="color: #999988; font-style: italic">// Method ensures that only a url can me requested with a specific method, else returns a 400 Bad Request</span>
 <span style="font-weight: bold">func</span> Method(m <span style="color: #445588; font-weight: bold">string</span>) Middleware {
 
-    <span style="color: #999988; font-style: italic">// Create a new Middleware</span>
-    <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(f http.HandlerFunc) http.HandlerFunc {
+	<span style="color: #999988; font-style: italic">// Create a new Middleware</span>
+	<span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(f http.HandlerFunc) http.HandlerFunc {
 
-        <span style="color: #999988; font-style: italic">// Define the http.HandlerFunc</span>
-        <span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+		<span style="color: #999988; font-style: italic">// Define the http.HandlerFunc</span>
+		<span style="font-weight: bold">return</span> <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
 
-            <span style="color: #999988; font-style: italic">// Do middleware things</span>
-            <span style="font-weight: bold">if</span> r.Method <span style="font-weight: bold">!=</span> m {
-                http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-                <span style="font-weight: bold">return</span>
-            }
+			<span style="color: #999988; font-style: italic">// Do middleware things</span>
+			<span style="font-weight: bold">if</span> r.Method <span style="font-weight: bold">!=</span> m {
+				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+				<span style="font-weight: bold">return</span>
+			}
 
-            <span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
-            f(w, r)
-        }
-    }
+			<span style="color: #999988; font-style: italic">// Call the next middleware/handler in chain</span>
+			f(w, r)
+		}
+	}
 }
 
 <span style="color: #999988; font-style: italic">// Chain applies middlewares to a http.HandlerFunc</span>
 <span style="font-weight: bold">func</span> Chain(f http.HandlerFunc, middlewares <span style="font-weight: bold">...</span>Middleware) http.HandlerFunc {
-    <span style="font-weight: bold">for</span> _, m <span style="font-weight: bold">:=</span> <span style="font-weight: bold">range</span> middlewares {
-        f = m(f)
-    }
-    <span style="font-weight: bold">return</span> f
+	<span style="font-weight: bold">for</span> _, m <span style="font-weight: bold">:=</span> <span style="font-weight: bold">range</span> middlewares {
+		f = m(f)
+	}
+	<span style="font-weight: bold">return</span> f
 }
 
 <span style="font-weight: bold">func</span> Hello(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-    fmt.Fprintln(w, <span style="color: #bb8844">&quot;hello world&quot;</span>)
+	fmt.Fprintln(w, <span style="color: #bb8844">&quot;hello world&quot;</span>)
 }
 
 <span style="font-weight: bold">func</span> main() {
-    http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, Chain(Hello, Method(<span style="color: #bb8844">&quot;GET&quot;</span>), Logging()))
-    http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+	http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, Chain(Hello, Method(<span style="color: #bb8844">&quot;GET&quot;</span>), Logging()))
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run advanced-middleware.go
 <span style="color: #888888">2017/02/11 00:34:53 / 0s</span>
 
@@ -163,6 +164,7 @@ This is the full example:</p>
 <span style="color: #555555">$</span> curl -s -XPOST http://localhost:8080/
 <span style="color: #888888">Bad Request</span>
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">

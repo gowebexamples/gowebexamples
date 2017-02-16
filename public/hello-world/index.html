@@ -52,7 +52,8 @@
 <h1 id="go-web-examples-hello-world"><a href="/">Go Web Examples:</a> Hello World</h1>
 
 <p>This example will show how to start a webserver on port 8080 and print the classic &ldquo;hello world&rdquo; message.</p>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// hello-world.go</span>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// hello-world.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
@@ -68,11 +69,13 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run hello-world.go
 
 <span style="color: #555555">$</span> curl -s http://localhost:8080/
 <span style="color: #888888">hello world</span>
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">

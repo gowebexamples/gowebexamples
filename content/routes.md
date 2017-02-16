@@ -8,7 +8,7 @@ description = "This example will show how to register a route and get the data u
 
 This example will show how to register a route and get the data using just the `net/http` package.
 
-``` go
+{{< highlight go >}}
 // routes.go
 package main
 
@@ -33,10 +33,10 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
-```
-``` console
+{{< / highlight >}}
+{{< highlight console >}}
 $ go run routes.go
 
 $ curl -s http://localhost:8080/users/Bob
 Bob is 30 years old!
-```
+{{< / highlight >}}

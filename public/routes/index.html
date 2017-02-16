@@ -52,7 +52,8 @@
 <h1 id="go-web-examples-routes"><a href="/">Go Web Examples:</a> Routes</h1>
 
 <p>This example will show how to register a route and get the data using just the <code>net/http</code> package.</p>
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// routes.go</span>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// routes.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
@@ -77,11 +78,13 @@
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
+
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run routes.go
 
 <span style="color: #555555">$</span> curl -s http://localhost:8080/users/Bob
 <span style="color: #888888">Bob is 30 years old!</span>
 </pre></div>
+</p>
 
 	<div class="footer">
 		<div class="links">
