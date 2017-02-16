@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 )
 
 func logging(f http.HandlerFunc) http.HandlerFunc {
