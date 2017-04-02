@@ -781,7 +781,7 @@ This is the full example:
 	}
 }
 
-&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Method ensures that only a url can me requested with a specific method, else returns a 400 Bad Request&lt;/span&gt;
+&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Method ensures that url can only be requested with a specific method, else returns a 400 Bad Request&lt;/span&gt;
 &lt;span style=&#34;font-weight: bold&#34;&gt;func&lt;/span&gt; Method(m &lt;span style=&#34;color: #445588; font-weight: bold&#34;&gt;string&lt;/span&gt;) Middleware {
 
 	&lt;span style=&#34;color: #999988; font-style: italic&#34;&gt;// Create a new Middleware&lt;/span&gt;

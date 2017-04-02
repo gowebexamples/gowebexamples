@@ -35,7 +35,7 @@
 		a.back { text-decoration: none; }
 		a.home { text-decoration: none; }
 		a.forward { text-decoration: none; }
-		.footer { font-size: .9em; margin-top: 1em; color: #999; font-family: "Georgia", serif; }
+		.footer { font-size: .9em; margin-top: 1em; color: #999; }
 		.footer a { color: #999; }
 		.image { border: 1px solid #f0f0f0; }
 		.image img { max-width: 100%; height: auto; display: block; }
@@ -116,7 +116,7 @@ This is the full example:
 	}
 }
 
-<span style="color: #999988; font-style: italic">// Method ensures that only a url can me requested with a specific method, else returns a 400 Bad Request</span>
+<span style="color: #999988; font-style: italic">// Method ensures that url can only be requested with a specific method, else returns a 400 Bad Request</span>
 <span style="font-weight: bold">func</span> Method(m <span style="color: #445588; font-weight: bold">string</span>) Middleware {
 
 	<span style="color: #999988; font-style: italic">// Create a new Middleware</span>
