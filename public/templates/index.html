@@ -7,7 +7,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
-	<meta name="description" content="This example will show how to render a simple list of TODO items into an html page using the html/template package in the Go programming language." />
+	<meta name="description" content="This example shows how to use the `gorilla/mux` package to create routes with named parameters, GET/POST handlers and domain restrictions." />
 	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
 	<link rel="canonical" href="https://gowebexamples.github.io/templates/">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -15,19 +15,26 @@
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<meta name="theme-color" content="#bb8844">
 	<style>
+		* { box-sizing: border-box; }
 		body {
 			margin: 0;
 			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
 			color: #212121;
-			font-size: 1.2em;
+			font-size: 1.1em;
 			line-height: 1.6;
 		}
-		.container { max-width: 700px; margin: auto; padding: 15px; }
+		.container { width: 1024px; margin: auto; display: flex; }
+		.sidebar { width: 300px; padding: 30px;  }
+		.content { width: 724px; padding: 30px; }
+		.category { font-weight: bold; font-size: 0.9em; text-transform: uppercase; margin: 2.5em 0 .5em 0; }
+		.brand { font-weight: bold; font-size: 1.5em; padding: 1em 0 0.4em 0; }
+		.brand a { text-decoration: none; }
 		a {	color: black; }
 		p { margin: 0.5em 0; }
-		h1 { margin: 1em 0; }
+		h1 { margin: 0.5em 0; }
 		h1 a { text-decoration: none; }
-		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		h2 { font-size: 1.2em; margin: 2em 0 0.5em 0; }
+		hr { border-top: 1px solid #ddd; border-bottom: none;}
 		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
 		.highlight { font-size: 0.9em; }
 		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
@@ -43,19 +50,179 @@
 		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
 		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
 		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
+		code { background-color: #fafafa; border: 1px solid #f0f0f0; padding: 2px 5px; font-size: 0.9em; }
+		table { width: 100%; text-align: left; }
+		.menu-btn { display: none; float: right; text-decoration: underline; text-transform: uppercase; font-size: 0.7em; line-height: 1; text-align: center; margin-top: 2px; }
+		@media (max-width: 1023px) {
+			.container, .content, .sidebar { display: block; width: auto; }
+			.sidebar .sections { display: flex; flex-wrap: wrap; }
+			.sections .section { flex-basis: 33.3333%; }
+			.brand { padding: 0; font-size: 1.2em; }
+			.category { margin: 1em 0; }
+			.content { padding-top: 0; }
+			.sidebar { padding-bottom: 0; }
+			.closed { display: none!important; }
+			.menu-btn { display: inline-block; }
+			h1 { font-size: 1.8em;  }
+			h2 { margin-top: 1em; }
+		}
+		@media (max-width: 767px) {
+			.sections .section { flex-basis: 50%; }
+		}
+		@media (max-width: 470px) {
+			.sections .section { flex-basis: 100%; }
+			th, td { display: block; }
+		}
 	</style>
 </head>
 <body>
+
 <div class="container">
+	<div class="sidebar">
+	<div class="brand"><a href="/">Go Web Examples</a> <a class="menu-btn" href="#">Open<br>Menu</a></div>
+	<div class="sections closed">
+		<div class="section">
+			<div class="category">The Basics</div>
+			<div><a href="/hello-world/">Hello World</a></div>
+			<div><a href="/routes-using-gorilla-mux/">Routing</a></div>
+			<div><a href="/templates/">Templates</a></div>
+			<div><a href="/forms/">Requests & Forms</a></div>
+			<div><a href="/static-files/">Assets &amp; Files</a></div>
+			<div><a href="/basic-middleware/">Middleware (Basic)</a></div>
+			<div><a href="/advanced-middleware/">Middleware (Advanced)</a></div>
+			<div><a href="/sessions/">Session</a></div>
+			
+			<div><a href="/json/">JSON</a></div>
+			<div><a href="/websockets/">Websockets</a></div>
+		</div>
+		<div class="section">
+			<div class="category">Security</div>
+			
+			<div><a href="/password-hashing/">Password Hashing</a></div>
+			
+		</div>
+		
+		
+		
+	</div>
+</div>
+
+	<div class="content">
+		
+
+<h1 id="templates">Templates</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Go&rsquo;s <code>html/template</code> package provides a rich templating language for HTML templates.
+It is mostly used in web applications to display data in a structured way in a client&rsquo;s browser.
+One great benefit of Go&rsquo;s templating language is the automatic escaping of data.
+There is no need to worry about about XSS attacks as Go parses the HTML template and escapes all inputs before displaying it to the browser.</p>
+
+<h2 id="first-template">First Template</h2>
+
+<p>Writing a template in Go is very simple. This example shows a TODO list, written as an unordered list (ul) in HTML.
+When rendering templates, the data passed in can be any kind of Go&rsquo;s data structures. It may be a simple string or a number,
+it can even be nested data structure as in the example below. To access the data in a template the top most variable is access by <code>{{.}}</code>.
+The dot inside the curly braces is called the pipeline and the root element of the data.</p>
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>data <span style="font-weight: bold">:=</span> TodoPageData{
+	PageTitle: <span style="color: #bb8844">&quot;My TODO list&quot;</span>,
+	Todos: []Todo{
+		{Title: <span style="color: #bb8844">&quot;Task 1&quot;</span>, Done: <span style="font-weight: bold">false</span>},
+		{Title: <span style="color: #bb8844">&quot;Task 2&quot;</span>, Done: <span style="font-weight: bold">true</span>},
+		{Title: <span style="color: #bb8844">&quot;Task 3&quot;</span>, Done: <span style="font-weight: bold">true</span>},
+	},
+}
+</pre></div>
+
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>&lt;<span style="color: #000080">h1</span>&gt;{{.PageTitle}}&lt;<span style="color: #000080">h1</span>&gt;
+&lt;<span style="color: #000080">ul</span>&gt;
+    {{range .Todos}}
+        {{if .Done}}
+            &lt;<span style="color: #000080">li</span> <span style="color: #008080">class</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;done&quot;</span>&gt;{{.Title}}&lt;/<span style="color: #000080">li</span>&gt;
+        {{else}}
+            &lt;<span style="color: #000080">li</span>&gt;{{.Title}}&lt;/<span style="color: #000080">li</span>&gt;
+        {{end}}
+    {{end}}
+&lt;/<span style="color: #000080">ul</span>&gt;
+</pre></div>
+</p>
+
+<h2 id="control-structures">Control Structures</h2>
+
+<p>The templating language contains a rich set of control structures to render your HTML. Here you will get an overview of the most commonly used ones.
+To get a detailed list of all possible structures visit: <a target="_blank" href="https://golang.org/pkg/text/template/#hdr-Actions">text/template</a></p>
+
+<table>
+<thead>
+<tr>
+<th>Control Structure</th>
+<th>Definition</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>{{/* a comment */}}</code></td>
+<td>Defines a comment</td>
+</tr>
+
+<tr>
+<td><code>{{.}}</code></td>
+<td>Renders the root element</td>
+</tr>
+
+<tr>
+<td><code>{{.Title}}</code></td>
+<td>Renders the &ldquo;Title&rdquo;-field in a nested element</td>
+</tr>
+
+<tr>
+<td><code>{{if .Done}} {{else}} {{end}}</code></td>
+<td>Defines an if-Statement</td>
+</tr>
+
+<tr>
+<td><code>{{range .Todos}} {{.}} {{end}}</code></td>
+<td>Loops over all &ldquo;Todos&rdquo; and renders each using <code>{{.}}</code></td>
+</tr>
+
+<tr>
+<td><code>{{block &quot;content&quot; .}} {{end}}</code></td>
+<td>Defines a block with the name &ldquo;content&rdquo;</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="parsing-templates-from-files">Parsing Templates from Files</h2>
+
+<p>Template can either be parsed from a string or a file on disk.
+As it is usually the case, that templates are pares from disk, this example shows how to do so.
+In this example there is a template file in the same directory as the Go program called <code>layout.html</code>.</p>
+
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>tmpl, err <span style="font-weight: bold">:=</span> template.ParseFiles(<span style="color: #bb8844">&quot;layout.html&quot;</span>)
+<span style="color: #999988; font-style: italic">// or</span>
+tmpl <span style="font-weight: bold">:=</span> template.Must(template.ParseFiles(<span style="color: #bb8844">&quot;layout.html&quot;</span>))
+</pre></div>
 
 
+<h2 id="execute-a-template-in-a-request-handler">Execute a Template in a Request Handler</h2>
 
-<h1 id="go-web-examples-templates"><a href="/">Go Web Examples:</a> Templates</h1>
+<p>Once the template is parsed from disk it&rsquo;s ready to be used in the request handler.
+The <code>Execute</code> function accepts an <code>io.Writer</code> for writing out the template and an <code>interface{}</code> to pass data into the template.
+When the function is called on an <code>http.ResponseWriter</code> the Content-Type is header is automatically set in the HTTP response to <code>Content-Type: text/html; charset=utf-8</code>.</p>
 
-<p>This example will show how to render a simple list of TODO items into an html page using the <code>html/template</code> package.</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+	tmpl.Execute(w, <span style="color: #bb8844">&quot;data goes here&quot;</span>)
+}
+</pre></div>
 
-<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// todos.go</span>
-<span style="font-weight: bold">package</span> main
+
+<h2 id="the-code-for-copy-paste">The Code (for copy/paste)</h2>
+
+<p>This is the complete code that you can use to try out the things you&rsquo;ve learned in this example.
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
 	<span style="color: #bb8844">&quot;html/template&quot;</span>
@@ -63,62 +230,56 @@
 )
 
 <span style="font-weight: bold">type</span> Todo <span style="font-weight: bold">struct</span> {
-	Task <span style="color: #445588; font-weight: bold">string</span>
-	Done <span style="color: #445588; font-weight: bold">bool</span>
+	Title <span style="color: #445588; font-weight: bold">string</span>
+	Done  <span style="color: #445588; font-weight: bold">bool</span>
+}
+
+<span style="font-weight: bold">type</span> TodoPageData <span style="font-weight: bold">struct</span> {
+	PageTitle <span style="color: #445588; font-weight: bold">string</span>
+	Todos     []Todo
 }
 
 <span style="font-weight: bold">func</span> main() {
-	tmpl <span style="font-weight: bold">:=</span> template.Must(template.ParseFiles(<span style="color: #bb8844">&quot;todos.html&quot;</span>))
-	todos <span style="font-weight: bold">:=</span> []Todo{
-		{<span style="color: #bb8844">&quot;Learn Go&quot;</span>, <span style="font-weight: bold">true</span>},
-		{<span style="color: #bb8844">&quot;Read Go Web Examples&quot;</span>, <span style="font-weight: bold">true</span>},
-		{<span style="color: #bb8844">&quot;Create a web app in Go&quot;</span>, <span style="font-weight: bold">false</span>},
-	}
+	tmpl <span style="font-weight: bold">:=</span> template.Must(template.ParseFiles(<span style="color: #bb8844">&quot;layout.html&quot;</span>))
 
 	http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-		tmpl.Execute(w, <span style="font-weight: bold">struct</span>{ Todos []Todo }{todos})
+		data <span style="font-weight: bold">:=</span> TodoPageData{
+			PageTitle: <span style="color: #bb8844">&quot;My TODO list&quot;</span>,
+			Todos: []Todo{
+				{Title: <span style="color: #bb8844">&quot;Task 1&quot;</span>, Done: <span style="font-weight: bold">false</span>},
+				{Title: <span style="color: #bb8844">&quot;Task 2&quot;</span>, Done: <span style="font-weight: bold">true</span>},
+				{Title: <span style="color: #bb8844">&quot;Task 3&quot;</span>, Done: <span style="font-weight: bold">true</span>},
+			},
+		}
+		tmpl.Execute(w, data)
 	})
 
-	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:80&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
 </pre></div>
 
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">&lt;!-- todos.html --&gt;</span>
-&lt;<span style="color: #000080">h1</span>&gt;Todos&lt;/<span style="color: #000080">h1</span>&gt;
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>&lt;<span style="color: #000080">h1</span>&gt;{{.PageTitle}}&lt;<span style="color: #000080">h1</span>&gt;
 &lt;<span style="color: #000080">ul</span>&gt;
-	{{range .Todos}}
-		{{if .Done}}
-			&lt;<span style="color: #000080">li</span>&gt;&lt;<span style="color: #000080">s</span>&gt;{{.Task}}&lt;/<span style="color: #000080">s</span>&gt;&lt;/<span style="color: #000080">li</span>&gt;
-		{{else}}
-			&lt;<span style="color: #000080">li</span>&gt;{{.Task}}&lt;/<span style="color: #000080">li</span>&gt;
-		{{end}}
-	{{end}}
+    {{range .Todos}}
+        {{if .Done}}
+            &lt;<span style="color: #000080">li</span> <span style="color: #008080">class</span><span style="font-weight: bold">=</span><span style="color: #bb8844">&quot;done&quot;</span>&gt;{{.Title}}&lt;/<span style="color: #000080">li</span>&gt;
+        {{else}}
+            &lt;<span style="color: #000080">li</span>&gt;{{.Title}}&lt;/<span style="color: #000080">li</span>&gt;
+        {{end}}
+    {{end}}
 &lt;/<span style="color: #000080">ul</span>&gt;
 </pre></div>
+</p>
 
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run todos.go
-</pre></div>
-
-<div class="demo">
-    <h1>Todos</h1>
-    <ul>
-        <li><s>Learn Go</s></li>
-        <li><s>Read Go Web Examples</s></li>
-        <li>Create a web app in Go</li>
-    </ul>
-</div></p>
-
-	<div class="footer">
+			<div class="footer">
 		<div class="links">
-		
 			
-			<a title="Routes (using gorilla/mux)" class="back" href="https://gowebexamples.github.io/routes-using-gorilla-mux/">← back</a>
+			
+			<a title="Routing (using gorilla/mux)" class="back" href="https://gowebexamples.github.io/routes-using-gorilla-mux/">← back</a>
 			
 			<a title="Go Web Examples" class="home" href="/">home</a>
 			
-			<a title="Forms" class="forward" href="https://gowebexamples.github.io/forms/">forward →</a>
 			
-		
 		</div>
 		<br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
@@ -126,6 +287,25 @@
 		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
 		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
 	</div>
+	<script type="text/javascript">
+		var menu = document.querySelector(".sections");
+		var menuBtn = document.querySelector(".menu-btn");
+		menuBtn.addEventListener("click", function(e) {
+			e.preventDefault();
+			if (menu.classList.contains("closed")) {
+				menu.classList.remove("closed");
+				menuBtn.innerHTML = "Close<br>Menu";
+			} else {
+				menu.classList.add("closed");
+				menuBtn.innerHTML = "Open<br>Menu";
+			}
+			return false;
+		});
+	</script>
+
+	</div>
 </div>
 </body>
 </html>
+
+

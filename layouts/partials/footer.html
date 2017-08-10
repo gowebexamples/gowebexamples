@@ -1,6 +1,6 @@
 	<div class="footer">
 		<div class="links">
-		{{if ne .Site.Title .Title}}
+			{{if ne .Site.Title .Title}}
 			{{if .Prev}}
 			<a title="{{.Prev.Title}}" class="back" href="{{.Prev.Permalink}}">← back</a>
 			{{end}}
@@ -8,7 +8,7 @@
 			{{if .Next}}
 			<a title="{{.Next.Title}}" class="forward" href="{{.Next.Permalink}}">forward →</a>
 			{{end}}
-		{{end}}
+			{{end}}
 		</div>
 		<br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
@@ -16,6 +16,18 @@
 		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
 		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
 	</div>
-</div>
-</body>
-</html>
+	<script type="text/javascript">
+		var menu = document.querySelector(".sections");
+		var menuBtn = document.querySelector(".menu-btn");
+		menuBtn.addEventListener("click", function(e) {
+			e.preventDefault();
+			if (menu.classList.contains("closed")) {
+				menu.classList.remove("closed");
+				menuBtn.innerHTML = "Close<br>Menu";
+			} else {
+				menu.classList.add("closed");
+				menuBtn.innerHTML = "Open<br>Menu";
+			}
+			return false;
+		});
+	</script>

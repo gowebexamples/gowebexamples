@@ -15,19 +15,26 @@
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<meta name="theme-color" content="#bb8844">
 	<style>
+		* { box-sizing: border-box; }
 		body {
 			margin: 0;
 			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
 			color: #212121;
-			font-size: 1.2em;
+			font-size: 1.1em;
 			line-height: 1.6;
 		}
-		.container { max-width: 700px; margin: auto; padding: 15px; }
+		.container { width: 1024px; margin: auto; display: flex; }
+		.sidebar { width: 300px; padding: 30px;  }
+		.content { width: 724px; padding: 30px; }
+		.category { font-weight: bold; font-size: 0.9em; text-transform: uppercase; margin: 2.5em 0 .5em 0; }
+		.brand { font-weight: bold; font-size: 1.5em; padding: 1em 0 0.4em 0; }
+		.brand a { text-decoration: none; }
 		a {	color: black; }
 		p { margin: 0.5em 0; }
-		h1 { margin: 1em 0; }
+		h1 { margin: 0.5em 0; }
 		h1 a { text-decoration: none; }
-		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		h2 { font-size: 1.2em; margin: 2em 0 0.5em 0; }
+		hr { border-top: 1px solid #ddd; border-bottom: none;}
 		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
 		.highlight { font-size: 0.9em; }
 		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
@@ -43,14 +50,67 @@
 		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
 		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
 		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
+		code { background-color: #fafafa; border: 1px solid #f0f0f0; padding: 2px 5px; font-size: 0.9em; }
+		table { width: 100%; text-align: left; }
+		.menu-btn { display: none; float: right; text-decoration: underline; text-transform: uppercase; font-size: 0.7em; line-height: 1; text-align: center; margin-top: 2px; }
+		@media (max-width: 1023px) {
+			.container, .content, .sidebar { display: block; width: auto; }
+			.sidebar .sections { display: flex; flex-wrap: wrap; }
+			.sections .section { flex-basis: 33.3333%; }
+			.brand { padding: 0; font-size: 1.2em; }
+			.category { margin: 1em 0; }
+			.content { padding-top: 0; }
+			.sidebar { padding-bottom: 0; }
+			.closed { display: none!important; }
+			.menu-btn { display: inline-block; }
+			h1 { font-size: 1.8em;  }
+			h2 { margin-top: 1em; }
+		}
+		@media (max-width: 767px) {
+			.sections .section { flex-basis: 50%; }
+		}
+		@media (max-width: 470px) {
+			.sections .section { flex-basis: 100%; }
+			th, td { display: block; }
+		}
 	</style>
 </head>
 <body>
+
 <div class="container">
+	<div class="sidebar">
+	<div class="brand"><a href="/">Go Web Examples</a> <a class="menu-btn" href="#">Open<br>Menu</a></div>
+	<div class="sections closed">
+		<div class="section">
+			<div class="category">The Basics</div>
+			<div><a href="/hello-world/">Hello World</a></div>
+			<div><a href="/routes-using-gorilla-mux/">Routing</a></div>
+			<div><a href="/templates/">Templates</a></div>
+			<div><a href="/forms/">Requests & Forms</a></div>
+			<div><a href="/static-files/">Assets &amp; Files</a></div>
+			<div><a href="/basic-middleware/">Middleware (Basic)</a></div>
+			<div><a href="/advanced-middleware/">Middleware (Advanced)</a></div>
+			<div><a href="/sessions/">Session</a></div>
+			
+			<div><a href="/json/">JSON</a></div>
+			<div><a href="/websockets/">Websockets</a></div>
+		</div>
+		<div class="section">
+			<div class="category">Security</div>
+			
+			<div><a href="/password-hashing/">Password Hashing</a></div>
+			
+		</div>
+		
+		
+		
+	</div>
+</div>
 
+	<div class="content">
+		
 
-
-<h1 id="go-web-examples-forms"><a href="/">Go Web Examples:</a> Forms</h1>
+<h1 id="forms">Forms</h1>
 
 <p>This example will show how to simulate a contact form and parse the message into a struct.</p>
 
@@ -126,17 +186,15 @@
     </form>
 </div></p>
 
-	<div class="footer">
+			<div class="footer">
 		<div class="links">
-		
 			
-			<a title="Templates" class="back" href="https://gowebexamples.github.io/templates/">← back</a>
 			
 			<a title="Go Web Examples" class="home" href="/">home</a>
 			
 			<a title="JSON" class="forward" href="https://gowebexamples.github.io/json/">forward →</a>
 			
-		
+			
 		</div>
 		<br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
@@ -144,6 +202,25 @@
 		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
 		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
 	</div>
+	<script type="text/javascript">
+		var menu = document.querySelector(".sections");
+		var menuBtn = document.querySelector(".menu-btn");
+		menuBtn.addEventListener("click", function(e) {
+			e.preventDefault();
+			if (menu.classList.contains("closed")) {
+				menu.classList.remove("closed");
+				menuBtn.innerHTML = "Close<br>Menu";
+			} else {
+				menu.classList.add("closed");
+				menuBtn.innerHTML = "Open<br>Menu";
+			}
+			return false;
+		});
+	</script>
+
+	</div>
 </div>
 </body>
 </html>
+
+

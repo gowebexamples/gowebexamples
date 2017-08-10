@@ -4,7 +4,7 @@ title = "Static Files"
 description = "This example will show how to serve static files like CSS or JS from a specific directory using the http.FileServer in the Go programming language."
 +++
 
-# [Go Web Examples:](/) Static Files
+# Static Files
 
 This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
 

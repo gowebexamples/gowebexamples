@@ -4,7 +4,7 @@ title = "Password Hashing"
 description = "This example will show how to hash passwords using bcrypt in the Go programming language."
 +++
 
-# [Go Web Examples:](/) Password Hashing
+# Password Hashing
 
 This example will show how to hash passwords using bcrypt.
 For this we have to `go get` the golang bcrypt library like so:

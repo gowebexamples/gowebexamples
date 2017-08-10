@@ -7,7 +7,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
-	<meta name="description" content="This example will show how to start a webserver on port 8080 and print the classic &#34;hello world&#34; message in the Go programming language." />
+	<meta name="description" content="This examples shows how to create an HTTP server using the net/http package from the standard library. It contains all functionalities about the HTTP protocol." />
 	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
 	<link rel="canonical" href="https://gowebexamples.github.io/hello-world/">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -15,19 +15,26 @@
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<meta name="theme-color" content="#bb8844">
 	<style>
+		* { box-sizing: border-box; }
 		body {
 			margin: 0;
 			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
 			color: #212121;
-			font-size: 1.2em;
+			font-size: 1.1em;
 			line-height: 1.6;
 		}
-		.container { max-width: 700px; margin: auto; padding: 15px; }
+		.container { width: 1024px; margin: auto; display: flex; }
+		.sidebar { width: 300px; padding: 30px;  }
+		.content { width: 724px; padding: 30px; }
+		.category { font-weight: bold; font-size: 0.9em; text-transform: uppercase; margin: 2.5em 0 .5em 0; }
+		.brand { font-weight: bold; font-size: 1.5em; padding: 1em 0 0.4em 0; }
+		.brand a { text-decoration: none; }
 		a {	color: black; }
 		p { margin: 0.5em 0; }
-		h1 { margin: 1em 0; }
+		h1 { margin: 0.5em 0; }
 		h1 a { text-decoration: none; }
-		h2 { font-size: 1.2em; margin: 0.5em 0; }
+		h2 { font-size: 1.2em; margin: 2em 0 0.5em 0; }
+		hr { border-top: 1px solid #ddd; border-bottom: none;}
 		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
 		.highlight { font-size: 0.9em; }
 		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
@@ -43,19 +50,113 @@
 		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
 		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
 		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
+		code { background-color: #fafafa; border: 1px solid #f0f0f0; padding: 2px 5px; font-size: 0.9em; }
+		table { width: 100%; text-align: left; }
+		.menu-btn { display: none; float: right; text-decoration: underline; text-transform: uppercase; font-size: 0.7em; line-height: 1; text-align: center; margin-top: 2px; }
+		@media (max-width: 1023px) {
+			.container, .content, .sidebar { display: block; width: auto; }
+			.sidebar .sections { display: flex; flex-wrap: wrap; }
+			.sections .section { flex-basis: 33.3333%; }
+			.brand { padding: 0; font-size: 1.2em; }
+			.category { margin: 1em 0; }
+			.content { padding-top: 0; }
+			.sidebar { padding-bottom: 0; }
+			.closed { display: none!important; }
+			.menu-btn { display: inline-block; }
+			h1 { font-size: 1.8em;  }
+			h2 { margin-top: 1em; }
+		}
+		@media (max-width: 767px) {
+			.sections .section { flex-basis: 50%; }
+		}
+		@media (max-width: 470px) {
+			.sections .section { flex-basis: 100%; }
+			th, td { display: block; }
+		}
 	</style>
 </head>
 <body>
+
 <div class="container">
+	<div class="sidebar">
+	<div class="brand"><a href="/">Go Web Examples</a> <a class="menu-btn" href="#">Open<br>Menu</a></div>
+	<div class="sections closed">
+		<div class="section">
+			<div class="category">The Basics</div>
+			<div><a href="/hello-world/">Hello World</a></div>
+			<div><a href="/routes-using-gorilla-mux/">Routing</a></div>
+			<div><a href="/templates/">Templates</a></div>
+			<div><a href="/forms/">Requests & Forms</a></div>
+			<div><a href="/static-files/">Assets &amp; Files</a></div>
+			<div><a href="/basic-middleware/">Middleware (Basic)</a></div>
+			<div><a href="/advanced-middleware/">Middleware (Advanced)</a></div>
+			<div><a href="/sessions/">Session</a></div>
+			
+			<div><a href="/json/">JSON</a></div>
+			<div><a href="/websockets/">Websockets</a></div>
+		</div>
+		<div class="section">
+			<div class="category">Security</div>
+			
+			<div><a href="/password-hashing/">Password Hashing</a></div>
+			
+		</div>
+		
+		
+		
+	</div>
+</div>
 
+	<div class="content">
+		
 
+<h1 id="hello-world">Hello World</h1>
 
-<h1 id="go-web-examples-hello-world"><a href="/">Go Web Examples:</a> Hello World</h1>
+<h2 id="introduction">Introduction</h2>
 
-<p>This example will show how to start a webserver on port 8080 and print the classic &ldquo;hello world&rdquo; message.</p>
+<p>Go is a battery included programming language and has a webserver already built in.
+The <code>net/http</code> package from the standard library contains all functionalities about the HTTP protocol.
+This includes (among many other things) an HTTP client and an HTTP server.
+In this example you will figure out how simple it is, to create a webserver that you can view in your browser.</p>
 
-<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// hello-world.go</span>
-<span style="font-weight: bold">package</span> main
+<h2 id="registering-a-request-handler">Registering a Request Handler</h2>
+
+<p>First, create a Handler which receives all incomming HTTP connections from browsers, HTTP clients or API requests.
+A handler in Go is a function with this signature:
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">func</span> (w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request)
+</pre></div>
+</p>
+
+<p>The function receives two parameters:</p>
+
+<ol>
+<li>An <code>http.ResponseWriter</code> which is where you write your text/html response to.</li>
+<li>An <code>http.Request</code> which contains all information about this HTTP request including things like the URL or header fields.</li>
+</ol>
+
+<p>Registering a request handler to the default HTTP Server is as simple as this:
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, <span style="font-weight: bold">func</span> (w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
+	fmt.Fprintln(w, <span style="color: #bb8844">&quot;Hello, you&#39;ve requested: %s&quot;</span>, r.URL.Path)
+})
+</pre></div>
+</p>
+
+<h2 id="listen-for-http-connections">Listen for HTTP Connections</h2>
+
+<p>The request handler alone can not accept any HTTP connections from the outside.
+An HTTP server has to listen on a port to pass connections on to the request handler.
+Because port 80 is in most cases the default port for HTTP traffic, this server will also listen on it.</p>
+
+<p>The following code will start Go&rsquo;s default HTTP server and listen for connections on port 80.
+You can navigate your browser to <code>http://localhost/</code> and see your server handing your request.
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>http.ListenAndServe(<span style="color: #bb8844">&quot;:80&quot;</span>, <span style="font-weight: bold">nil</span>)
+</pre></div>
+</p>
+
+<h2 id="the-code-for-copy-paste">The Code (for copy/paste)</h2>
+
+<p>This is the complete code that you can use to try out the things you&rsquo;ve learned in this example.
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
 	<span style="color: #bb8844">&quot;fmt&quot;</span>
@@ -64,29 +165,25 @@
 
 <span style="font-weight: bold">func</span> main() {
 	http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-		fmt.Fprintln(w, <span style="color: #bb8844">&quot;hello world&quot;</span>)
+		fmt.Fprintln(w, <span style="color: #bb8844">&quot;Hello, you&#39;ve requested: %s&quot;</span>, r.URL.Path)
 	})
 
-	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+	http.ListenAndServe(<span style="color: #bb8844">&quot;:80&quot;</span>, <span style="font-weight: bold">nil</span>)
 }
-</pre></div>
-
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run hello-world.go
-
-<span style="color: #555555">$</span> curl -s http://localhost:8080/
-<span style="color: #888888">hello world</span>
 </pre></div>
 </p>
 
-	<div class="footer">
+			<div class="footer">
 		<div class="links">
-		
+			
+			
+			<a title="Middleware (Advanced)" class="back" href="https://gowebexamples.github.io/advanced-middleware/">← back</a>
 			
 			<a title="Go Web Examples" class="home" href="/">home</a>
 			
-			<a title="Routes" class="forward" href="https://gowebexamples.github.io/routes/">forward →</a>
+			<a title="Routing (using gorilla/mux)" class="forward" href="https://gowebexamples.github.io/routes-using-gorilla-mux/">forward →</a>
 			
-		
+			
 		</div>
 		<br /><br />
 		by <a href="https://github.com/philippta">philippta</a>
@@ -94,6 +191,25 @@
 		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
 		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
 	</div>
+	<script type="text/javascript">
+		var menu = document.querySelector(".sections");
+		var menuBtn = document.querySelector(".menu-btn");
+		menuBtn.addEventListener("click", function(e) {
+			e.preventDefault();
+			if (menu.classList.contains("closed")) {
+				menu.classList.remove("closed");
+				menuBtn.innerHTML = "Close<br>Menu";
+			} else {
+				menu.classList.add("closed");
+				menuBtn.innerHTML = "Open<br>Menu";
+			}
+			return false;
+		});
+	</script>
+
+	</div>
 </div>
 </body>
 </html>
+
+

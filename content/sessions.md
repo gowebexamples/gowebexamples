@@ -4,7 +4,7 @@ title = "Sessions"
 description = "This example will show how to store data in session cookies using the popular gorilla/sessions package in the Go programming language."
 +++
 
-# [Go Web Examples:](/) Sessions
+# Sessions
 
 This example will show how to store data in session cookies using the popular  <a target="_blank" href="https://github.com/gorilla/sessions">gorilla/sessions</a> package in Go.
 

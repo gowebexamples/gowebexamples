@@ -54,37 +54,37 @@
 
 <p>This example will show how to register a route and get the data using just the <code>net/http</code> package.</p>
 
-<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// routes.go</span>
-<span style="font-weight: bold">package</span> main
+<p>
+// routes.go
+package main
 
-<span style="font-weight: bold">import</span> (
-	<span style="color: #bb8844">&quot;fmt&quot;</span>
-	<span style="color: #bb8844">&quot;net/http&quot;</span>
+import (
+	"fmt"
+	"net/http"
 )
 
-<span style="font-weight: bold">func</span> main() {
-	userAges <span style="font-weight: bold">:=</span> <span style="font-weight: bold">map</span>[<span style="color: #445588; font-weight: bold">string</span>]<span style="color: #445588; font-weight: bold">int</span>{
-		<span style="color: #bb8844">&quot;Alice&quot;</span>:  <span style="color: #009999">25</span>,
-		<span style="color: #bb8844">&quot;Bob&quot;</span>:    <span style="color: #009999">30</span>,
-		<span style="color: #bb8844">&quot;Claire&quot;</span>: <span style="color: #009999">29</span>,
+func main() {
+	userAges := map[string]int{
+		"Alice":  25,
+		"Bob":    30,
+		"Claire": 29,
 	}
 
-	http.HandleFunc(<span style="color: #bb8844">&quot;/users/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-		name <span style="font-weight: bold">:=</span> r.URL.Path[<span style="color: #999999">len</span>(<span style="color: #bb8844">&quot;/users/&quot;</span>):]
-		age <span style="font-weight: bold">:=</span> userAges[name]
+	http.HandleFunc("/users/", func(w http.ResponseWriter, r *http.Request) {
+		name := r.URL.Path[len("/users/"):]
+		age := userAges[name]
 
-		fmt.Fprintf(w, <span style="color: #bb8844">&quot;%s is %d years old!&quot;</span>, name, age)
+		fmt.Fprintf(w, "%s is %d years old!", name, age)
 	})
 
-	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
+	http.ListenAndServe(":8080", nil)
 }
-</pre></div>
 
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run routes.go
 
-<span style="color: #555555">$</span> curl -s http://localhost:8080/users/Bob
-<span style="color: #888888">Bob is 30 years old!</span>
-</pre></div>
+$ go run routes.go
+
+$ curl -s http://localhost:8080/users/Bob
+Bob is 30 years old!
 </p>
 
 	<div class="footer">

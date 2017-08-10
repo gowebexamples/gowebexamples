@@ -4,7 +4,7 @@ title = "Middleware (Advanced)"
 description = "This example will show how to create a more advanced version of middleware in the Go programming language."
 +++
 
-# [Go Web Examples:](/) Middleware (Advanced)
+# Middleware (Advanced)
 
 This example will show how to create a more advanced version of middleware in Go.
 

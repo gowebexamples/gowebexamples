@@ -1,3 +1,12 @@
-{{ partial "header.html" . }}
-{{ .Content }}
-{{ partial "footer.html" . }}
+{{partial "header.html" .}}
+<div class="container">
+	{{partial "sidebar.html" .}}
+	<div class="content">
+		{{.Content}}
+		{{partial "footer.html" .}}
+	</div>
+</div>
+</body>
+</html>
+
+

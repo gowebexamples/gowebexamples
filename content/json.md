@@ -4,7 +4,7 @@ title = "JSON"
 description = "This example will show how to encode and decode JSON data using the encoding/json package in the Go programming language."
 +++
 
-# [Go Web Examples:](/) JSON
+# JSON
 
 This example will show how to encode and decode JSON data using the `encoding/json` package.
 {{< highlight go >}}

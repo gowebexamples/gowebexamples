@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <url>
-    <loc>https://gowebexamples.github.io/hello-world/</loc>
-  </url>
-  
-  <url>
-    <loc>https://gowebexamples.github.io/routes/</loc>
-  </url>
-  
-  <url>
-    <loc>https://gowebexamples.github.io/routes-using-gorilla-mux/</loc>
-  </url>
-  
-  <url>
-    <loc>https://gowebexamples.github.io/templates/</loc>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://gowebexamples.github.io/forms/</loc>
@@ -50,8 +35,30 @@
   </url>
   
   <url>
+    <loc>https://gowebexamples.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://gowebexamples.github.io/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.github.io/hello-world/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.github.io/routes-using-gorilla-mux/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.github.io/templates/</loc>
   </url>
   
 </urlset>

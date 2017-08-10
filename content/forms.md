@@ -4,7 +4,7 @@ title = "Forms"
 description = "This example will show how to simulate a contact form and parse the message into a struct using the Go programming language."
 +++
 
-# [Go Web Examples:](/) Forms
+# Forms
 
 This example will show how to simulate a contact form and parse the message into a struct.
 
