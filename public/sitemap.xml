@@ -3,62 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://gowebexamples.github.io/forms/</loc>
+    <loc>https://gowebexamples.com/forms/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/json/</loc>
+    <loc>https://gowebexamples.com/json/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/static-files/</loc>
+    <loc>https://gowebexamples.com/static-files/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/sessions/</loc>
+    <loc>https://gowebexamples.com/sessions/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/password-hashing/</loc>
+    <loc>https://gowebexamples.com/password-hashing/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/websockets/</loc>
+    <loc>https://gowebexamples.com/websockets/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/basic-middleware/</loc>
+    <loc>https://gowebexamples.com/basic-middleware/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/advanced-middleware/</loc>
+    <loc>https://gowebexamples.com/advanced-middleware/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/categories/</loc>
+    <loc>https://gowebexamples.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/</loc>
+    <loc>https://gowebexamples.com/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/hello-world/</loc>
+    <loc>https://gowebexamples.com/hello-world/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/routes-using-gorilla-mux/</loc>
+    <loc>https://gowebexamples.com/routes-using-gorilla-mux/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/tags/</loc>
+    <loc>https://gowebexamples.com/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://gowebexamples.github.io/templates/</loc>
+    <loc>https://gowebexamples.com/templates/</loc>
   </url>
   
 </urlset>

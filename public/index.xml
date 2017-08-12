@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go Web Examples</title>
-    <link>https://gowebexamples.github.io/</link>
+    <link>https://gowebexamples.com/</link>
     <description>Recent content on Go Web Examples</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://gowebexamples.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://gowebexamples.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Forms</title>
-      <link>https://gowebexamples.github.io/forms/</link>
+      <link>https://gowebexamples.com/forms/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/forms/</guid>
+      <guid>https://gowebexamples.com/forms/</guid>
       <description>Forms This example will show how to simulate a contact form and parse the message into a struct.
 // forms.go package main import ( &amp;quot;html/template&amp;quot; &amp;quot;net/http&amp;quot; ) type ContactDetails struct { Email string Subject string Message string } func main() { tmpl := template.Must(template.ParseFiles(&amp;quot;forms.html&amp;quot;)) http.HandleFunc(&amp;quot;/&amp;quot;, func(w http.ResponseWriter, r *http.Request) { if r.Method != http.MethodPost { tmpl.Execute(w, nil) return } details := ContactDetails{ Email: r.FormValue(&amp;quot;email&amp;quot;), Subject: r.FormValue(&amp;quot;subject&amp;quot;), Message: r.FormValue(&amp;quot;message&amp;quot;), } // do something with details _ = details tmpl.</description>
     </item>
     
     <item>
       <title>JSON</title>
-      <link>https://gowebexamples.github.io/json/</link>
+      <link>https://gowebexamples.com/json/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/json/</guid>
+      <guid>https://gowebexamples.com/json/</guid>
       <description>JSON This example will show how to encode and decode JSON data using the encoding/json package. // json.go package main import ( &amp;quot;encoding/json&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; ) type User struct { Firstname string `json:&amp;quot;firstname&amp;quot;` Lastname string `json:&amp;quot;lastname&amp;quot;` Age int `json:&amp;quot;age&amp;quot;` } func main() { http.HandleFunc(&amp;quot;/decode&amp;quot;, func(w http.ResponseWriter, r *http.Request) { var user User json.NewDecoder(r.Body).Decode(&amp;amp;user) fmt.Fprintf(w, &amp;quot;%s %s is %d years old!&amp;quot;, user.Firstname, user.Lastname, user.Age) }) http.HandleFunc(&amp;quot;/encode&amp;quot;, func(w http.ResponseWriter, r *http.Request) { peter := User{ Firstname: &amp;quot;John&amp;quot;, Lastname: &amp;quot;Doe&amp;quot;, Age: 25, } json.</description>
     </item>
     
     <item>
       <title>Static Files</title>
-      <link>https://gowebexamples.github.io/static-files/</link>
+      <link>https://gowebexamples.com/static-files/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/static-files/</guid>
+      <guid>https://gowebexamples.com/static-files/</guid>
       <description> Static Files This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
 // static-files.go package main import &amp;quot;net/http&amp;quot; func main() { fs := http.FileServer(http.Dir(&amp;quot;assets/&amp;quot;)) http.Handle(&amp;quot;/static/&amp;quot;, http.StripPrefix(&amp;quot;/static/&amp;quot;, fs)) http.ListenAndServe(&amp;quot;:8080&amp;quot;, nil) }  $ tree assets/ assets/ └── css └── styles.css  $ go run static-files.go $ curl -s http://localhost:8080/static/css/styles.css body { background-color: black; }  </description>
     </item>
     
     <item>
       <title>Sessions</title>
-      <link>https://gowebexamples.github.io/sessions/</link>
+      <link>https://gowebexamples.com/sessions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/sessions/</guid>
+      <guid>https://gowebexamples.com/sessions/</guid>
       <description>Sessions This example will show how to store data in session cookies using the popular gorilla/sessions package in Go.
 Cookies are small pieces of data stored in the browser of a user and are sent to our server on each request. In them, we can store e.g. whether or not a user is logged in into our website and figure out who he actually is (in our system).
 In this example we will only allow authenticated users to view our secret message on the /secret page.</description>
@@ -52,10 +52,10 @@ In this example we will only allow authenticated users to view our secret messag
     
     <item>
       <title>Password Hashing</title>
-      <link>https://gowebexamples.github.io/password-hashing/</link>
+      <link>https://gowebexamples.com/password-hashing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/password-hashing/</guid>
+      <guid>https://gowebexamples.com/password-hashing/</guid>
       <description>Password Hashing This example will show how to hash passwords using bcrypt. For this we have to go get the golang bcrypt library like so:
 $ go get golang.org/x/crypto/bcrypt
 From now on, every application we write will be able to make use of this library. // passwords.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;golang.org/x/crypto/bcrypt&amp;quot; ) func HashPassword(password string) (string, error) { bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14) return string(bytes), err } func CheckPasswordHash(password, hash string) bool { err := bcrypt.</description>
@@ -63,10 +63,10 @@ From now on, every application we write will be able to make use of this library
     
     <item>
       <title>Websockets</title>
-      <link>https://gowebexamples.github.io/websockets/</link>
+      <link>https://gowebexamples.com/websockets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/websockets/</guid>
+      <guid>https://gowebexamples.com/websockets/</guid>
       <description>Websockets This example will show how to work with websockets in Go. We will build a simple server which echoes back everything we send to it. For this we have to go get the popular gorilla/websocket library like so:
 $ go get github.com/gorilla/websocket
 From now on, every application we write will be able to make use of this library. // websockets.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;github.com/gorilla/websocket&amp;quot; ) var upgrader = websocket.</description>
@@ -74,10 +74,10 @@ From now on, every application we write will be able to make use of this library
     
     <item>
       <title>Middleware (Basic)</title>
-      <link>https://gowebexamples.github.io/basic-middleware/</link>
+      <link>https://gowebexamples.com/basic-middleware/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/basic-middleware/</guid>
+      <guid>https://gowebexamples.com/basic-middleware/</guid>
       <description>Middleware (Basic) This example will show how to create basic logging middleware in Go.
 A middleware simply takes a http.HandlerFunc as one of its parameters, wraps it and returns a new http.HandlerFunc for the server to call.
 // basic-middleware.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; ) func logging(f http.HandlerFunc) http.HandlerFunc { return func(w http.ResponseWriter, r *http.Request) { log.Println(r.URL.Path) f(w, r) } } func foo(w http.ResponseWriter, r *http.Request) { fmt.</description>
@@ -85,10 +85,10 @@ A middleware simply takes a http.HandlerFunc as one of its parameters, wraps it 
     
     <item>
       <title>Middleware (Advanced)</title>
-      <link>https://gowebexamples.github.io/advanced-middleware/</link>
+      <link>https://gowebexamples.com/advanced-middleware/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/advanced-middleware/</guid>
+      <guid>https://gowebexamples.com/advanced-middleware/</guid>
       <description>Middleware (Advanced) This example will show how to create a more advanced version of middleware in Go.
 A middleware in itself simply takes a http.HandlerFunc as one of its parameters, wraps it and returns a new http.HandlerFunc for the server to call.
 Here we define a new type Middleware which makes it eventually easier to chain multiple middlewares together. This idea is inspired by Mat Ryers&amp;rsquo; talk about Building APIs.</description>
@@ -96,29 +96,29 @@ Here we define a new type Middleware which makes it eventually easier to chain m
     
     <item>
       <title>Hello World</title>
-      <link>https://gowebexamples.github.io/hello-world/</link>
+      <link>https://gowebexamples.com/hello-world/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/hello-world/</guid>
+      <guid>https://gowebexamples.com/hello-world/</guid>
       <description>Hello World Introduction Go is a battery included programming language and has a webserver already built in. The net/http package from the standard library contains all functionalities about the HTTP protocol. This includes (among many other things) an HTTP client and an HTTP server. In this example you will figure out how simple it is, to create a webserver that you can view in your browser.
 Registering a Request Handler First, create a Handler which receives all incomming HTTP connections from browsers, HTTP clients or API requests.</description>
     </item>
     
     <item>
       <title>Routing (using gorilla/mux)</title>
-      <link>https://gowebexamples.github.io/routes-using-gorilla-mux/</link>
+      <link>https://gowebexamples.com/routes-using-gorilla-mux/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/routes-using-gorilla-mux/</guid>
+      <guid>https://gowebexamples.com/routes-using-gorilla-mux/</guid>
       <description>Routing (using gorilla/mux) Introduction Go&amp;rsquo;s net/http package provides a lot of functionalities for the HTTP protocol. One thing it doesn&amp;rsquo;t do very well is complex request routing like segmenting a request url into single parameters. Fortunately there is a very popular package for this, which is well known for the good code quality in the Go community. In this example you will see how to use the gorilla/mux package to create routes with named parameters, GET/POST handlers and domain restrictions.</description>
     </item>
     
     <item>
       <title>Templates</title>
-      <link>https://gowebexamples.github.io/templates/</link>
+      <link>https://gowebexamples.com/templates/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://gowebexamples.github.io/templates/</guid>
+      <guid>https://gowebexamples.com/templates/</guid>
       <description>Templates Introduction Go&amp;rsquo;s html/template package provides a rich templating language for HTML templates. It is mostly used in web applications to display data in a structured way in a client&amp;rsquo;s browser. One great benefit of Go&amp;rsquo;s templating language is the automatic escaping of data. There is no need to worry about about XSS attacks as Go parses the HTML template and escapes all inputs before displaying it to the browser.</description>
     </item>
     

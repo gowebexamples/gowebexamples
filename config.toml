@@ -1,4 +1,4 @@
-baseUrl = "https://gowebexamples.github.io/"
+baseUrl = "https://gowebexamples.com/"
 languageCode = "en-us"
 title = "Go Web Examples"
 PygmentsCodeFences = true
