@@ -39,7 +39,7 @@
 		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
 		.highlight { font-size: 0.9em; }
 		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
-		a[target="_blank"] { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		a[target="_blank"]:not(.buy-on-amazon) { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
 		.links { display: flex; justify-content: space-between; }
 		a.back { text-decoration: none; }
 		a.home { text-decoration: none; }
@@ -54,6 +54,11 @@
 		code { background-color: #fafafa; border: 1px solid #f0f0f0; padding: 2px 5px; font-size: 0.9em; }
 		table { width: 100%; text-align: left; }
 		.menu-btn { display: none; float: right; text-decoration: underline; text-transform: uppercase; font-size: 0.7em; line-height: 1; text-align: center; margin-top: 2px; }
+		.recommend { font-size: 0.9em; margin-top: 30px; text-align: center; border: 2px solid #f0f0f0; padding: 10px 0 15px 0; }
+		.recommend-img { padding: 15px 50px 0 50px; }
+		.recommend-img img { width: 100%; }
+		.buy-on-amazon { margin-top: 20px; line-height: 1.7; display: inline-block; background-color: #f36f23; color: white; text-decoration: none; padding: 5px 50px 0 50px;  border-radius: 4px; }
+		.buy-on-amazon img { height: 30px; margin-top: 3px; }
 		@media (max-width: 1023px) {
 			.container, .content, .sidebar { display: block; width: auto; }
 			.sidebar .sections { display: flex; flex-wrap: wrap; margin: 10px -30px; padding: 0 30px 20px 30px; background-color: #f9f9f9; box-shadow: inset 0 0 5px 0px rgba(0,0,0,0.1); }
@@ -66,6 +71,9 @@
 			.menu-btn { display: inline-block; }
 			h1 { font-size: 1.8em;  }
 			h2 { margin-top: 1em; }
+			.recommend {
+				display: none;
+			}
 		}
 		@media (max-width: 767px) {
 			.sections .section { flex-basis: 50%; }
@@ -105,6 +113,17 @@
 		
 		
 		
+	</div>
+	<div class="recommend">
+		<strong>Go Programming Blueprints</strong>
+		<div class="recommend-img">
+			<img src="https://images-na.ssl-images-amazon.com/images/I/51BOfTggRIL.jpg" alt="Go Programming Blueprints - Mat Ryer" />
+		</div>
+		by <strong><a href="https://twitter.com/matryer">Mat Ryer</a></strong>
+		<a class="buy-on-amazon" href="/we-recommend" target="_blank">
+			Buy on<br />
+			<img src="/amazon-logo.png" />
+		</a>
 	</div>
 </div>
 
