@@ -221,7 +221,7 @@ with the variable of your router <code>r</code>.
 		title <span style="font-weight: bold">:=</span> vars[<span style="color: #bb8844">&quot;title&quot;</span>]
 		page <span style="font-weight: bold">:=</span> vars[<span style="color: #bb8844">&quot;page&quot;</span>]
 
-		fmt.Fprintln(w, <span style="color: #bb8844">&quot;You&#39;ve requested the book: %s on page %s&quot;</span>, title, page)
+		fmt.Fprintf(w, <span style="color: #bb8844">&quot;You&#39;ve requested the book: %s on page %s\n&quot;</span>, title, page)
 	})
 
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:80&quot;</span>, r)
