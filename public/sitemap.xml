@@ -47,6 +47,10 @@
   </url>
   
   <url>
+    <loc>https://gowebexamples.com/imprint/</loc>
+  </url>
+  
+  <url>
     <loc>https://gowebexamples.com/categories/</loc>
     <priority>0</priority>
   </url>
@@ -54,6 +58,10 @@
   <url>
     <loc>https://gowebexamples.com/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.com/privacy/</loc>
   </url>
   
   <url>

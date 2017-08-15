@@ -122,5 +122,25 @@ $ go get golang.org/x/crypto/bcrypt
 From now on, every application we write will be able to make use of this library. // passwords.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;golang.org/x/crypto/bcrypt&amp;quot; ) func HashPassword(password string) (string, error) { bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14) return string(bytes), err } func CheckPasswordHash(password, hash string) bool { err := bcrypt.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://gowebexamples.com/imprint/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.com/imprint/</guid>
+      <description>Legal Disclosure Information in accordance with section 5 TMG
+document.write(atob(&#34;UGhpbGlwcCBUYW5sYWs8YnI+QmVuZWRpa3RpbmVyc3RyLiA0OTxicj4zMzA5OCBQYWRlcmJvcm48YnI+&#34;));Contact Telephone: document.write(atob(&#34;KzQ5MTc2OTEzNDIwNjc=&#34;));E-Mail: document.write(atob(&#34;cGhpbGlwcC50YW5sYWtAZ21haWwuY29t&#34;));Person responsible for content in accordance with 55 Abs. 2 RStV document.write(atob(&#34;UGhpbGlwcCBUYW5sYWs8YnI+QmVuZWRpa3RpbmVyc3RyLiA0OTxicj4zMzA5OCBQYWRlcmJvcm48YnI+&#34;));Indication of source for images and graphics https://amazon.com
+Disclaimer Accountability for content The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents&amp;rsquo; accuracy, completeness or topicality. According to statutory provisions, we are furthermore responsible for our own content on these web pages.</description>
+    </item>
+    
+    <item>
+      <title>Privacy Statement</title>
+      <link>https://gowebexamples.com/privacy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.com/privacy/</guid>
+      <description>Privacy Statement General Your personal data (e.g. title, name, house address, e-mail address, phone number, bank details, credit card number) are processed by us only in accordance with the provisions of German data privacy laws. The following provisions describe the type, scope and purpose of collecting, processing and utilizing personal data. This data privacy policy applies only to our web pages. If links on our pages route you to other pages, please inquire there about how your data are handled in such cases.</description>
+    </item>
+    
   </channel>
 </rss>

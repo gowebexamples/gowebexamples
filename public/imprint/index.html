@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+		<title>Go Web Examples: </title>
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
+	<meta name="description" content="Legal Disclosure Information in accordance with section 5 TMG
+document.write(atob(&#34;UGhpbGlwcCBUYW5sYWs8YnI&#43;QmVuZWRpa3RpbmVyc3RyLiA0OTxicj4zMzA5OCBQYWRlcmJvcm48YnI&#43;&#34;));Contact Telephone: document.write(atob(&#34;KzQ5MTc2OTEzNDIwNjc=&#34;));E-Mail: document.write(atob(&#34;cGhpbGlwcC50YW5sYWtAZ21haWwuY29t&#34;));Person responsible for content in accordance with 55 Abs. 2 RStV document.write(atob(&#34;UGhpbGlwcCBUYW5sYWs8YnI&#43;QmVuZWRpa3RpbmVyc3RyLiA0OTxicj4zMzA5OCBQYWRlcmJvcm48YnI&#43;&#34;));Indication of source for images and graphics https://amazon.com
+Disclaimer Accountability for content The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents&rsquo; accuracy, completeness or topicality. According to statutory provisions, we are furthermore responsible for our own content on these web pages." />
+	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
+	<link rel="canonical" href="https://gowebexamples.com/imprint/">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<meta name="theme-color" content="#bb8844">
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			color: #212121;
+			font-size: 1.1em;
+			line-height: 1.6;
+		}
+		.container { width: 1024px; margin: auto; display: flex; }
+		.sidebar { width: 300px; padding: 30px;  }
+		.content { width: 724px; padding: 30px; }
+		.category { font-weight: bold; font-size: 0.9em; text-transform: uppercase; margin: 2.5em 0 .5em 0; }
+		.brand { font-weight: bold; font-size: 1.5em; padding: 1em 0 0.4em 0; }
+		.brand a { text-decoration: none; }
+		a {	color: black; }
+		p { margin: 0.5em 0; }
+		h1 { margin: 0.5em 0; }
+		h1 a { text-decoration: none; }
+		h2 { font-size: 1.2em; margin: 2em 0 0.5em 0; }
+		hr { border-top: 1px solid #ddd; border-bottom: none;}
+		pre { padding: 15px; overflow-x: auto; background: #fafafa; border: 1px solid #f0f0f0; }
+		.highlight { font-size: 0.9em; }
+		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
+		a[target="_blank"]:not(.buy-on-amazon) { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		.links { display: flex; justify-content: space-between; }
+		a.back { text-decoration: none; }
+		a.home { text-decoration: none; }
+		a.forward { text-decoration: none; }
+		.footer { font-size: .9em; margin-top: 1em; color: #999; }
+		.footer a { color: #999; }
+		.image { border: 1px solid #f0f0f0; }
+		.image img { max-width: 100%; height: auto; display: block; }
+		.demo { border: 1px solid #f0f0f0; padding: 15px; line-height: 1.4; pointer-events: none; }
+		.demo h1 { margin: 0 0 0.5em 0; font-size: 1.5em; }
+		.demo input[type=text], .demo textarea { box-sizing: border-box; width: 100%; max-width: 20em; }
+		code { background-color: #fafafa; border: 1px solid #f0f0f0; padding: 2px 5px; font-size: 0.9em; }
+		table { width: 100%; text-align: left; }
+		.menu-btn { display: none; float: right; text-decoration: underline; text-transform: uppercase; font-size: 0.7em; line-height: 1; text-align: center; margin-top: 2px; }
+		.recommend { font-size: 0.9em; margin-top: 30px; text-align: center; border: 2px solid #f0f0f0; padding: 10px 0 15px 0; }
+		.recommend-img { padding: 15px 50px 0 50px; }
+		.recommend-img img { width: 100%; }
+		.buy-on-amazon { margin-top: 20px; line-height: 1.7; display: inline-block; background-color: #f36f23; color: white; text-decoration: none; padding: 5px 50px 0 50px;  border-radius: 4px; }
+		.buy-on-amazon img { height: 30px; margin-top: 3px; }
+		.right { float: right; }
+		@media (max-width: 1023px) {
+			.container, .content, .sidebar { display: block; width: auto; }
+			.sidebar .sections { display: flex; flex-wrap: wrap; margin: 10px -30px; padding: 0 30px 20px 30px; background-color: #f9f9f9; box-shadow: inset 0 0 5px 0px rgba(0,0,0,0.1); }
+			.sections .section { flex-basis: 33.3333%; }
+			.brand { padding: 0; font-size: 1.2em; }
+			.category { margin: 1em 0; }
+			.content { padding-top: 0; }
+			.sidebar { padding-bottom: 0; }
+			.closed { display: none!important; }
+			.menu-btn { display: inline-block; }
+			h1 { font-size: 1.8em;  }
+			h2 { margin-top: 1em; }
+			.recommend {
+				display: none;
+			}
+		}
+		@media (max-width: 767px) {
+			.sections .section { flex-basis: 50%; }
+		}
+		@media (max-width: 470px) {
+			.sections .section { flex-basis: 100%; }
+			th, td { display: block; }
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+	<div class="sidebar">
+	<div class="brand"><a href="/">Go Web Examples</a> <a class="menu-btn" href="#">Open<br>Menu</a></div>
+	<div class="sections closed">
+		<div class="section">
+			<div class="category">The Basics</div>
+			<div><a href="/hello-world/">Hello World</a></div>
+			<div><a href="/routes-using-gorilla-mux/">Routing</a></div>
+			<div><a href="/templates/">Templates</a></div>
+			<div><a href="/forms/">Requests &amp; Forms</a></div>
+			<div><a href="/static-files/">Assets &amp; Files</a></div>
+			<div><a href="/basic-middleware/">Middleware (Basic)</a></div>
+			<div><a href="/advanced-middleware/">Middleware (Advanced)</a></div>
+			<div><a href="/sessions/">Session</a></div>
+			
+			<div><a href="/json/">JSON</a></div>
+			<div><a href="/websockets/">Websockets</a></div>
+		</div>
+		<div class="section">
+			<div class="category">Security</div>
+			
+			<div><a href="/password-hashing/">Password Hashing</a></div>
+			
+		</div>
+		
+		
+		
+	</div>
+	<div class="recommend">
+		<strong>Go Programming Blueprints</strong>
+		<div class="recommend-img">
+			<img src="https://images-na.ssl-images-amazon.com/images/I/51BOfTggRIL.jpg" alt="Go Programming Blueprints - Mat Ryer" />
+		</div>
+		by <strong><a href="https://twitter.com/matryer">Mat Ryer</a></strong>
+		<a class="buy-on-amazon" href="/we-recommend" target="_blank">
+			Buy on<br />
+			<img src="/amazon-logo.png" />
+		</a>
+	</div>
+</div>
+
+	<div class="content">
+		
+
+<h1 id="legal-disclosure">Legal Disclosure</h1>
+
+<p>Information in accordance with section 5 TMG</p>
+
+<script>document.write(atob("UGhpbGlwcCBUYW5sYWs8YnI+QmVuZWRpa3RpbmVyc3RyLiA0OTxicj4zMzA5OCBQYWRlcmJvcm48YnI+"));</script>
+
+
+<h2 id="contact">Contact</h2>
+
+<p>Telephone: <script>document.write(atob("KzQ5MTc2OTEzNDIwNjc="));</script>
+<br>
+E-Mail: <script>document.write(atob("cGhpbGlwcC50YW5sYWtAZ21haWwuY29t"));</script>
+</p>
+
+<h2 id="person-responsible-for-content-in-accordance-with-55-abs-2-rstv">Person responsible for content in accordance with 55 Abs. 2 RStV</h2>
+
+<script>document.write(atob("UGhpbGlwcCBUYW5sYWs8YnI+QmVuZWRpa3RpbmVyc3RyLiA0OTxicj4zMzA5OCBQYWRlcmJvcm48YnI+"));</script>
+
+
+<h2 id="indication-of-source-for-images-and-graphics">Indication of source for images and graphics</h2>
+
+<p><a href="https://amazon.com">https://amazon.com</a></p>
+
+<h2 id="disclaimer">Disclaimer</h2>
+
+<h3 id="accountability-for-content">Accountability for content</h3>
+
+<p>The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents&rsquo; accuracy, completeness or topicality. According to statutory provisions, we are furthermore responsible for our own content on these web pages. In this context, please note that we are accordingly not obliged to monitor merely the transmitted or saved information of third parties, or investigate circumstances pointing to illegal activity. Our obligations to remove or block the use of information under generally applicable laws remain unaffected by this as per §§ 8 to 10 of the Telemedia Act (TMG).</p>
+
+<h3 id="accountability-for-links">Accountability for links</h3>
+
+<p>Responsibility for the content of external links (to web pages of third parties) lies solely with the operators of the linked pages. No violations were evident to us at the time of linking. Should any legal infringement become known to us, we will remove the respective link immediately.</p>
+
+<h3 id="copyright-br">Copyright<br></h3>
+
+<p>Our web pages and their contents are subject to German copyright law. Unless expressly permitted by law (§ 44a et seq. of the copyright law), every form of utilizing, reproducing or processing works subject to copyright protection on our web pages requires the prior consent of the respective owner of the rights. Individual reproductions of a work are allowed only for private use, so must not serve either directly or indirectly for earnings. Unauthorized utilization of copyrighted works is punishable (§ 106 of the copyright law).</p>
+
+<p><em>Source:</em> <a href="https://www.twigg.de">twiggs translations</a></p>
+
+			<div class="footer">
+		<div class="links">
+			
+			
+			<a title="Password Hashing" class="back" href="https://gowebexamples.com/password-hashing/">← back</a>
+			
+			<a title="Go Web Examples" class="home" href="/">home</a>
+			
+			<a title="Privacy Statement" class="forward" href="https://gowebexamples.com/privacy/">forward →</a>
+			
+			
+		</div>
+		<br /><br />
+		by <a href="https://github.com/philippta">philippta</a>
+		| <script>document.write(atob("PGEgaHJlZj0ibWFpbHRvOnAudGFubGFrQHdlYi5kZSI+ZmVlZGJhY2s8L2E+"));</script>
+		| <a href="https://github.com/gowebexamples/gowebexamples">source</a>
+		| <a href="https://github.com/gowebexamples/gowebexamples#license">license</a>
+		<div class="right">
+			<a href="/imprint">Legal Disclosure</a>	| <a href="/privacy">Privacy Statement</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var menu = document.querySelector(".sections");
+		var menuBtn = document.querySelector(".menu-btn");
+		menuBtn.addEventListener("click", function(e) {
+			e.preventDefault();
+			if (menu.classList.contains("closed")) {
+				menu.classList.remove("closed");
+				menuBtn.innerHTML = "Close<br>Menu";
+			} else {
+				menu.classList.add("closed");
+				menuBtn.innerHTML = "Open<br>Menu";
+			}
+			return false;
+		});
+	</script>
+
+	</div>
+</div>
+</body>
+</html>
+
+
