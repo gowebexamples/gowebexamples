@@ -1,5 +1,5 @@
 +++
-weight = 9
+weight = 10
 title = "Password Hashing"
 description = "This example will show how to hash passwords using bcrypt in the Go programming language."
 +++

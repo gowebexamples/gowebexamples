@@ -1,4 +1,5 @@
 +++
+weight = 1
 title = "Hello World"
 description = "This examples shows how to create an HTTP server using the net/http package from the standard library. It contains all functionalities about the HTTP protocol."
 +++

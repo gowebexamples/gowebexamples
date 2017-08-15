@@ -1,5 +1,5 @@
 +++
-weight = 6
+weight = 8
 title = "JSON"
 description = "This example will show how to encode and decode JSON data using the encoding/json package in the Go programming language."
 +++

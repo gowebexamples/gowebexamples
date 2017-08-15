@@ -3,11 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://gowebexamples.com/forms/</loc>
+    <loc>https://gowebexamples.com/hello-world/</loc>
   </url>
   
   <url>
-    <loc>https://gowebexamples.com/json/</loc>
+    <loc>https://gowebexamples.com/routes-using-gorilla-mux/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.com/templates/</loc>
   </url>
   
   <url>
@@ -15,15 +19,7 @@
   </url>
   
   <url>
-    <loc>https://gowebexamples.com/sessions/</loc>
-  </url>
-  
-  <url>
-    <loc>https://gowebexamples.com/password-hashing/</loc>
-  </url>
-  
-  <url>
-    <loc>https://gowebexamples.com/websockets/</loc>
+    <loc>https://gowebexamples.com/forms/</loc>
   </url>
   
   <url>
@@ -32,6 +28,22 @@
   
   <url>
     <loc>https://gowebexamples.com/advanced-middleware/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.com/sessions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.com/json/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.com/websockets/</loc>
+  </url>
+  
+  <url>
+    <loc>https://gowebexamples.com/password-hashing/</loc>
   </url>
   
   <url>
@@ -45,20 +57,8 @@
   </url>
   
   <url>
-    <loc>https://gowebexamples.com/hello-world/</loc>
-  </url>
-  
-  <url>
-    <loc>https://gowebexamples.com/routes-using-gorilla-mux/</loc>
-  </url>
-  
-  <url>
     <loc>https://gowebexamples.com/tags/</loc>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://gowebexamples.com/templates/</loc>
   </url>
   
 </urlset>

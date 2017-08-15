@@ -1,4 +1,5 @@
 +++
+weight = 2
 title = "Routing (using gorilla/mux)"
 description = "This example shows how to use the `gorilla/mux` package to create routes with named parameters, GET/POST handlers and domain restrictions."
 +++

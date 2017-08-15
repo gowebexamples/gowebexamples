@@ -1,5 +1,5 @@
 +++
-weight = 10
+weight = 5
 title = "Middleware (Basic)"
 description = "This example will show how to create basic logging middleware in the Go programming language."
 +++

@@ -1,5 +1,5 @@
 +++
-weight = 8
+weight = 7
 title = "Sessions"
 description = "This example will show how to store data in session cookies using the popular gorilla/sessions package in the Go programming language."
 +++
