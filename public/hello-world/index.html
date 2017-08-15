@@ -184,7 +184,7 @@ You can navigate your browser to <code>http://localhost/</code> and see your ser
 
 <span style="font-weight: bold">func</span> main() {
 	http.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-		fmt.Fprintln(w, <span style="color: #bb8844">&quot;Hello, you&#39;ve requested: %s&quot;</span>, r.URL.Path)
+		fmt.Fprintf(w, <span style="color: #bb8844">&quot;Hello, you&#39;ve requested: %s\n&quot;</span>, r.URL.Path)
 	})
 
 	http.ListenAndServe(<span style="color: #bb8844">&quot;:80&quot;</span>, <span style="font-weight: bold">nil</span>)

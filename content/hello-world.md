@@ -26,7 +26,7 @@ The function receives two parameters:
 Registering a request handler to the default HTTP Server is as simple as this:
 {{< highlight go >}}
 http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Hello, you've requested: %s", r.URL.Path)
+	fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
 })
 {{< / highlight >}}
 

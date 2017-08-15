@@ -87,7 +87,7 @@ func main() {
 		title := vars["title"]
 		page := vars["page"]
 
-		fmt.Fprintln(w, "You've requested the book: %s on page %s", title, page)
+		fmt.Fprintf(w, "You've requested the book: %s on page %s\n", title, page)
 	})
 
 	http.ListenAndServe(":80", r)
