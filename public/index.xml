@@ -117,7 +117,7 @@ From now on, every application we write will be able to make use of this library
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://gowebexamples.com/password-hashing/</guid>
-      <description>Password Hashing This example will show how to hash passwords using bcrypt. For this we have to go get the golang bcrypt library like so:
+      <description>Password Hashing (bcrypt) This example will show how to hash passwords using bcrypt. For this we have to go get the golang bcrypt library like so:
 $ go get golang.org/x/crypto/bcrypt
 From now on, every application we write will be able to make use of this library. // passwords.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;golang.org/x/crypto/bcrypt&amp;quot; ) func HashPassword(password string) (string, error) { bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14) return string(bytes), err } func CheckPasswordHash(password, hash string) bool { err := bcrypt.</description>
     </item>
