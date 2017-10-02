@@ -12,6 +12,9 @@ For this we have to `go get` the popular <a target="_blank" href="https://github
 `$ go get github.com/gorilla/websocket`
 
 From now on, every application we write will be able to make use of this library.
+
+{{< edison >}}
+
 {{< highlight go >}}
 // websockets.go
 package main

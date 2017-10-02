@@ -12,6 +12,8 @@ The `net/http` package from the standard library contains all functionalities ab
 This includes (among many other things) an HTTP client and an HTTP server.
 In this example you will figure out how simple it is, to create a webserver that you can view in your browser.
 
+{{< edison >}}
+
 ## Registering a Request Handler
 First, create a Handler which receives all incomming HTTP connections from browsers, HTTP clients or API requests.
 A handler in Go is a function with this signature:

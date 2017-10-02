@@ -145,8 +145,21 @@
 
 <p>Cookies are small pieces of data stored in the browser of a user and are sent to our server on each request. In them, we can store e.g. whether or not a user is logged in into our website and figure out who he actually is (in our system).</p>
 
-<p>In this example we will only allow authenticated users to view our secret message on the <code>/secret</code> page. To get access to it, the will first have to visit <code>/login</code> to get a valid session cookie, which logs him in. Additionally he can visit <code>/logout</code> to revoke his access to our secret message.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// sessions.go</span>
+<p>In this example we will only allow authenticated users to view our secret message on the <code>/secret</code> page. To get access to it, the will first have to visit <code>/login</code> to get a valid session cookie, which logs him in. Additionally he can visit <code>/logout</code> to revoke his access to our secret message.</p>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9994791825937062"
+     data-ad-slot="2297047126"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// sessions.go</span>
 <span style="font-weight: bold">package</span> main
 
 <span style="font-weight: bold">import</span> (
