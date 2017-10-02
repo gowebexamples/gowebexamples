@@ -12,8 +12,6 @@ One thing it doesn't do very well is complex request routing like segmenting a r
 Fortunately there is a very popular package for this, which is well known for the good code quality in the Go community.
 In this example you will see how to use the `gorilla/mux` package to create routes with named parameters, GET/POST handlers and domain restrictions.
 
-{{< edison >}}
-
 ## Installing the `gorilla/mux` package
 `gorilla/mux` is a package which adapts to Go's default HTTP router. It comes with a lot of features to increase the productivity when writing web applications.
 It is also compliant to Go's default request handler signature `func (w http.ResponseWriter, r *http.Request)`, so the package can be mixed and machted with other

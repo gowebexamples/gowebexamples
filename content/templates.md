@@ -12,8 +12,6 @@ It is mostly used in web applications to display data in a structured way in a c
 One great benefit of Go's templating language is the automatic escaping of data.
 There is no need to worry about about XSS attacks as Go parses the HTML template and escapes all inputs before displaying it to the browser.
 
-{{< edison >}}
-
 ## First Template
 Writing a template in Go is very simple. This example shows a TODO list, written as an unordered list (ul) in HTML.
 When rendering templates, the data passed in can be any kind of Go's data structures. It may be a simple string or a number,

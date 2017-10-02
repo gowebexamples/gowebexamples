@@ -13,8 +13,6 @@ A middleware in itself simply takes a `http.HandlerFunc` as one of its parameter
 Here we define a new type `Middleware` which makes it eventually easier to chain multiple middlewares together. This idea is inspired by Mat Ryers' talk about Building APIs.
 You can find a more detailed explaination including the talk <a target="_blank" href="https://medium.com/@matryer/writing-middleware-in-golang-and-how-go-makes-it-so-much-fun-4375c1246e81">here</a>.
 
-{{< edison >}}
-
 <br />
 This snippet explains in detail how a new middleware is created. In the full example below, we reduce this version by some boilerplate code.
 {{< highlight go >}}

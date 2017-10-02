@@ -8,8 +8,6 @@ description = "This example will show how to serve static files like CSS or JS f
 
 This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
 
-{{< edison >}}
-
 {{< highlight go >}}
 // static-files.go
 package main
