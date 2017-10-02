@@ -12,6 +12,8 @@ Cookies are small pieces of data stored in the browser of a user and are sent to
 
 In this example we will only allow authenticated users to view our secret message on the `/secret` page. To get access to it, the will first have to visit `/login` to get a valid session cookie, which logs him in. Additionally he can visit `/logout` to revoke his access to our secret message.
 
+{{< edison >}}
+
 {{< highlight go >}}
 // sessions.go
 package main

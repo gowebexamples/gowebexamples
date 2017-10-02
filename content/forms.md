@@ -8,6 +8,8 @@ description = "This example will show how to simulate a contact form and parse t
 
 This example will show how to simulate a contact form and parse the message into a struct.
 
+{{< edison >}}
+
 {{< highlight go >}}
 // forms.go
 package main
