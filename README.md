@@ -9,6 +9,7 @@ Go Web Examples is hosted on: https://gowebexamples.com/
 There are currently tutorials and examples of the following topics:
 
 - [Hello World](https://gowebexamples.com/hello-world/)
+- [HTTP Server](https://gowebexamples.com/http-server/)
 - [Routing (using gorilla/mux)](https://gowebexamples.com/routes-using-gorilla-mux/)
 - [Templates](https://gowebexamples.com/templates/)
 - [Requests and Forms](https://gowebexamples.com/forms/)
