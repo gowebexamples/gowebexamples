@@ -21,6 +21,16 @@
     </item>
     
     <item>
+      <title>HTTP Server</title>
+      <link>https://gowebexamples.com/http-server/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gowebexamples.com/http-server/</guid>
+      <description>HTTP Server Introduction In this example you will learn how to create a basic HTTP server in Go. First, let&amp;rsquo;s talk about what our HTTP server should be capable of. A basic HTTP server has a few key jobs to take care of.
+ Process dynamic requests: Process incoming requests from users who browse the website, log into their accounts or post images. Serve static assets: Serve JavaScript, CSS and images to browsers to create a dynamic experience for the user.</description>
+    </item>
+    
+    <item>
       <title>Routing (using gorilla/mux)</title>
       <link>https://gowebexamples.com/routes-using-gorilla-mux/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -44,8 +54,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://gowebexamples.com/static-files/</guid>
-      <description> Assets and Files This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
-(adsbygoogle = window.adsbygoogle || []).push({});// static-files.go package main import &amp;quot;net/http&amp;quot; func main() { fs := http.FileServer(http.Dir(&amp;quot;assets/&amp;quot;)) http.Handle(&amp;quot;/static/&amp;quot;, http.StripPrefix(&amp;quot;/static/&amp;quot;, fs)) http.ListenAndServe(&amp;quot;:8080&amp;quot;, nil) }  $ tree assets/ assets/ └── css └── styles.css  $ go run static-files.go $ curl -s http://localhost:8080/static/css/styles.css body { background-color: black; }  </description>
+      <description>Assets and Files This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
+(adsbygoogle = window.adsbygoogle || []).push({});// static-files.go package main import &amp;#34;net/http&amp;#34; func main() { fs := http.FileServer(http.Dir(&amp;#34;assets/&amp;#34;)) http.Handle(&amp;#34;/static/&amp;#34;, http.StripPrefix(&amp;#34;/static/&amp;#34;, fs)) http.ListenAndServe(&amp;#34;:8080&amp;#34;, nil) } $ tree assets/ assets/ └── css └── styles.css $ go run static-files.go $ curl -s http://localhost:8080/static/css/styles.css body { background-color: black; }</description>
     </item>
     
     <item>
@@ -55,7 +65,7 @@
       
       <guid>https://gowebexamples.com/forms/</guid>
       <description>Forms This example will show how to simulate a contact form and parse the message into a struct.
-(adsbygoogle = window.adsbygoogle || []).push({});// forms.go package main import ( &amp;quot;html/template&amp;quot; &amp;quot;net/http&amp;quot; ) type ContactDetails struct { Email string Subject string Message string } func main() { tmpl := template.Must(template.ParseFiles(&amp;quot;forms.html&amp;quot;)) http.HandleFunc(&amp;quot;/&amp;quot;, func(w http.ResponseWriter, r *http.Request) { if r.Method != http.MethodPost { tmpl.Execute(w, nil) return } details := ContactDetails{ Email: r.</description>
+(adsbygoogle = window.adsbygoogle || []).push({});// forms.go package main import ( &amp;#34;html/template&amp;#34; &amp;#34;net/http&amp;#34; ) type ContactDetails struct { Email string Subject string Message string } func main() { tmpl := template.Must(template.ParseFiles(&amp;#34;forms.html&amp;#34;)) http.HandleFunc(&amp;#34;/&amp;#34;, func(w http.ResponseWriter, r *http.Request) { if r.Method != http.MethodPost { tmpl.Execute(w, nil) return } details := ContactDetails{ Email: r.</description>
     </item>
     
     <item>
@@ -66,7 +76,7 @@
       <guid>https://gowebexamples.com/basic-middleware/</guid>
       <description>Middleware (Basic) This example will show how to create basic logging middleware in Go.
 A middleware simply takes a http.HandlerFunc as one of its parameters, wraps it and returns a new http.HandlerFunc for the server to call.
-(adsbygoogle = window.adsbygoogle || []).push({});// basic-middleware.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;log&amp;quot; &amp;quot;net/http&amp;quot; ) func logging(f http.HandlerFunc) http.HandlerFunc { return func(w http.ResponseWriter, r *http.Request) { log.Println(r.URL.Path) f(w, r) } } func foo(w http.</description>
+(adsbygoogle = window.adsbygoogle || []).push({});// basic-middleware.go package main import ( &amp;#34;fmt&amp;#34; &amp;#34;log&amp;#34; &amp;#34;net/http&amp;#34; ) func logging(f http.HandlerFunc) http.HandlerFunc { return func(w http.ResponseWriter, r *http.Request) { log.Println(r.URL.Path) f(w, r) } } func foo(w http.</description>
     </item>
     
     <item>
@@ -98,7 +108,7 @@ In this example we will only allow authenticated users to view our secret messag
       
       <guid>https://gowebexamples.com/json/</guid>
       <description>JSON This example will show how to encode and decode JSON data using the encoding/json package.
-(adsbygoogle = window.adsbygoogle || []).push({});// json.go package main import ( &amp;quot;encoding/json&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;net/http&amp;quot; ) type User struct { Firstname string `json:&amp;quot;firstname&amp;quot;` Lastname string `json:&amp;quot;lastname&amp;quot;` Age int `json:&amp;quot;age&amp;quot;` } func main() { http.HandleFunc(&amp;quot;/decode&amp;quot;, func(w http.ResponseWriter, r *http.Request) { var user User json.NewDecoder(r.Body).Decode(&amp;amp;user) fmt.Fprintf(w, &amp;quot;%s %s is %d years old!&amp;quot;, user.</description>
+(adsbygoogle = window.adsbygoogle || []).push({});// json.go package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;net/http&amp;#34; ) type User struct { Firstname string `json:&amp;#34;firstname&amp;#34;` Lastname string `json:&amp;#34;lastname&amp;#34;` Age int `json:&amp;#34;age&amp;#34;` } func main() { http.HandleFunc(&amp;#34;/decode&amp;#34;, func(w http.ResponseWriter, r *http.Request) { var user User json.NewDecoder(r.Body).Decode(&amp;amp;user) fmt.Fprintf(w, &amp;#34;%s %s is %d years old!&amp;#34;, user.</description>
     </item>
     
     <item>
@@ -122,7 +132,7 @@ From now on, every application we write will be able to make use of this library
       <description>Password Hashing (bcrypt) This example will show how to hash passwords using bcrypt. For this we have to go get the golang bcrypt library like so:
 $ go get golang.org/x/crypto/bcrypt
 From now on, every application we write will be able to make use of this library.
-(adsbygoogle = window.adsbygoogle || []).push({});// passwords.go package main import ( &amp;quot;fmt&amp;quot; &amp;quot;golang.org/x/crypto/bcrypt&amp;quot; ) func HashPassword(password string) (string, error) { bytes, err := bcrypt.</description>
+(adsbygoogle = window.adsbygoogle || []).push({});// passwords.go package main import ( &amp;#34;fmt&amp;#34; &amp;#34;golang.org/x/crypto/bcrypt&amp;#34; ) func HashPassword(password string) (string, error) { bytes, err := bcrypt.</description>
     </item>
     
     <item>

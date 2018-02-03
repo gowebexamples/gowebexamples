@@ -13,15 +13,18 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<meta name="theme-color" content="#bb8844">
 	<style>
 		* { box-sizing: border-box; }
 		body {
 			margin: 0;
-			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			font-family: "Open Sans", sans-serif;
 			color: #212121;
 			font-size: 1.1em;
-			line-height: 1.6;
+			line-height: 1.8;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
 		}
 		.container { width: 1024px; margin: auto; display: flex; }
 		.sidebar { width: 300px; padding: 30px;  }
@@ -39,6 +42,7 @@
 		.highlight { font-size: 0.9em; }
 		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
 		a[target="_blank"]:not(.buy-on-amazon) { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		a[target="_blank"].no-icon { background: none; padding-right: 0; }
 		.links { display: flex; justify-content: space-between; }
 		a.back { text-decoration: none; }
 		a.home { text-decoration: none; }
@@ -70,6 +74,7 @@
 			.sidebar { padding-bottom: 0; }
 			.closed { display: none!important; }
 			.menu-btn { display: inline-block; }
+			.sidebar-bottom { display: none; }
 			h1 { font-size: 1.8em;  }
 			h2 { margin-top: 1em; }
 			.recommend {
@@ -106,6 +111,7 @@
 		<div class="section">
 			<div class="category">The Basics</div>
 			<div><a href="/hello-world/">Hello World</a></div>
+			<div><a href="/http-server/">HTTP Server</a></div>
 			<div><a href="/routes-using-gorilla-mux/">Routing (using gorilla/mux)</a></div>
 			<div><a href="/templates/">Templates</a></div>
 			<div><a href="/forms/">Requests &amp; Forms</a></div>
@@ -127,17 +133,18 @@
 		
 		
 	</div>
-	<div class="recommend">
-		<div class="title">Our personal recommendation:</div>
-		<strong>Go Programming Blueprints</strong>
-		<div class="recommend-img">
-			<a href="/we-recommend" target="_blank"><img src="https://images-na.ssl-images-amazon.com/images/I/51BOfTggRIL.jpg" alt="Go Programming Blueprints - Mat Ryer" /></a>
-		</div>
-		by <strong><a href="https://twitter.com/matryer">Mat Ryer</a></strong>
-		<a class="buy-on-amazon" href="/we-recommend" target="_blank">
-			Get it on<br />
-			<img src="/amazon-logo.png" />
-		</a>
+	<div class="sidebar-bottom" style="padding-top: 50px">
+		<a href="https://www.teezily.com/vim-gopher" class="no-icon" target="_blank"><img style="display: block; width: 100%;" src="/vim-gopher-shirt.jpeg" title="Golang Vim Gopher Shirt"></a>
+		<div style="text-align: center; font-size: 0.8em; text-decoration: underline"><a href="https://www.teezily.com/vim-gopher" target="_blank">Golang Vim Gopher Shirt</a></div>
+		<br>
+		<a href="https://www.teezily.com/golang-gaming-gopher" class="no-icon" target="_blank"><img style="display: block; width: 100%;" src="/gamer-gopher-shirt.jpeg" title="Golang Gamer Gopher Shirt"></a>
+		<div style="text-align: center; font-size: 0.8em; text-decoration: underline"><a href="https://www.teezily.com/golang-gaming-gopher" target="_blank">Golang Gamer Gopher Shirt</a></div>
+		<br>
+		<br>
+		<ins class="adsbygoogle"
+		style="display:block;width:160px;height:600px;margin: auto"
+		data-ad-client="ca-pub-9994791825937062"
+		data-ad-slot="8696634941"></ins>
 	</div>
 </div>
 
@@ -169,18 +176,14 @@ In this example you will see how to use the <code>gorilla/mux</code> package to 
 <p><code>gorilla/mux</code> is a package which adapts to Go&rsquo;s default HTTP router. It comes with a lot of features to increase the productivity when writing web applications.
 It is also compliant to Go&rsquo;s default request handler signature <code>func (w http.ResponseWriter, r *http.Request)</code>, so the package can be mixed and machted with other
 HTTP libraries like middleware or exisiting applications. Use the <code>go get</code> command to install the package from GitHub like so:
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>go get -u github.com/gorilla/mux
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">go get -u github.com/gorilla/mux</code></pre></div></p>
 
 <h2 id="creating-a-new-router">Creating a new Router</h2>
 
 <p>First create a new request router. The router is the main router for your web application and will later be passed as parameter to the server.
 It will receive all HTTP connections and pass it on to the request handlers you will register on it.
 You can create a new router like so:
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>r <span style="font-weight: bold">:=</span> mux.NewRouter()
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">r <span style="font-weight:bold">:=</span> mux.NewRouter()</code></pre></div></p>
 
 <h2 id="registering-a-request-handler">Registering a Request Handler</h2>
 
@@ -191,9 +194,7 @@ The only difference is, that instead of calling <code>http.HandleFunc(...)</code
 
 <p>The biggest strength of the <code>gorilla/mux</code> Router is the ability to extract segments from the request URL.
 As an example, this is a URL in your application:
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>/books/go-programming-blueprint/page/10
-</pre></div>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">/books/go-programming-blueprint/page/10</code></pre></div>
 This URL has two dynamic segments:</p>
 
 <ol>
@@ -202,100 +203,84 @@ This URL has two dynamic segments:</p>
 </ol>
 
 <p>To have a request handler match the URL mentioned above you replace the dynamic segments of with placeholders in your URL pattern like so:
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>r.HandleFunc(<span style="color: #bb8844">&quot;/books/{title}/page/{page}&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-	<span style="color: #999988; font-style: italic">// get the book</span>
-	<span style="color: #999988; font-style: italic">// navigate to the page</span>
-})
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">r.HandleFunc(<span style="color:#b84">&#34;/books/{title}/page/{page}&#34;</span>, <span style="font-weight:bold">func</span>(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+	<span style="color:#998;font-style:italic">// get the book
+</span><span style="color:#998;font-style:italic"></span>	<span style="color:#998;font-style:italic">// navigate to the page
+</span><span style="color:#998;font-style:italic"></span>})</code></pre></div></p>
 
 <p>The last thing is to get the data from these segments.
 The package comes with the function <code>mux.Vars(r)</code> which takes the <code>http.Request</code> as parameter and returns a map of the segments.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-	vars <span style="font-weight: bold">:=</span> mux.Vars(r)
-	vars[<span style="color: #bb8844">&quot;title&quot;</span>] <span style="color: #999988; font-style: italic">// the book title slug</span>
-	vars[<span style="color: #bb8844">&quot;page&quot;</span>] <span style="color: #999988; font-style: italic">// the page</span>
-}
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">func</span>(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+	vars <span style="font-weight:bold">:=</span> mux.Vars(r)
+	vars[<span style="color:#b84">&#34;title&#34;</span>] <span style="color:#998;font-style:italic">// the book title slug
+</span><span style="color:#998;font-style:italic"></span>	vars[<span style="color:#b84">&#34;page&#34;</span>] <span style="color:#998;font-style:italic">// the page
+</span><span style="color:#998;font-style:italic"></span>}</code></pre></div></p>
 
 <h2 id="setting-the-http-server-s-router">Setting the HTTP server&rsquo;s router</h2>
 
 <p>Ever wondered what the <code>nil</code> in <code>http.ListenAndServe(&quot;:80&quot;, nil)</code> ment? It is the parameter for the main router of the HTTP server.
 By default it&rsquo;s <code>nil</code>, which means to use the default router of the <code>net/http</code> package. To make use of your own router, replace the <code>nil</code>
 with the variable of your router <code>r</code>.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>http.ListenAndServe(<span style="color: #bb8844">&quot;:80&quot;</span>, r)
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">http.ListenAndServe(<span style="color:#b84">&#34;:80&#34;</span>, r)</code></pre></div></p>
 
 <h2 id="the-code-for-copy-paste">The Code (for copy/paste)</h2>
 
 <p>This is the complete code that you can use to try out the things you&rsquo;ve learned in this example.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="font-weight: bold">package</span> main
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
-<span style="font-weight: bold">import</span> (
-	<span style="color: #bb8844">&quot;fmt&quot;</span>
-	<span style="color: #bb8844">&quot;net/http&quot;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="color:#b84">&#34;fmt&#34;</span>
+	<span style="color:#b84">&#34;net/http&#34;</span>
 
-	<span style="color: #bb8844">&quot;github.com/gorilla/mux&quot;</span>
+	<span style="color:#b84">&#34;github.com/gorilla/mux&#34;</span>
 )
 
-<span style="font-weight: bold">func</span> main() {
-	r <span style="font-weight: bold">:=</span> mux.NewRouter()
-	r.HandleFunc(<span style="color: #bb8844">&quot;/books/{title}/page/{page}&quot;</span>, <span style="font-weight: bold">func</span>(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-		vars <span style="font-weight: bold">:=</span> mux.Vars(r)
-		title <span style="font-weight: bold">:=</span> vars[<span style="color: #bb8844">&quot;title&quot;</span>]
-		page <span style="font-weight: bold">:=</span> vars[<span style="color: #bb8844">&quot;page&quot;</span>]
+<span style="font-weight:bold">func</span> main() {
+	r <span style="font-weight:bold">:=</span> mux.NewRouter()
+	r.HandleFunc(<span style="color:#b84">&#34;/books/{title}/page/{page}&#34;</span>, <span style="font-weight:bold">func</span>(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+		vars <span style="font-weight:bold">:=</span> mux.Vars(r)
+		title <span style="font-weight:bold">:=</span> vars[<span style="color:#b84">&#34;title&#34;</span>]
+		page <span style="font-weight:bold">:=</span> vars[<span style="color:#b84">&#34;page&#34;</span>]
 
-		fmt.Fprintf(w, <span style="color: #bb8844">&quot;You&#39;ve requested the book: %s on page %s\n&quot;</span>, title, page)
+		fmt.Fprintf(w, <span style="color:#b84">&#34;You&#39;ve requested the book: %s on page %s\n&#34;</span>, title, page)
 	})
 
-	http.ListenAndServe(<span style="color: #bb8844">&quot;:80&quot;</span>, r)
-}
-</pre></div>
-</p>
+	http.ListenAndServe(<span style="color:#b84">&#34;:80&#34;</span>, r)
+}</code></pre></div></p>
 
 <h2 id="features-of-the-gorilla-mux-router">Features of the <code>gorilla/mux</code> Router</h2>
 
 <h3 id="methods">Methods</h3>
 
 <p>Restrict the request handler to specific HTTP methods.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>r.HandleFunc(<span style="color: #bb8844">&quot;/books/{title}&quot;</span>, CreateBook).Methods(<span style="color: #bb8844">&quot;POST&quot;</span>)
-r.HandleFunc(<span style="color: #bb8844">&quot;/books/{title}&quot;</span>, ReadBook).Methods(<span style="color: #bb8844">&quot;GET&quot;</span>)
-r.HandleFunc(<span style="color: #bb8844">&quot;/books/{title}&quot;</span>, UpdateBook).Methods(<span style="color: #bb8844">&quot;PUT&quot;</span>)
-r.HandleFunc(<span style="color: #bb8844">&quot;/books/{title}&quot;</span>, DeleteBook).Methods(<span style="color: #bb8844">&quot;DELETE&quot;</span>)
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">r.HandleFunc(<span style="color:#b84">&#34;/books/{title}&#34;</span>, CreateBook).Methods(<span style="color:#b84">&#34;POST&#34;</span>)
+r.HandleFunc(<span style="color:#b84">&#34;/books/{title}&#34;</span>, ReadBook).Methods(<span style="color:#b84">&#34;GET&#34;</span>)
+r.HandleFunc(<span style="color:#b84">&#34;/books/{title}&#34;</span>, UpdateBook).Methods(<span style="color:#b84">&#34;PUT&#34;</span>)
+r.HandleFunc(<span style="color:#b84">&#34;/books/{title}&#34;</span>, DeleteBook).Methods(<span style="color:#b84">&#34;DELETE&#34;</span>)</code></pre></div></p>
 
 <h3 id="hostnames-subdomains">Hostnames &amp; Subdomains</h3>
 
 <p>Restrict the request handler to specific hostnames or subdomains.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>r.HandleFunc(<span style="color: #bb8844">&quot;/books/{title}&quot;</span>, BookHandler).Host(<span style="color: #bb8844">&quot;www.mybookstore.com&quot;</span>)
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">r.HandleFunc(<span style="color:#b84">&#34;/books/{title}&#34;</span>, BookHandler).Host(<span style="color:#b84">&#34;www.mybookstore.com&#34;</span>)</code></pre></div></p>
 
 <h3 id="schemes">Schemes</h3>
 
 <p>Restrict the request handler to http/https.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>r.HandleFunc(<span style="color: #bb8844">&quot;/secure&quot;</span>, SecureHandler).Schemes(<span style="color: #bb8844">&quot;https&quot;</span>)
-r.HandleFunc(<span style="color: #bb8844">&quot;/insecure&quot;</span>, InsecureHandler).Schemes(<span style="color: #bb8844">&quot;http&quot;</span>)
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">r.HandleFunc(<span style="color:#b84">&#34;/secure&#34;</span>, SecureHandler).Schemes(<span style="color:#b84">&#34;https&#34;</span>)
+r.HandleFunc(<span style="color:#b84">&#34;/insecure&#34;</span>, InsecureHandler).Schemes(<span style="color:#b84">&#34;http&#34;</span>)</code></pre></div></p>
 
 <h3 id="path-prefixes-subrouters">Path Prefixes &amp; Subrouters</h3>
 
 <p>Restrict the request handler to specific path prefixes.
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>bookrouter <span style="font-weight: bold">:=</span> r.PathPrefix(<span style="color: #bb8844">&quot;/books&quot;</span>).Subrouter()
-bookrouter.HandleFunc(<span style="color: #bb8844">&quot;/&quot;</span>, AllBooks)
-bookrouter.HandleFunc(<span style="color: #bb8844">&quot;/{title}&quot;</span>, GetBook)
-</pre></div>
-</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">bookrouter <span style="font-weight:bold">:=</span> r.PathPrefix(<span style="color:#b84">&#34;/books&#34;</span>).Subrouter()
+bookrouter.HandleFunc(<span style="color:#b84">&#34;/&#34;</span>, AllBooks)
+bookrouter.HandleFunc(<span style="color:#b84">&#34;/{title}&#34;</span>, GetBook)</code></pre></div></p>
 
 			<div class="footer">
 		<div class="links">
 			
 			
-			<a title="Hello World" class="back" href="https://gowebexamples.com/hello-world/">← back</a>
+			<a title="HTTP Server" class="back" href="https://gowebexamples.com/http-server/">← back</a>
 			
 			<a title="Go Web Examples" class="home" href="/">home</a>
 			

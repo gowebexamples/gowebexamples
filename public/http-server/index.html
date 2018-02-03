@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	
-	<title>Go Web Examples: JSON</title>
+	<title>Go Web Examples: HTTP Server</title>
 	
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="google-site-verification" content="Ztd8vuEnIdHM7XE9qXXPgfoVjq9FWnHtK8Y8la08CRM" />
-	<meta name="description" content="This example will show how to encode and decode JSON data using the encoding/json package in the Go programming language." />
+	<meta name="description" content="This example shows how to use the `net/http` package to create a HTTP server with handlers and static files." />
 	<link rel="alternate" type="application/rss+xml" href="/index.xml" />
-	<link rel="canonical" href="https://gowebexamples.com/json/">
+	<link rel="canonical" href="https://gowebexamples.com/http-server/">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -151,9 +151,19 @@
 	<div class="content">
 		
 
-<h1 id="json">JSON</h1>
+<h1 id="http-server">HTTP Server</h1>
 
-<p>This example will show how to encode and decode JSON data using the <code>encoding/json</code> package.</p>
+<h2 id="introduction">Introduction</h2>
+
+<p>In this example you will learn how to create a basic HTTP server in Go.
+First, let&rsquo;s talk about what our HTTP server should be capable of.
+A basic HTTP server has a few key jobs to take care of.</p>
+
+<ul>
+<li><em>Process dynamic requests:</em> Process incoming requests from users who browse the website, log into their accounts or post images.</li>
+<li><em>Serve static assets:</em> Serve JavaScript, CSS and images to browsers to create a dynamic experience for the user.</li>
+<li><em>Accept connections:</em> The HTTP Server must listen on a specific port to be able to accept connections from the internet.</li>
+</ul>
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -166,58 +176,65 @@
 </script>
 
 
-<p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#998;font-style:italic">// json.go
-</span><span style="color:#998;font-style:italic"></span><span style="font-weight:bold">package</span> main
+<h2 id="process-dynamic-requests">Process dynamic requests</h2>
+
+<p>The <code>net/http</code> package contains all utilities needed to accept requests and handle them dynamically.
+We can register a new handler with the <code>http.HandleFunc</code> function. It&rsquo;s first parameter takes a path to match and a function to execute as a second.
+In this example: When someone browses your websites (<code>http://example.com/</code>), he or she will be greeted with a nice message.</p>
+
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">http.HandleFunc(<span style="color:#b84">&#34;/&#34;</span>, <span style="font-weight:bold">func</span> (w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+	fmt.Fprint(w, <span style="color:#b84">&#34;Welcome to my website!&#34;</span>)
+})</code></pre></div>
+
+<p>For the dynamic aspect, the <code>http.Request</code> contains all information about the request and it&rsquo;s parameters.
+You can read GET parameters with <code>r.URL.Query().Get(&quot;token&quot;)</code> or POST parameters (fields from an HTML form) with <code>r.FormValue(&quot;email&quot;)</code>.</p>
+
+<h2 id="serving-static-assets">Serving static assets</h2>
+
+<p>To serve static assets like JavaScript, CSS and images, we use the inbuilt <code>http.FileServer</code> and point it to a url path.
+For the file server to work properly it needs to know, where to serve files from. We can do this like so:
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fs <span style="font-weight:bold">:=</span> http.FileServer(http.Dir(<span style="color:#b84">&#34;static/&#34;</span>))</code></pre></div></p>
+
+<p>Once our file server is in place, we just need to point a url path at it, just like we did with the dynamic requests.
+One thing to note: In order to serve files correctly, we need to strip away a part of the url path. Usually this is the name of the directory our files live in.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">http.Handle(<span style="color:#b84">&#34;/static/&#34;</span>, http.StripPrefix(<span style="color:#b84">&#34;/static/&#34;</span>, fs))</code></pre></div></p>
+
+<h2 id="accept-connections">Accept connections</h2>
+
+<p>The last thing to finish off our basic HTTP server is, to listen on a port to accept connections from the internet.
+As you can guess, Go has also an inbuilt HTTP server, we can start faily quickly. Once started, you can view your HTTP server in your <a href="http://localhost/" target="_blank">browser.</a>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">http.ListenAndServe(<span style="color:#b84">&#34;:80&#34;</span>, <span style="font-weight:bold">nil</span>)</code></pre></div></p>
+
+<h2 id="the-code-for-copy-paste">The Code (for copy/paste)</h2>
+
+<p>This is the complete code that you can use to try out the things you&rsquo;ve learned in this example.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="font-weight:bold">package</span> main
 
 <span style="font-weight:bold">import</span> (
-	<span style="color:#b84">&#34;encoding/json&#34;</span>
 	<span style="color:#b84">&#34;fmt&#34;</span>
 	<span style="color:#b84">&#34;net/http&#34;</span>
 )
 
-<span style="font-weight:bold">type</span> User <span style="font-weight:bold">struct</span> {
-	Firstname <span style="color:#458;font-weight:bold">string</span> <span style="color:#b84">`json:&#34;firstname&#34;`</span>
-	Lastname  <span style="color:#458;font-weight:bold">string</span> <span style="color:#b84">`json:&#34;lastname&#34;`</span>
-	Age       <span style="color:#458;font-weight:bold">int</span>    <span style="color:#b84">`json:&#34;age&#34;`</span>
-}
-
 <span style="font-weight:bold">func</span> main() {
-	http.HandleFunc(<span style="color:#b84">&#34;/decode&#34;</span>, <span style="font-weight:bold">func</span>(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
-		<span style="font-weight:bold">var</span> user User
-		json.NewDecoder(r.Body).Decode(<span style="font-weight:bold">&amp;</span>user)
-
-		fmt.Fprintf(w, <span style="color:#b84">&#34;%s %s is %d years old!&#34;</span>, user.Firstname, user.Lastname, user.Age)
+	http.HandleFunc(<span style="color:#b84">&#34;/&#34;</span>, <span style="font-weight:bold">func</span> (w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+		fmt.Fprintf(w, <span style="color:#b84">&#34;Welcome to my website!&#34;</span>)
 	})
 
-	http.HandleFunc(<span style="color:#b84">&#34;/encode&#34;</span>, <span style="font-weight:bold">func</span>(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
-		peter <span style="font-weight:bold">:=</span> User{
-			Firstname: <span style="color:#b84">&#34;John&#34;</span>,
-			Lastname:  <span style="color:#b84">&#34;Doe&#34;</span>,
-			Age:       <span style="color:#099">25</span>,
-		}
+	fs <span style="font-weight:bold">:=</span> http.FileServer(http.Dir(<span style="color:#b84">&#34;static/&#34;</span>))
+	http.Handle(<span style="color:#b84">&#34;/static/&#34;</span>, http.StripPrefix(<span style="color:#b84">&#34;/static/&#34;</span>, fs))
 
-		json.NewEncoder(w).Encode(peter)
-	})
-
-	http.ListenAndServe(<span style="color:#b84">&#34;:8080&#34;</span>, <span style="font-weight:bold">nil</span>)
-}</code></pre></div>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ go run json.go
-
-$ curl -s -XPOST -d&#39;{&#34;firstname&#34;:&#34;Donald&#34;,&#34;lastname&#34;:&#34;Trump&#34;,&#34;age&#34;:70}&#39; http://localhost:8080/decode
-Donald Trump is 70 years old!
-
-$ curl -s http://localhost:8080/encode
-{&#34;firstname&#34;:&#34;John&#34;,&#34;lastname&#34;:&#34;Doe&#34;,&#34;age&#34;:25}</code></pre></div></p>
+	http.ListenAndServe(<span style="color:#b84">&#34;:80&#34;</span>, <span style="font-weight:bold">nil</span>)
+}</code></pre></div></p>
 
 			<div class="footer">
 		<div class="links">
 			
 			
-			<a title="Sessions" class="back" href="https://gowebexamples.com/sessions/">← back</a>
+			<a title="Hello World" class="back" href="https://gowebexamples.com/hello-world/">← back</a>
 			
 			<a title="Go Web Examples" class="home" href="/">home</a>
 			
-			<a title="Websockets" class="forward" href="https://gowebexamples.com/websockets/">forward →</a>
+			<a title="Routing (using gorilla/mux)" class="forward" href="https://gowebexamples.com/routes-using-gorilla-mux/">forward →</a>
 			
 			
 		</div>

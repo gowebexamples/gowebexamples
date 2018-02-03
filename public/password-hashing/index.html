@@ -13,15 +13,18 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<meta name="theme-color" content="#bb8844">
 	<style>
 		* { box-sizing: border-box; }
 		body {
 			margin: 0;
-			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			font-family: "Open Sans", sans-serif;
 			color: #212121;
 			font-size: 1.1em;
-			line-height: 1.6;
+			line-height: 1.8;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
 		}
 		.container { width: 1024px; margin: auto; display: flex; }
 		.sidebar { width: 300px; padding: 30px;  }
@@ -39,6 +42,7 @@
 		.highlight { font-size: 0.9em; }
 		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
 		a[target="_blank"]:not(.buy-on-amazon) { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		a[target="_blank"].no-icon { background: none; padding-right: 0; }
 		.links { display: flex; justify-content: space-between; }
 		a.back { text-decoration: none; }
 		a.home { text-decoration: none; }
@@ -70,6 +74,7 @@
 			.sidebar { padding-bottom: 0; }
 			.closed { display: none!important; }
 			.menu-btn { display: inline-block; }
+			.sidebar-bottom { display: none; }
 			h1 { font-size: 1.8em;  }
 			h2 { margin-top: 1em; }
 			.recommend {
@@ -106,6 +111,7 @@
 		<div class="section">
 			<div class="category">The Basics</div>
 			<div><a href="/hello-world/">Hello World</a></div>
+			<div><a href="/http-server/">HTTP Server</a></div>
 			<div><a href="/routes-using-gorilla-mux/">Routing (using gorilla/mux)</a></div>
 			<div><a href="/templates/">Templates</a></div>
 			<div><a href="/forms/">Requests &amp; Forms</a></div>
@@ -127,17 +133,18 @@
 		
 		
 	</div>
-	<div class="recommend">
-		<div class="title">Our personal recommendation:</div>
-		<strong>Go Programming Blueprints</strong>
-		<div class="recommend-img">
-			<a href="/we-recommend" target="_blank"><img src="https://images-na.ssl-images-amazon.com/images/I/51BOfTggRIL.jpg" alt="Go Programming Blueprints - Mat Ryer" /></a>
-		</div>
-		by <strong><a href="https://twitter.com/matryer">Mat Ryer</a></strong>
-		<a class="buy-on-amazon" href="/we-recommend" target="_blank">
-			Get it on<br />
-			<img src="/amazon-logo.png" />
-		</a>
+	<div class="sidebar-bottom" style="padding-top: 50px">
+		<a href="https://www.teezily.com/vim-gopher" class="no-icon" target="_blank"><img style="display: block; width: 100%;" src="/vim-gopher-shirt.jpeg" title="Golang Vim Gopher Shirt"></a>
+		<div style="text-align: center; font-size: 0.8em; text-decoration: underline"><a href="https://www.teezily.com/vim-gopher" target="_blank">Golang Vim Gopher Shirt</a></div>
+		<br>
+		<a href="https://www.teezily.com/golang-gaming-gopher" class="no-icon" target="_blank"><img style="display: block; width: 100%;" src="/gamer-gopher-shirt.jpeg" title="Golang Gamer Gopher Shirt"></a>
+		<div style="text-align: center; font-size: 0.8em; text-decoration: underline"><a href="https://www.teezily.com/golang-gaming-gopher" target="_blank">Golang Gamer Gopher Shirt</a></div>
+		<br>
+		<br>
+		<ins class="adsbygoogle"
+		style="display:block;width:160px;height:600px;margin: auto"
+		data-ad-client="ca-pub-9994791825937062"
+		data-ad-slot="8696634941"></ins>
 	</div>
 </div>
 
@@ -164,43 +171,39 @@ For this we have to <code>go get</code> the golang bcrypt library like so:</p>
 </script>
 
 
-<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// passwords.go</span>
-<span style="font-weight: bold">package</span> main
+<p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#998;font-style:italic">// passwords.go
+</span><span style="color:#998;font-style:italic"></span><span style="font-weight:bold">package</span> main
 
-<span style="font-weight: bold">import</span> (
-	<span style="color: #bb8844">&quot;fmt&quot;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="color:#b84">&#34;fmt&#34;</span>
 
-	<span style="color: #bb8844">&quot;golang.org/x/crypto/bcrypt&quot;</span>
+	<span style="color:#b84">&#34;golang.org/x/crypto/bcrypt&#34;</span>
 )
 
-<span style="font-weight: bold">func</span> HashPassword(password <span style="color: #445588; font-weight: bold">string</span>) (<span style="color: #445588; font-weight: bold">string</span>, <span style="color: #445588; font-weight: bold">error</span>) {
-	bytes, err <span style="font-weight: bold">:=</span> bcrypt.GenerateFromPassword([]<span style="color: #999999">byte</span>(password), <span style="color: #009999">14</span>)
-	<span style="font-weight: bold">return</span> <span style="color: #999999">string</span>(bytes), err
+<span style="font-weight:bold">func</span> HashPassword(password <span style="color:#458;font-weight:bold">string</span>) (<span style="color:#458;font-weight:bold">string</span>, <span style="color:#458;font-weight:bold">error</span>) {
+	bytes, err <span style="font-weight:bold">:=</span> bcrypt.GenerateFromPassword([]<span style="color:#999">byte</span>(password), <span style="color:#099">14</span>)
+	<span style="font-weight:bold">return</span> <span style="color:#999">string</span>(bytes), err
 }
 
-<span style="font-weight: bold">func</span> CheckPasswordHash(password, hash <span style="color: #445588; font-weight: bold">string</span>) <span style="color: #445588; font-weight: bold">bool</span> {
-	err <span style="font-weight: bold">:=</span> bcrypt.CompareHashAndPassword([]<span style="color: #999999">byte</span>(hash), []<span style="color: #999999">byte</span>(password))
-	<span style="font-weight: bold">return</span> err <span style="font-weight: bold">==</span> <span style="font-weight: bold">nil</span>
+<span style="font-weight:bold">func</span> CheckPasswordHash(password, hash <span style="color:#458;font-weight:bold">string</span>) <span style="color:#458;font-weight:bold">bool</span> {
+	err <span style="font-weight:bold">:=</span> bcrypt.CompareHashAndPassword([]<span style="color:#999">byte</span>(hash), []<span style="color:#999">byte</span>(password))
+	<span style="font-weight:bold">return</span> err <span style="font-weight:bold">==</span> <span style="font-weight:bold">nil</span>
 }
 
-<span style="font-weight: bold">func</span> main() {
-	password <span style="font-weight: bold">:=</span> <span style="color: #bb8844">&quot;secret&quot;</span>
-	hash, _ <span style="font-weight: bold">:=</span> HashPassword(password) <span style="color: #999988; font-style: italic">// ignore error for the sake of simplicity</span>
+<span style="font-weight:bold">func</span> main() {
+	password <span style="font-weight:bold">:=</span> <span style="color:#b84">&#34;secret&#34;</span>
+	hash, _ <span style="font-weight:bold">:=</span> HashPassword(password) <span style="color:#998;font-style:italic">// ignore error for the sake of simplicity
+</span><span style="color:#998;font-style:italic"></span>
+	fmt.Println(<span style="color:#b84">&#34;Password:&#34;</span>, password)
+	fmt.Println(<span style="color:#b84">&#34;Hash:    &#34;</span>, hash)
 
-	fmt.Println(<span style="color: #bb8844">&quot;Password:&quot;</span>, password)
-	fmt.Println(<span style="color: #bb8844">&quot;Hash:    &quot;</span>, hash)
-
-	match <span style="font-weight: bold">:=</span> CheckPasswordHash(password, hash)
-	fmt.Println(<span style="color: #bb8844">&quot;Match:   &quot;</span>, match)
-}
-</pre></div>
-
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run passwords.go
-<span style="color: #888888">Password: secret</span>
-<span style="color: #888888">Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK</span>
-<span style="color: #888888">Match:    true</span>
-</pre></div>
-</p>
+	match <span style="font-weight:bold">:=</span> CheckPasswordHash(password, hash)
+	fmt.Println(<span style="color:#b84">&#34;Match:   &#34;</span>, match)
+}</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ go run passwords.go
+Password: secret
+Hash:     $2a$14$ajq8Q7fbtFRQvXpdCq7Jcuy.Rx1h/L4J60Otx.gyNLbAYctGMJ9tK
+Match:    true</code></pre></div></p>
 
 			<div class="footer">
 		<div class="links">

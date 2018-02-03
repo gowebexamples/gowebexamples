@@ -13,15 +13,18 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	<meta name="theme-color" content="#bb8844">
 	<style>
 		* { box-sizing: border-box; }
 		body {
 			margin: 0;
-			font-family: -apple-system, "San Francisco", "Helvetica Neue", "Noto",  "Roboto", "Calibri Light", sans-serif;
+			font-family: "Open Sans", sans-serif;
 			color: #212121;
 			font-size: 1.1em;
-			line-height: 1.6;
+			line-height: 1.8;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
 		}
 		.container { width: 1024px; margin: auto; display: flex; }
 		.sidebar { width: 300px; padding: 30px;  }
@@ -39,6 +42,7 @@
 		.highlight { font-size: 0.9em; }
 		.demo pre { background-color: white; border: none; margin: 1em 0 0 0; padding: 0; }
 		a[target="_blank"]:not(.buy-on-amazon) { background: url(/link.svg) right top/9px no-repeat; padding-right: 12px; }
+		a[target="_blank"].no-icon { background: none; padding-right: 0; }
 		.links { display: flex; justify-content: space-between; }
 		a.back { text-decoration: none; }
 		a.home { text-decoration: none; }
@@ -70,6 +74,7 @@
 			.sidebar { padding-bottom: 0; }
 			.closed { display: none!important; }
 			.menu-btn { display: inline-block; }
+			.sidebar-bottom { display: none; }
 			h1 { font-size: 1.8em;  }
 			h2 { margin-top: 1em; }
 			.recommend {
@@ -106,6 +111,7 @@
 		<div class="section">
 			<div class="category">The Basics</div>
 			<div><a href="/hello-world/">Hello World</a></div>
+			<div><a href="/http-server/">HTTP Server</a></div>
 			<div><a href="/routes-using-gorilla-mux/">Routing (using gorilla/mux)</a></div>
 			<div><a href="/templates/">Templates</a></div>
 			<div><a href="/forms/">Requests &amp; Forms</a></div>
@@ -127,17 +133,18 @@
 		
 		
 	</div>
-	<div class="recommend">
-		<div class="title">Our personal recommendation:</div>
-		<strong>Go Programming Blueprints</strong>
-		<div class="recommend-img">
-			<a href="/we-recommend" target="_blank"><img src="https://images-na.ssl-images-amazon.com/images/I/51BOfTggRIL.jpg" alt="Go Programming Blueprints - Mat Ryer" /></a>
-		</div>
-		by <strong><a href="https://twitter.com/matryer">Mat Ryer</a></strong>
-		<a class="buy-on-amazon" href="/we-recommend" target="_blank">
-			Get it on<br />
-			<img src="/amazon-logo.png" />
-		</a>
+	<div class="sidebar-bottom" style="padding-top: 50px">
+		<a href="https://www.teezily.com/vim-gopher" class="no-icon" target="_blank"><img style="display: block; width: 100%;" src="/vim-gopher-shirt.jpeg" title="Golang Vim Gopher Shirt"></a>
+		<div style="text-align: center; font-size: 0.8em; text-decoration: underline"><a href="https://www.teezily.com/vim-gopher" target="_blank">Golang Vim Gopher Shirt</a></div>
+		<br>
+		<a href="https://www.teezily.com/golang-gaming-gopher" class="no-icon" target="_blank"><img style="display: block; width: 100%;" src="/gamer-gopher-shirt.jpeg" title="Golang Gamer Gopher Shirt"></a>
+		<div style="text-align: center; font-size: 0.8em; text-decoration: underline"><a href="https://www.teezily.com/golang-gaming-gopher" target="_blank">Golang Gamer Gopher Shirt</a></div>
+		<br>
+		<br>
+		<ins class="adsbygoogle"
+		style="display:block;width:160px;height:600px;margin: auto"
+		data-ad-client="ca-pub-9994791825937062"
+		data-ad-slot="8696634941"></ins>
 	</div>
 </div>
 
@@ -163,75 +170,71 @@
 </script>
 
 
-<p><div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #999988; font-style: italic">// sessions.go</span>
-<span style="font-weight: bold">package</span> main
+<p><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#998;font-style:italic">// sessions.go
+</span><span style="color:#998;font-style:italic"></span><span style="font-weight:bold">package</span> main
 
-<span style="font-weight: bold">import</span> (
-	<span style="color: #bb8844">&quot;fmt&quot;</span>
-	<span style="color: #bb8844">&quot;net/http&quot;</span>
+<span style="font-weight:bold">import</span> (
+	<span style="color:#b84">&#34;fmt&#34;</span>
+	<span style="color:#b84">&#34;net/http&#34;</span>
 
-	<span style="color: #bb8844">&quot;github.com/gorilla/sessions&quot;</span>
+	<span style="color:#b84">&#34;github.com/gorilla/sessions&#34;</span>
 )
 
-<span style="font-weight: bold">var</span> (
-	<span style="color: #999988; font-style: italic">// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)</span>
-	key = []<span style="color: #999999">byte</span>(<span style="color: #bb8844">&quot;super-secret-key&quot;</span>)
+<span style="font-weight:bold">var</span> (
+	<span style="color:#998;font-style:italic">// key must be 16, 24 or 32 bytes long (AES-128, AES-192 or AES-256)
+</span><span style="color:#998;font-style:italic"></span>	key = []<span style="color:#999">byte</span>(<span style="color:#b84">&#34;super-secret-key&#34;</span>)
 	store = sessions.NewCookieStore(key)
 )
 
-<span style="font-weight: bold">func</span> secret(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-	session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
+<span style="font-weight:bold">func</span> secret(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+	session, _ <span style="font-weight:bold">:=</span> store.Get(r, <span style="color:#b84">&#34;cookie-name&#34;</span>)
 
-	<span style="color: #999988; font-style: italic">// Check if user is authenticated</span>
-	<span style="font-weight: bold">if</span> auth, ok <span style="font-weight: bold">:=</span> session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>].(<span style="color: #445588; font-weight: bold">bool</span>); !ok <span style="font-weight: bold">||</span> !auth {
-		http.Error(w, <span style="color: #bb8844">&quot;Forbidden&quot;</span>, http.StatusForbidden)
-		<span style="font-weight: bold">return</span>
+	<span style="color:#998;font-style:italic">// Check if user is authenticated
+</span><span style="color:#998;font-style:italic"></span>	<span style="font-weight:bold">if</span> auth, ok <span style="font-weight:bold">:=</span> session.Values[<span style="color:#b84">&#34;authenticated&#34;</span>].(<span style="color:#458;font-weight:bold">bool</span>); !ok <span style="font-weight:bold">||</span> !auth {
+		http.Error(w, <span style="color:#b84">&#34;Forbidden&#34;</span>, http.StatusForbidden)
+		<span style="font-weight:bold">return</span>
 	}
 
-	<span style="color: #999988; font-style: italic">// Print secret message</span>
-	fmt.Fprintln(w, <span style="color: #bb8844">&quot;The cake is a lie!&quot;</span>)
+	<span style="color:#998;font-style:italic">// Print secret message
+</span><span style="color:#998;font-style:italic"></span>	fmt.Fprintln(w, <span style="color:#b84">&#34;The cake is a lie!&#34;</span>)
 }
 
-<span style="font-weight: bold">func</span> login(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-	session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
+<span style="font-weight:bold">func</span> login(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+	session, _ <span style="font-weight:bold">:=</span> store.Get(r, <span style="color:#b84">&#34;cookie-name&#34;</span>)
 
-	<span style="color: #999988; font-style: italic">// Authentication goes here</span>
-	<span style="color: #999988; font-style: italic">// ...</span>
-
-	<span style="color: #999988; font-style: italic">// Set user as authenticated</span>
-	session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>] = <span style="font-weight: bold">true</span>
+	<span style="color:#998;font-style:italic">// Authentication goes here
+</span><span style="color:#998;font-style:italic"></span>	<span style="color:#998;font-style:italic">// ...
+</span><span style="color:#998;font-style:italic"></span>
+	<span style="color:#998;font-style:italic">// Set user as authenticated
+</span><span style="color:#998;font-style:italic"></span>	session.Values[<span style="color:#b84">&#34;authenticated&#34;</span>] = <span style="font-weight:bold">true</span>
 	session.Save(r, w)
 }
 
-<span style="font-weight: bold">func</span> logout(w http.ResponseWriter, r <span style="font-weight: bold">*</span>http.Request) {
-	session, _ <span style="font-weight: bold">:=</span> store.Get(r, <span style="color: #bb8844">&quot;cookie-name&quot;</span>)
+<span style="font-weight:bold">func</span> logout(w http.ResponseWriter, r <span style="font-weight:bold">*</span>http.Request) {
+	session, _ <span style="font-weight:bold">:=</span> store.Get(r, <span style="color:#b84">&#34;cookie-name&#34;</span>)
 
-	<span style="color: #999988; font-style: italic">// Revoke users authentication</span>
-	session.Values[<span style="color: #bb8844">&quot;authenticated&quot;</span>] = <span style="font-weight: bold">false</span>
+	<span style="color:#998;font-style:italic">// Revoke users authentication
+</span><span style="color:#998;font-style:italic"></span>	session.Values[<span style="color:#b84">&#34;authenticated&#34;</span>] = <span style="font-weight:bold">false</span>
 	session.Save(r, w)
 }
 
-<span style="font-weight: bold">func</span> main() {
-	http.HandleFunc(<span style="color: #bb8844">&quot;/secret&quot;</span>, secret)
-	http.HandleFunc(<span style="color: #bb8844">&quot;/login&quot;</span>, login)
-	http.HandleFunc(<span style="color: #bb8844">&quot;/logout&quot;</span>, logout)
+<span style="font-weight:bold">func</span> main() {
+	http.HandleFunc(<span style="color:#b84">&#34;/secret&#34;</span>, secret)
+	http.HandleFunc(<span style="color:#b84">&#34;/login&#34;</span>, login)
+	http.HandleFunc(<span style="color:#b84">&#34;/logout&#34;</span>, logout)
 
-	http.ListenAndServe(<span style="color: #bb8844">&quot;:8080&quot;</span>, <span style="font-weight: bold">nil</span>)
-}
-</pre></div>
+	http.ListenAndServe(<span style="color:#b84">&#34;:8080&#34;</span>, <span style="font-weight:bold">nil</span>)
+}</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">$ go run sessions.go
 
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #555555">$</span> go run sessions.go
+$ curl -s http://localhost:8080/secret
+Forbidden
 
-<span style="color: #555555">$</span> curl -s http://localhost:8080/secret
-<span style="color: #888888">Forbidden</span>
+$ curl -s -I http://localhost:8080/login
+Set-Cookie: cookie-name=MTQ4NzE5Mz...
 
-<span style="color: #555555">$</span> curl -s -I http://localhost:8080/login
-<span style="color: #888888">Set-Cookie: cookie-name=MTQ4NzE5Mz...</span>
-
-<span style="color: #555555">$</span> curl -s --cookie <span style="color: #bb8844">&quot;cookie-name=MTQ4NzE5Mz...&quot;</span> http://localhost:8080/secret
-<span style="color: #888888">The cake is a lie!</span>
-</pre></div>
-</p>
+$ curl -s --cookie &#34;cookie-name=MTQ4NzE5Mz...&#34; http://localhost:8080/secret
+The cake is a lie!</code></pre></div></p>
 
 			<div class="footer">
 		<div class="links">
