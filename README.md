@@ -35,6 +35,14 @@ $ cd gowebexamples
 $ hugo
 ```
 
+## Running
+
+Start a server with the [LiveReload](https://gohugo.io/getting-started/usage/#livereload) enabled:
+
+```console
+$ hugo server
+```
+
 ## Thanks
 
 Thanks to [Go By Example](https://gobyexample.com/) for the inspiration to this project.
