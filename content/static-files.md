@@ -1,10 +1,10 @@
 +++
 weight = 4
-title = "Assets and Files"
+title = "Assets & Files"
 description = "This example will show how to serve static files like CSS or JS from a specific directory using the http.FileServer in the Go programming language."
 +++
 
-# Assets and Files
+# Assets & Files
 
 This example will show how to serve static files like CSSs, JavaScripts or images from a specific directory.
 
