@@ -31,7 +31,7 @@ data := TodoPageData{
 }
 {{< / highlight >}}
 {{< highlight html >}}
-<h1>{{.PageTitle}}<h1>
+<h1>{{.PageTitle}}</h1>
 <ul>
     {{range .Todos}}
         {{if .Done}}
@@ -117,7 +117,7 @@ func main() {
 }
 {{< / highlight >}}
 {{< highlight html >}}
-<h1>{{.PageTitle}}<h1>
+<h1>{{.PageTitle}}</h1>
 <ul>
     {{range .Todos}}
         {{if .Done}}
