@@ -33,10 +33,10 @@ For the dynamic aspect, the `http.Request` contains all information about the re
 You can read GET parameters with `r.URL.Query().Get("token")` or POST parameters (fields from an HTML form) with `r.FormValue("email")`.
 
 ## Serving static assets
-To serve static assets like JavaScript, CSS and images, we use the inbuilt `http.FileServer` and point it to a url path.
-For the file server to work properly it needs to know, where to serve files from. We can do this like so:
+To serve static assets like JavaScript, CSS and images, we use the inbuilt `http.FileServer` and point it to the appropriate folder within your webserver's filesystem.
+We can do this like so:
 {{< highlight go >}}
-fs := http.FileServer(http.Dir("static/"))
+fs := http.FileServer(http.Dir("/var/www/html/static/"))
 {{< / highlight >}}
 
 Once our file server is in place, we just need to point a url path at it, just like we did with the dynamic requests.
@@ -67,7 +67,7 @@ func main() {
 		fmt.Fprintf(w, "Welcome to my website!")
 	})
 
-	fs := http.FileServer(http.Dir("static/"))
+	fs := http.FileServer(http.Dir("/var/www/html/static/"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.ListenAndServe(":80", nil)

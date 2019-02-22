@@ -197,9 +197,9 @@ You can read GET parameters with <code>r.URL.Query().Get(&quot;token&quot;)</cod
 
 <h2 id="serving-static-assets">Serving static assets</h2>
 
-<p>To serve static assets like JavaScript, CSS and images, we use the inbuilt <code>http.FileServer</code> and point it to a url path.
-For the file server to work properly it needs to know, where to serve files from. We can do this like so:
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fs <span style="font-weight:bold">:=</span> http.FileServer(http.Dir(<span style="color:#b84">&#34;static/&#34;</span>))</code></pre></div></p>
+<p>To serve static assets like JavaScript, CSS and images, we use the inbuilt <code>http.FileServer</code> and point it to the appropriate folder within your webserver's filesystem.
+We can do this like so:
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">fs <span style="font-weight:bold">:=</span> http.FileServer(http.Dir(<span style="color:#b84">&#34;/var/www/html/static/&#34;</span>))</code></pre></div></p>
 
 <p>Once our file server is in place, we just need to point a url path at it, just like we did with the dynamic requests.
 One thing to note: In order to serve files correctly, we need to strip away a part of the url path. Usually this is the name of the directory our files live in.
@@ -226,7 +226,7 @@ As you can guess, Go has also an inbuilt HTTP server, we can start faily quickly
 		fmt.Fprintf(w, <span style="color:#b84">&#34;Welcome to my website!&#34;</span>)
 	})
 
-	fs <span style="font-weight:bold">:=</span> http.FileServer(http.Dir(<span style="color:#b84">&#34;static/&#34;</span>))
+	fs <span style="font-weight:bold">:=</span> http.FileServer(http.Dir(<span style="color:#b84">&#34;/var/www/html/static/&#34;</span>))
 	http.Handle(<span style="color:#b84">&#34;/static/&#34;</span>, http.StripPrefix(<span style="color:#b84">&#34;/static/&#34;</span>, fs))
 
 	http.ListenAndServe(<span style="color:#b84">&#34;:80&#34;</span>, <span style="font-weight:bold">nil</span>)
