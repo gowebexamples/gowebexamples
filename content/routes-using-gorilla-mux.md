@@ -16,7 +16,7 @@ In this example you will see how to use the `gorilla/mux` package to create rout
 
 ## Installing the `gorilla/mux` package
 `gorilla/mux` is a package which adapts to Go's default HTTP router. It comes with a lot of features to increase the productivity when writing web applications.
-It is also compliant to Go's default request handler signature `func (w http.ResponseWriter, r *http.Request)`, so the package can be mixed and machted with other
+It is also compliant to Go's default request handler signature `func (w http.ResponseWriter, r *http.Request)`, so the package can be mixed and matched with other
 HTTP libraries like middleware or exisiting applications. Use the `go get` command to install the package from GitHub like so:
 {{< highlight sh >}}
 go get -u github.com/gorilla/mux
