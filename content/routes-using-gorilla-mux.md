@@ -64,7 +64,7 @@ func(w http.ResponseWriter, r *http.Request) {
 {{< / highlight >}}
 
 ## Setting the HTTP server's router
-Ever wondered what the `nil` in `http.ListenAndServe(":80", nil)` ment? It is the parameter for the main router of the HTTP server.
+Ever wondered what the `nil` in `http.ListenAndServe(":80", nil)` meant? It is the parameter for the main router of the HTTP server.
 By default it's `nil`, which means to use the default router of the `net/http` package. To make use of your own router, replace the `nil`
 with the variable of your router `r`.
 {{< highlight go >}}
