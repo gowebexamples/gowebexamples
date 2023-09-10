@@ -47,7 +47,7 @@ http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 ## Accept connections
 The last thing to finish off our basic HTTP server is, to listen on a port to accept connections from the internet.
-As you can guess, Go has also an inbuilt HTTP server, we can start faily quickly. Once started, you can view your HTTP server in your <a href="http://localhost/" target="_blank">browser.</a>
+As you can guess, Go has also an inbuilt HTTP server, we can start fairly quickly. Once started, you can view your HTTP server in your <a href="http://localhost/" target="_blank">browser.</a>
 {{< highlight go >}}
 http.ListenAndServe(":80", nil)
 {{< / highlight >}}
